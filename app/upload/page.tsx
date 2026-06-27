@@ -4,45 +4,49 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import FileDropzone from "../../components/upload/FileDropzone";
 import { analyzeDashboard } from "../../lib/services/analyze";
+import {UploadImage} from "../../types";
+import { fileToBase64 } from "../../lib/utils/image";
 
 export default function UploadPage() {
   const router = useRouter();
 
-  const [file, setFile] = useState<File | null>(null);
+  const [upload, setUpload] =
+  useState<UploadImage | null>(null);
 
   const handleAnalyze = async () => {
+    if (!upload) return;
     await analyzeDashboard();
     router.push("/understanding");
   };
-
-  const [previewUrl, setPreviewUrl] =
-  useState<string | null>(null);
   
   return (
     <main style={{ padding: "2rem" }}>
       <h1>Upload Dashboard</h1>
 
      <FileDropzone
-  onFileSelect={(selectedFile) => {
-    setFile(selectedFile);
+  onFileSelect={async (selectedFile) => {
+  const base64 = await fileToBase64(selectedFile);
 
-    setPreviewUrl(
-      URL.createObjectURL(selectedFile)
-    );
-  }}
+  setUpload({
+    file: selectedFile,
+    base64,
+    previewUrl: URL.createObjectURL(selectedFile),
+    mimeType: selectedFile.type,
+    fileName: selectedFile.name,
+  });
+}}
 />
 
-      {file && (
+      {upload && (
         <>
           <br />
           <p>
-            <strong>Selected:</strong>{" "}
-            {file.name}
+            <strong>Selected:</strong>
+            {upload?.fileName}
           </p>
           {
-            previewUrl &&
-            file?.type.startsWith("image") && (
-              <img src={previewUrl}
+            upload.mimeType.startsWith("image") && (
+              <img src={upload.previewUrl}
                 alt="Dashboard Preview"
                 width={400}
                 style={{marginTop: "1rem", border: "1px solid #ccc"}}
@@ -56,7 +60,7 @@ export default function UploadPage() {
     
       <button
 
-        disabled={!file}
+        disabled={!upload}
         onClick={handleAnalyze}
       >
         Analyze Dashboard
