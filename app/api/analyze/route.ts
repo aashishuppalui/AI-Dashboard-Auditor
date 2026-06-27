@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { analyzeDashboardImage } from "../../../lib/ai/dashboardUnderstanding";
+import { kMaxLength } from "node:buffer";
 
 export async function POST(req: NextRequest) {
   try {
