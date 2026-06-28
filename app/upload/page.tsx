@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import FileDropzone from "../../components/upload/FileDropzone";
-import { analyzeDashboard } from "../../lib/services/analyze";
+import { analyzeDashboard } from "../../lib/api/analyze";
 import {UploadImage} from "../../types";
 import { fileToBase64 } from "../../lib/utils/image";
 
@@ -14,11 +14,23 @@ export default function UploadPage() {
   useState<UploadImage | null>(null);
 
   const handleAnalyze = async () => {
-    if (!upload) return;
-    await analyzeDashboard();
+  if (!upload) return;
+
+  try {
+    const understanding = await analyzeDashboard(
+      upload.base64
+    );
+
+    console.log(understanding);
+
     router.push("/understanding");
-  };
-  
+  } catch (error) {
+    console.error(error);
+
+    alert("Analysis failed.");
+  }
+};
+
   return (
     <main style={{ padding: "2rem" }}>
       <h1>Upload Dashboard</h1>

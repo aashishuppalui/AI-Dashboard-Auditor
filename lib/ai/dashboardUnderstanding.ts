@@ -1,17 +1,21 @@
 import { openai } from "./client";
-import { DASHBOARD_UNDERSTANDING_PROMPT } from "./prompts";
+import { createDashboardUnderstandingPrompt } from "./prompts";
+import { parseDashboardClassification } from "./parser";
 
-export async function analyzeDashboardImage(base64Image: string) {
+export async function understandDashboard(
+  base64Image: string
+) {
   const response = await openai.responses.create({
     model: "gpt-5.1",
 
     input: [
       {
         role: "user",
+
         content: [
           {
             type: "input_text",
-            text: DASHBOARD_UNDERSTANDING_PROMPT,
+            text: createDashboardUnderstandingPrompt(),
           },
           {
             type: "input_image",
@@ -22,5 +26,7 @@ export async function analyzeDashboardImage(base64Image: string) {
     ],
   });
 
-  return response.output_text;
+  return parseDashboardClassification(
+    response.output_text
+  );
 }

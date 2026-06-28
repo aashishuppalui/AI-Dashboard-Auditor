@@ -1,19 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { analyzeDashboardImage } from "../../../lib/ai/dashboardUnderstanding";
-import { kMaxLength } from "node:buffer";
+import { understandDashboard } from "../../../lib/ai/dashboardUnderstanding";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    const result = await analyzeDashboardImage(
-      body.image
-    );
+    const understanding =
+      await understandDashboard(body.image);
 
     return NextResponse.json({
       success: true,
-      result,
+      understanding,
     });
 
   } catch (error) {
@@ -29,4 +27,4 @@ export async function POST(req: NextRequest) {
       }
     );
   }
-} 
+}
