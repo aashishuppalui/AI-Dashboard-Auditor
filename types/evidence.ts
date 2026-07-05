@@ -6,9 +6,10 @@ export interface EvidenceItem {
     | "Medium"
     | "High";
 
-  observation: string;
+    uiElement: string;
+    observation: string;
 
-  reasoning: string;
+     reasoning: string;
 
-  observable: boolean;
+    observable: boolean;
 }

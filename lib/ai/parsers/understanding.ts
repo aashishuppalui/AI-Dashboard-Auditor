@@ -1,4 +1,4 @@
-import { DashboardClassificationSchema } from "../../schemas/dashboardClassification";
+import { DashboardClassificationSchema } from "../../../schemas/dashboardClassification";
 
 export function parseDashboardClassification(
   text: string

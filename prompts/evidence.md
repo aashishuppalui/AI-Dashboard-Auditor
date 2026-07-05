@@ -139,11 +139,26 @@ Return JSON only.
 {
 "evidence": [
 {
-"type": "...",
-"severity": "...",
+"type": "Missing Context",
+"severity": "High",
+"uiElement": "Defects Table",
 "observation": "...",
 "reasoning": "...",
 "observable": true
 }
 ]
 }
+
+Return exactly THREE evidence items.
+
+Each evidence item must reference the UI element where it was observed.
+
+Examples:
+
+- KPI Cards
+- Navigation Menu
+- Defects Table
+- Calendar
+- Sidebar
+- Filters
+- Chart

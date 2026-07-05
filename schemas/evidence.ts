@@ -1,26 +1,21 @@
 import { z } from "zod";
 
 export const EvidenceItemSchema = z.object({
-  type: z.string(),
+  id: z.string(),
 
-  severity: z.enum([
-    "Low",
-    "Medium",
-    "High",
-  ]),
+  title: z.string(),
 
   observation: z.string(),
 
-  reasoning: z.string(),
+  location: z.string(),
 
-  observable: z.boolean(),
+  confidence: z.number().min(0).max(1),
 });
 
 export const EvidenceSchema = z.object({
-  evidence: z.array(
-    EvidenceItemSchema
-  ),
+  evidence: z.array(EvidenceItemSchema),
+
+  confidence: z.number().min(0).max(1),
 });
 
-export type Evidence =
-  z.infer<typeof EvidenceSchema>;
+export type Evidence = z.infer<typeof EvidenceSchema>;

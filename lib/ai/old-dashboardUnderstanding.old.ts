@@ -1,5 +1,5 @@
 import { openai } from "./client";
-import { createDashboardUnderstandingPrompt } from "./prompts";
+import { createDashboardUnderstandingPrompt } from "../prompts";
 import { parseDashboardClassification } from "./parser";
 
 export async function understandDashboard(

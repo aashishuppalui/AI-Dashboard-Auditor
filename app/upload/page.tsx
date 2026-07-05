@@ -6,6 +6,7 @@ import FileDropzone from "../../components/upload/FileDropzone";
 import { analyzeDashboard } from "../../lib/api/analyze";
 import {UploadImage} from "../../types";
 import { fileToBase64 } from "../../lib/utils/image";
+import { analyzeEvidence } from "../../lib/api/evidense";
 
 export default function UploadPage() {
   const router = useRouter();
@@ -17,13 +18,20 @@ export default function UploadPage() {
   if (!upload) return;
 
   try {
-    const understanding = await analyzeDashboard(
-      upload.base64
-    );
-
-    console.log(understanding);
+    const understanding = await analyzeDashboard(upload.base64);
 
     router.push("/understanding");
+    console.log(understanding);
+
+    const evidence =
+  await analyzeEvidence(upload.base64);
+
+console.log("Evidence");
+
+console.log(evidence);
+
+router.push("/understanding");
+
   } catch (error) {
     console.error(error);
 

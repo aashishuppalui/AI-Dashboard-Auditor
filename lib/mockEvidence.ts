@@ -1,6 +1,6 @@
 import { Evidence } from "../schemas/evidence";
 
-export const mockEvidence: Evidence = {
+export const realEvidence: Evidence = {
   evidence: [
     {
       type: "Missing Context",

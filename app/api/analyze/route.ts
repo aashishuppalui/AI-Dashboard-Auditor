@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { understandDashboard } from "../../../lib/ai/dashboardUnderstanding";
+import { understandDashboard } from "../../../lib/ai/engines/understanding";
 
 export async function POST(req: NextRequest) {
   try {
