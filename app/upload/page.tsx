@@ -6,7 +6,9 @@ import FileDropzone from "../../components/upload/FileDropzone";
 import { analyzeDashboard } from "../../lib/api/analyze";
 import {UploadImage} from "../../types";
 import { fileToBase64 } from "../../lib/utils/image";
-import { analyzeEvidence } from "../../lib/api/evidense";
+import { analyzeEvidence } from "../../lib/api/evidence";
+import { analyzeFinding } from "../../lib/api/finding";
+import { buildFindingContext } from "../../lib/ai/context/finding";
 
 export default function UploadPage() {
   const router = useRouter();
@@ -18,18 +20,34 @@ export default function UploadPage() {
   if (!upload) return;
 
   try {
-    const understanding = await analyzeDashboard(upload.base64);
+    const understanding =
+  await analyzeDashboard(upload.base64);
 
-    router.push("/understanding");
-    console.log(understanding);
+console.log("Understanding");
+console.log(understanding);
 
-    const evidence =
+const evidence =
   await analyzeEvidence(upload.base64);
 
 console.log("Evidence");
-
 console.log(evidence);
 
+const context =
+  buildFindingContext(
+    understanding,
+    evidence
+  );
+
+console.log("===== FINDING CONTEXT =====");
+console.log(context);
+
+const finding =
+  await analyzeFinding(context);
+
+console.log("===== FINDING =====");
+console.log(finding);
+
+// Navigate only after everything succeeds
 router.push("/understanding");
 
   } catch (error) {
