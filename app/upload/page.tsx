@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import FileDropzone from "../../components/upload/FileDropzone";
-import { analyzeDashboard } from "../../lib/api/analyze";
 import {UploadImage} from "../../types";
 import { fileToBase64 } from "../../lib/utils/image";
-import { analyzeEvidence } from "../../lib/api/evidense";
+import { saveReview } from "../../lib/storage";
+import { generateReview } from "../../lib/review/reviewService";
 
 export default function UploadPage() {
   const router = useRouter();
@@ -18,24 +18,19 @@ export default function UploadPage() {
   if (!upload) return;
 
   try {
-    const understanding = await analyzeDashboard(upload.base64);
+    const review = await generateReview(upload.base64);
 
-    router.push("/understanding");
-    console.log(understanding);
+    saveReview(review);
 
-    const evidence =
-  await analyzeEvidence(upload.base64);
-
-console.log("Evidence");
-
-console.log(evidence);
-
-router.push("/understanding");
+    router.push("/review");
 
   } catch (error) {
     console.error(error);
-
-    alert("Analysis failed.");
+   alert(
+  error instanceof Error
+    ? error.message
+    : "Analysis failed."
+);
   }
 };
 

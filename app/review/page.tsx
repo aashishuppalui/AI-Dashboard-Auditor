@@ -4,16 +4,16 @@ import { useState, useEffect } from "react";
 
 import EvidenceCard from "../../components/review/EvidenceCard";
 import HighestImpactCard from "../../components/review/HighestImpactCard";
-import InsightCard from "../../components/review/InsightCard";
-import DESCard from "../../components/review/DESCard";
-import RecommendationCard from "../../components/review/RecommendationCard";
+// import InsightCard from "../../components/review/InsightCard";
+// import DESCard from "../../components/review/DESCard";
+// import RecommendationCard from "../../components/review/RecommendationCard";
 
-import { AnalyzeResponse } from "../../types";
+import { Review } from "../../schemas/review";
 import { getReview } from "../../lib/storage";
 
 export default function ReviewPage() {
   const [reviewData, setReviewData] =
-    useState<AnalyzeResponse | null>(null);
+    useState<Review | null>(null);
 
   useEffect(() => {
     const data = getReview();
@@ -33,7 +33,7 @@ export default function ReviewPage() {
     );
   }
 
-  const review = reviewData.review;
+  const review = reviewData;
 
   return (
     <main
@@ -53,11 +53,11 @@ export default function ReviewPage() {
       <hr />
 
       <EvidenceCard
-        evidence={review.evidence}
-        confidence={review.confidence}
+        evidence={review.evidence.evidence}
+        confidence={review.evidence.confidence}
       />
 
-      <hr />
+      {/* <hr />
 
       <InsightCard
         insight={review.insight}
@@ -76,7 +76,7 @@ export default function ReviewPage() {
         recommendation={
           review.recommendation
         }
-      />
+      /> */}
     </main>
   );
 }

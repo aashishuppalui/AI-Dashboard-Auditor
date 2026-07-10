@@ -14,5 +14,5 @@ export const DashboardClassificationSchema = z.object({
   reasoning: z.array(z.string()).min(1),
 });
 
-export type DashboardClassificationResponse =
+export type DashboardClassification =
   z.infer<typeof DashboardClassificationSchema>;

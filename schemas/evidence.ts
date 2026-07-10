@@ -19,3 +19,6 @@ export const EvidenceSchema = z.object({
 });
 
 export type Evidence = z.infer<typeof EvidenceSchema>;
+
+export type EvidenceItem =
+  z.infer<typeof EvidenceItemSchema>;

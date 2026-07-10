@@ -1,4 +1,4 @@
-import { DashboardClassification } from "../../types";
+import { DashboardClassification } from "../../schemas/dashboardClassification";
 
 export async function analyzeDashboard(
   base64Image: string
