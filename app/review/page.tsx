@@ -39,6 +39,9 @@ export default function ReviewPage() {
 
   const review = reviewData;
 
+  const sectionStyle = {
+  marginTop: "40px",
+};
   return (
     <main
       style={{
@@ -54,42 +57,29 @@ export default function ReviewPage() {
   version={review.metadata.appVersion}
 />
 
-      <UnderstandingCard
-        understanding={review.understanding}
-      />
+<section style={sectionStyle}>
+  <h2>🧠 Dashboard Understanding</h2>
 
-      
+  <UnderstandingCard
+    understanding={review.understanding}
+  />
+</section>
 
-      <FindingCard
+<section style={sectionStyle}>
+  <h2>⭐ Highest Impact Finding</h2>
+
+  <FindingCard
     finding={review.finding}
-/>
+  />
+</section>
 
-      
+<section style={sectionStyle}>
+  <h2>🔍 Observable Evidence</h2>
 
-     <EvidenceCard
-  evidence={review.evidence}
-/>
-
-      {/* <hr />
-
-      <InsightCard
-        insight={review.insight}
-      />
-
-      <hr />
-
-      <DESCard
-        des={review.des}
-        potentialDes={review.potentialDes}
-      />
-
-      <hr />
-
-      <RecommendationCard
-        recommendation={
-          review.recommendation
-        }
-      /> */}
+  <EvidenceCard
+    evidence={review.evidence}
+  />
+</section>
     </main>
   );
 }

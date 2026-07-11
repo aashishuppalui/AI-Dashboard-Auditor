@@ -9,7 +9,6 @@ export default function HighestImpactCard({
 }: HighestImpactCardProps) {
   return (
     <section>
-  <h2>⭐ Highest Impact Finding</h2>
 
   <h3>{finding.title}</h3>
 

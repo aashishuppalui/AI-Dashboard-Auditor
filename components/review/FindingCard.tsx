@@ -24,14 +24,6 @@ export default function FindingCard({
         background: "#fff",
       }}
     >
-      <h2
-        style={{
-          marginTop: 0,
-          marginBottom: "24px",
-        }}
-      >
-        ⭐ Highest Impact Finding
-      </h2>
 
       {/* Severity */}
 

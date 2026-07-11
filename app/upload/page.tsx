@@ -8,29 +8,50 @@ import { fileToBase64 } from "../../lib/utils/image";
 import { saveReview } from "../../lib/storage";
 import { generateReview } from "../../lib/review/reviewService";
 
+
 export default function UploadPage() {
   const router = useRouter();
 
   const [upload, setUpload] =
   useState<UploadImage | null>(null);
 
-  const handleAnalyze = async () => {
+  const [isAnalyzing, setIsAnalyzing] =
+  useState(false);
+
+const [status, setStatus] =
+  useState("");
+
+ const handleAnalyze = async () => {
   if (!upload) return;
 
   try {
-    const review = await generateReview(upload.base64);
+    setIsAnalyzing(true);
+    setStatus("🧠 Understanding dashboard...");
+
+    const review =
+      await generateReview(upload.base64, setStatus);
+
+    setStatus("📄 Opening review...");
 
     saveReview(review);
+
+    await new Promise((resolve) =>
+      setTimeout(resolve, 600)
+    );
 
     router.push("/review");
 
   } catch (error) {
     console.error(error);
-   alert(
-  error instanceof Error
-    ? error.message
-    : "Analysis failed."
-);
+
+    setIsAnalyzing(false);
+    setStatus("");
+
+    alert(
+      error instanceof Error
+        ? error.message
+        : "Analysis failed."
+    );
   }
 };
 
@@ -74,12 +95,26 @@ export default function UploadPage() {
       <br />
     
       <button
-
-        disabled={!upload}
-        onClick={handleAnalyze}
-      >
-        Analyze Dashboard
-      </button>
+  disabled={!upload || isAnalyzing}
+  onClick={handleAnalyze}
+>
+  {isAnalyzing
+    ? "Analyzing..."
+    : "Analyze Dashboard"}
+</button>
+      {isAnalyzing && (
+  <div
+    style={{
+      marginTop: "20px",
+      padding: "16px",
+      border: "1px solid #d1d5db",
+      borderRadius: "8px",
+      background: "#f9fafb",
+    }}
+  >
+    <p>{status}</p>
+  </div>
+)}
     </main>
   );
 }
