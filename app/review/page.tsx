@@ -4,6 +4,10 @@ import { useState, useEffect } from "react";
 
 import EvidenceCard from "../../components/review/EvidenceCard";
 import HighestImpactCard from "../../components/review/HighestImpactCard";
+
+import ReviewHeader from "../../components/review/ReviewHeader";
+import UnderstandingCard from "../../components/review/UnderstandingCard";
+import FindingCard from "../../components/review/FindingCard";
 // import InsightCard from "../../components/review/InsightCard";
 // import DESCard from "../../components/review/DESCard";
 // import RecommendationCard from "../../components/review/RecommendationCard";
@@ -42,20 +46,29 @@ export default function ReviewPage() {
         maxWidth: "900px",
       }}
     >
-      <h1>UX Review Results</h1>
 
-      <hr />
+      <ReviewHeader
+  title={review.understanding.dashboardType}
+  createdAt={review.metadata.createdAt}
+  model={review.metadata.model}
+  version={review.metadata.appVersion}
+/>
 
-      <HighestImpactCard
-        finding={review.finding}
+      <UnderstandingCard
+        understanding={review.understanding}
       />
 
-      <hr />
+      
 
-      <EvidenceCard
-        evidence={review.evidence.evidence}
-        confidence={review.evidence.confidence}
-      />
+      <FindingCard
+    finding={review.finding}
+/>
+
+      
+
+     <EvidenceCard
+  evidence={review.evidence}
+/>
 
       {/* <hr />
 
