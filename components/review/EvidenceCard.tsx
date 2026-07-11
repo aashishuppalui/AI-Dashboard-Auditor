@@ -19,14 +19,6 @@ export default function EvidenceCard({
         background: "#fff",
       }}
     >
-      <h2
-        style={{
-          marginTop: 0,
-          marginBottom: "24px",
-        }}
-      >
-        🔍 Observable Evidence
-      </h2>
 
       {evidence.evidence.map((item) => (
         <EvidenceItem

@@ -24,14 +24,6 @@ export default function UnderstandingCard({
         background: "#fff",
       }}
     >
-      <h2
-        style={{
-          marginTop: 0,
-          marginBottom: "24px",
-        }}
-      >
-        🧠 Dashboard Understanding
-      </h2>
 
       {/* Identity */}
 
