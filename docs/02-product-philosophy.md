@@ -1,15 +1,24 @@
 # Product Philosophy
 
-UX Review Companion is NOT
+UX Review Companion helps product teams understand, explain, and improve dashboard UX through evidence-backed AI intelligence.
 
-- Beauty score
-- Design linter
-- Accessibility checker
-- Heuristic checklist
+Not "generate."
+
+Not "analyze."
+
+Not "score."
+
+Not "Design linter".
+
+Not "Accessibility checker".
+
+Not "Heuristic checklist".
 
 UX Review Companion IS
 
-An AI UX Consultant.
+Understand. Explain. Improve.
+
+Those three words summarize everything we've built.
 
 ---
 
