@@ -8,6 +8,9 @@ import HighestImpactCard from "../../components/review/HighestImpactCard";
 import ReviewHeader from "../../components/review/ReviewHeader";
 import UnderstandingCard from "../../components/review/UnderstandingCard";
 import FindingCard from "../../components/review/FindingCard";
+
+import ExecutiveOverview from "../../components/executives/ExecutiveOverview";
+// import ReviewInfoCard from "../../components/executives/ReviewInfoCard";
 // import InsightCard from "../../components/review/InsightCard";
 // import DESCard from "../../components/review/DESCard";
 // import RecommendationCard from "../../components/review/RecommendationCard";
@@ -46,16 +49,17 @@ export default function ReviewPage() {
     <main
       style={{
         padding: "2rem",
-        maxWidth: "900px",
+        maxWidth: "1400px",
       }}
     >
 
-      <ReviewHeader
+      {/* <ReviewHeader
   title={review.understanding.dashboardType}
   createdAt={review.metadata.createdAt}
   model={review.metadata.model}
   version={review.metadata.appVersion}
-/>
+/> */}
+  <ExecutiveOverview/>
 
 <section style={sectionStyle}>
   <h2>🧠 Dashboard Understanding</h2>
@@ -63,6 +67,7 @@ export default function ReviewPage() {
   <UnderstandingCard
     understanding={review.understanding}
   />
+
 </section>
 
 <section style={sectionStyle}>
