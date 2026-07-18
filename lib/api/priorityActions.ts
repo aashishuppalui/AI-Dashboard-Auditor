@@ -1,11 +1,11 @@
-import type { Finding } from "../../schemas/finding";
+import type { PriorityAction } from "../../schemas/priorityAction";
 
-export async function analyzeFinding(
+export async function analyzePriorityActions(
   context: string
-): Promise<Finding> {
+): Promise<PriorityAction[]> {
 
   const response = await fetch(
-    "/api/finding",
+    "/api/priority-actions",
     {
       method: "POST",
 
@@ -29,7 +29,7 @@ export async function analyzeFinding(
 
     throw new Error(
       error.error ??
-      "Finding API failed."
+      "Priority Actions API failed."
     );
   }
 

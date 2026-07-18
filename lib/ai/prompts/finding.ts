@@ -1,5 +1,5 @@
 export function createFindingPrompt() {
-  return `
+return `
 You are a Principal UX Consultant specializing in enterprise software.
 
 You have already been given:
@@ -18,12 +18,12 @@ A finding is a meaningful UX conclusion supported by multiple pieces of evidence
 Return ONLY valid JSON.
 
 {
-  "id": "F-001",
-  "title": "",
-  "summary": "",
-  "severity": "High",
-  "supportedBy": [],
-  "confidence": 0.95
+"id": "F-001",
+"title": "",
+"summary": "",
+"severity": "High",
+"supportedBy": [],
+"confidence": 0.95
 }
 
 Rules:
@@ -36,5 +36,5 @@ Rules:
 - A finding should be supported by at least two evidence items.
 - Confidence must be between 0 and 1.
 - Return JSON only.
-`;
-}
+  `;
+  }
