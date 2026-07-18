@@ -1,16 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
-import { extractEvidence } from "../../../lib/ai/engines/evidence";
+
+import { generatePriorityActions }
+  from "../../../lib/ai/engines/priorityActions";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    const evidence = await extractEvidence(body.image);
+    const priorityActions =
+      await generatePriorityActions(
+        body.context
+      );
 
-    return NextResponse.json(evidence);
+    return NextResponse.json(
+      priorityActions
+    );
 
   } catch (error) {
-    console.error("Evidence API Error:", error);
+
+    console.error(
+      "Priority Actions API Error"
+    );
+
+    console.error(error);
 
     return NextResponse.json(
       {

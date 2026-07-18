@@ -9,6 +9,9 @@ import { EvidenceSchema }
 import { FindingSchema }
   from "./finding";
 
+  import { PriorityActionsSchema }
+  from "./priorityAction";
+
 export const ReviewSchema = z.object({
 
   understanding:
@@ -19,6 +22,9 @@ export const ReviewSchema = z.object({
 
   finding:
     FindingSchema,
+
+     priorityActions:
+    PriorityActionsSchema,
 
   metadata: z.object({
 

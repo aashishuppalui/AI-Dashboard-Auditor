@@ -1,8 +1,8 @@
-import { DashboardClassification } from "../../schemas/dashboardClassification";
+import type { Review } from "../../schemas/review";
 
 export async function analyzeDashboard(
   base64Image: string
-): Promise<DashboardClassification> {
+): Promise<Review> {
   const response = await fetch("/api/analyze", {
     method: "POST",
     headers: {
@@ -13,11 +13,13 @@ export async function analyzeDashboard(
     }),
   });
 
-  if (!response.ok) {
-    throw new Error("Failed to analyze dashboard.");
-  }
-
   const data = await response.json();
 
-  return data.understanding;
+  if (!response.ok) {
+    throw new Error(
+      data.error ?? "Failed to analyze dashboard."
+    );
+  }
+
+  return data.review;
 }

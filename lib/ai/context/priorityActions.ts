@@ -1,27 +1,18 @@
 import type { DashboardClassification } from "../../../schemas/dashboardClassification";
 import type { Evidence } from "../../../schemas/evidence";
+import type { Finding } from "../../../schemas/finding";
 
-type FindingContext = {
+type PriorityActionsContext = {
   understanding: DashboardClassification;
   evidence: Evidence;
+  finding: Finding;
 };
 
-export function buildFindingContext({
+export function buildPriorityActionsContext({
   understanding,
   evidence,
-}: FindingContext): string {
-  const evidenceText = evidence.evidence
-    .map(
-      (item) => `
-ID: ${item.id}
-Title: ${item.title}
-Observation: ${item.observation}
-Location: ${item.location}
-Confidence: ${item.confidence}
-`
-    )
-    .join("\n");
-
+  finding,
+}: PriorityActionsContext): string {
   return `
 ========================
 Dashboard Understanding
@@ -39,13 +30,33 @@ ${understanding.primaryUser}
 Primary Decision:
 ${understanding.primaryDecisionSupported}
 
-Confidence:
-${understanding.confidence}
-
 ========================
-Validated UX Evidence
+Highest Impact Finding
 ========================
 
-${evidenceText}
+Title:
+${finding.title}
+
+Severity:
+${finding.severity}
+
+Summary:
+${finding.summary}
+
+========================
+Observable Evidence
+========================
+
+${evidence.evidence
+  .map(
+    (item) => `
+ID: ${item.id}
+Title: ${item.title}
+Observation: ${item.observation}
+Location: ${item.location}
+Confidence: ${item.confidence}
+`
+  )
+  .join("\n")}
 `;
 }

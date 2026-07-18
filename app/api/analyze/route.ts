@@ -1,17 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { understandDashboard } from "../../../lib/ai/engines/understanding";
+import { generateReview } from "../../../lib/ai/generateReview";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    const understanding =
-      await understandDashboard(body.image);
+    const review =
+      await generateReview(body.image);
 
     return NextResponse.json({
       success: true,
-      understanding,
+      review,
     });
 
   } catch (error) {

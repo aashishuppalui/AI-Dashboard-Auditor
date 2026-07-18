@@ -3,17 +3,11 @@
 import { useState, useEffect } from "react";
 
 import EvidenceCard from "../../components/review/EvidenceCard";
-import HighestImpactCard from "../../components/review/HighestImpactCard";
-
-import ReviewHeader from "../../components/review/ReviewHeader";
 import UnderstandingCard from "../../components/review/UnderstandingCard";
 import FindingCard from "../../components/review/FindingCard";
 
 import ExecutiveOverview from "../../components/executives/ExecutiveOverview";
-// import ReviewInfoCard from "../../components/executives/ReviewInfoCard";
-// import InsightCard from "../../components/review/InsightCard";
-// import DESCard from "../../components/review/DESCard";
-// import RecommendationCard from "../../components/review/RecommendationCard";
+import PriorityActionsSection from "../../components/action/PriorityActionsSection";
 
 import { Review } from "../../schemas/review";
 import { getReview } from "../../lib/storage";
@@ -45,6 +39,7 @@ export default function ReviewPage() {
   const sectionStyle = {
   marginTop: "40px",
 };
+
   return (
     <main
       style={{
@@ -71,7 +66,14 @@ export default function ReviewPage() {
 </section>
 
 <section style={sectionStyle}>
+<PriorityActionsSection
+  actions={review.priorityActions}
+/>
+</section>
+
+<section style={sectionStyle}>
   <h2>⭐ Highest Impact Finding</h2>
+  
 
   <FindingCard
     finding={review.finding}
