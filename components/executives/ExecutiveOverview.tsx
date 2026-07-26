@@ -1,33 +1,21 @@
+import "../styles/token.css";
+import "../styles/component.css";
+import "../styles/executive.css";
+
 import ReviewInfoCard from "./ReviewInfoCard";
 import DESCard from "./DESCard";
 import ImprovementCard from "./ImprovementCard";
 import ExecutiveAssessmentCard from "../executives/ExecutiveAssessmentCard";
 
+
 export default function ExecutiveOverview() {
   return (
-    <section
-      style={{
-        marginBottom: "48px",
-      }}
-    >
-      <h2
-        style={{
-          marginTop: 0,
-          marginBottom: "24px",
-        }}
-      >
+    <section className="executive-section">
+      <h2 className="executive-title">
         Executive Intelligence
       </h2>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 2fr 1fr",
-          gap: "24px",
-          marginBottom: "24px",
-          alignItems: "stretch",
-        }}
-      >
+      <div className="executive-grid">
         <ReviewInfoCard
   confidence={96}
   evidenceCount={10}

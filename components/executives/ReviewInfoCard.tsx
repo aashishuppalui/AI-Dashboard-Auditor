@@ -1,3 +1,7 @@
+import "../styles/component.css";
+import "../styles/token.css";
+import "../styles/executive.css";
+
 interface ReviewInfoCardProps {
   confidence: number;
   evidenceCount: number;
@@ -12,100 +16,47 @@ export default function ReviewInfoCard({
   generatedAt,
 }: ReviewInfoCardProps) {
   return (
-    <section
-      style={{
-        border: "1px solid #d1d5db",
-        borderRadius: "8px",
-        padding: "24px",
-        background: "#ffffff",
-        height: "100%",
-      }}
-    >
-      <h3
-        style={{
-          marginTop: 0,
-          marginBottom: "24px",
-        }}
-      >
+    <section className="executive-card">
+      <h3 className="executive-card-title">
         Review Info
       </h3>
 
-      <div style={{ marginBottom: "20px" }}>
-        <div
-          style={{
-            fontSize: "13px",
-            color: "#6b7280",
-          }}
-        >
+      <div className="kpi-section">
+        <div className="kpi-label">
           Confidence
         </div>
 
-        <div
-          style={{
-            fontSize: "18px",
-            fontWeight: 600,
-          }}
-        >
+        <div className="kpi-value">
           {confidence}%
         </div>
       </div>
 
-      <div style={{ marginBottom: "20px" }}>
-        <div
-          style={{
-            fontSize: "13px",
-            color: "#6b7280",
-          }}
-        >
+      <div className="kpi-section">
+        <div className="kpi-label">
           Evidence
         </div>
 
-        <div
-          style={{
-            fontSize: "18px",
-            fontWeight: 600,
-          }}
-        >
-          {evidenceCount} Observations
+        <div className="kpi-value">
+          {evidenceCount} {evidenceCount === 1 ? "Observation" : "Observations"}
         </div>
       </div>
 
-      <div style={{ marginBottom: "20px" }}>
-        <div
-          style={{
-            fontSize: "13px",
-            color: "#6b7280",
-          }}
-        >
+      <div className="kpi-section">
+        <div className="kpi-label">
           Model
         </div>
 
-        <div
-          style={{
-            fontSize: "18px",
-            fontWeight: 600,
-          }}
-        >
+        <div className="kpi-value">
           {model}
         </div>
       </div>
 
-      <div>
-        <div
-          style={{
-            fontSize: "13px",
-            color: "#6b7280",
-          }}
-        >
+      <div className="kpi-section">
+        <div className="kpi-label">
           Generated
         </div>
 
-        <div
-          style={{
-            fontSize: "18px",
-            fontWeight: 600,
-          }}
-        >
+        <div className="kpi-value">
           {generatedAt}
         </div>
       </div>
