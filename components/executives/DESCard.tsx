@@ -1,3 +1,8 @@
+import "../styles/component.css";
+import "../styles/token.css";
+import "../styles/executive.css";
+
+
 interface DESCardProps {
   score: number;
   rating: "Excellent" | "Good" | "Fair" | "Needs Attention";
@@ -8,65 +13,21 @@ export default function DESCard({
   rating,
 }: DESCardProps) {
   return (
-    <section
-      style={{
-        border: "1px solid #d1d5db",
-        borderRadius: "8px",
-        padding: "24px",
-        background: "#ffffff",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        textAlign: "center",
-      }}
-    >
-      <h3
-        style={{
-          margin: 0,
-          marginBottom: "24px",
-        }}
-      >
+    <section className="executive-card executive-kpi-card">
+      <h3 className="executive-card-title">
         Design Effectiveness
       </h3>
 
-      <div
-        style={{
-          fontSize: "64px",
-          fontWeight: 700,
-          lineHeight: 1,
-        }}
-      >
+      <div className="hero-kpi">
         {score}
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "12px",
-          marginTop: "24px",
-        }}
-      >
-        <span
-          style={{
-            padding: "4px 12px",
-            border: "1px solid #d1d5db",
-            borderRadius: "999px",
-            fontSize: "14px",
-            fontWeight: 600,
-          }}
-        >
+      <div className="kpi-footer">
+        <span className="kpi-badge">
           {rating}
         </span>
 
-        <span
-          style={{
-            fontSize: "13px",
-            color: "#6b7280",
-          }}
-        >
+        <span className="kpi-caption">
           DES
         </span>
       </div>

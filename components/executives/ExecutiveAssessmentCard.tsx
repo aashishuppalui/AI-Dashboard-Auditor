@@ -1,3 +1,7 @@
+import "../styles/component.css";
+import "../styles/token.css";
+import "../styles/executive.css";
+
 interface ExecutiveAssessmentCardProps {
   summary: string;
   opportunity: string;
@@ -8,73 +12,29 @@ export default function ExecutiveAssessmentCard({
   opportunity,
 }: ExecutiveAssessmentCardProps) {
   return (
-    <section
-      style={{
-        border: "1px solid #d1d5db",
-        borderRadius: "8px",
-        padding: "24px",
-        background: "#ffffff",
-      }}
-    >
-      <h3
-        style={{
-          marginTop: 0,
-          marginBottom: "20px",
-        }}
-      >
+    <section className="executive-card">
+      <h3 className="executive-card-title">
         AI Executive Assessment
       </h3>
 
-      <div style={{ marginBottom: "24px" }}>
-        <div
-          style={{
-            fontSize: "13px",
-            color: "#6b7280",
-            marginBottom: "8px",
-            fontWeight: 600,
-            textTransform: "uppercase",
-          }}
-        >
+      <div>
+        <div className="kpi-label">
          Overall Assessment
         </div>
 
-        <p
-          style={{
-            margin: 0,
-            lineHeight: 1.7,
-          }}
-        >
+        <p  className="executive-body">
           {summary}
         </p>
       </div>
 
-      <hr
-        style={{
-          border: 0,
-          borderTop: "1px solid #e5e7eb",
-          margin: "24px 0",
-        }}
-      />
+      <hr className="executive-divider" />
 
       <div>
-        <div
-          style={{
-            fontSize: "13px",
-            color: "#6b7280",
-            marginBottom: "8px",
-            fontWeight: 600,
-            textTransform: "uppercase",
-          }}
-        >
+      <div className="kpi-label">
           Top Opportunity
         </div>
 
-        <p
-          style={{
-            margin: 0,
-            lineHeight: 1.7,
-          }}
-        >
+        <p  className="executive-body">
           {opportunity}
         </p>
       </div>

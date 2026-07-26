@@ -1,0 +1,41 @@
+/* =====================================================
+   EXECUTIVE SECTION
+===================================================== */
+
+.executive-section {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--space-lg);
+}
+
+/* =====================================================
+   SECTION TITLE
+===================================================== */
+
+.executive-title {
+  margin: 0;
+
+  font-size: var(--font-section-title);
+
+  font-weight: var(--weight-bold);
+
+  line-height: var(--line-section-title);
+
+  color: var(--color-text-primary);
+}
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.executive-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 2fr 1fr;
+
+  gap: var(--space-lg);
+
+  align-items: stretch;
+}

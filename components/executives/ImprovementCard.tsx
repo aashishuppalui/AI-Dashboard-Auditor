@@ -1,3 +1,7 @@
+import "../styles/component.css";
+import "../styles/token.css";
+import "../styles/executive.css";
+
 interface ImprovementCardProps {
   currentScore: number;
   potentialScore: number;
@@ -11,62 +15,21 @@ export default function ImprovementCard({
     potentialScore - currentScore;
 
   return (
-    <section
-      style={{
-        border: "1px solid #d1d5db",
-        borderRadius: "8px",
-        padding: "24px",
-        background: "#fff",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        textAlign: "center",
-      }}
-    >
-      <h3
-        style={{
-          margin: 0,
-          marginBottom: "24px",
-        }}
-      >
+    <section  className="executive-card executive-kpi-card">
+      <h3 className="executive-card-title">
         Improvement
       </h3>
 
-      <div
-        style={{
-          fontSize: "56px",
-          fontWeight: 700,
-          lineHeight: 1,
-        }}
-      >
+      <div className="hero-kpi">
         +{improvement}
       </div>
 
-      <div
-        style={{
-          marginTop: "24px",
-        }}
-      >
-        <span
-          style={{
-            padding: "4px 12px",
-            border: "1px solid #d1d5db",
-            borderRadius: "999px",
-            fontSize: "14px",
-            fontWeight: 600,
-          }}
-        >
+      <div className="kpi-footer-column">
+        <span  className="kpi-badge">
           High Opportunity
         </span>
 
-        <div
-          style={{
-            marginTop: "16px",
-            fontSize: "14px",
-            color: "#6b7280",
-          }}
-        >
+        <div className="kpi-caption">
           Potential DES: {potentialScore}
         </div>
       </div>
