@@ -4,10 +4,10 @@ import { DashboardClassificationSchema }
   from "./dashboardClassification";
 
 import { EvidenceSchema }
-  from "./evidence";
+  from "./reasoning/evidence";
 
 import { FindingSchema }
-  from "./finding";
+  from "./reasoning/finding";
 
   import { PriorityActionsSchema }
   from "./priorityAction";

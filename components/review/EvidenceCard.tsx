@@ -1,4 +1,4 @@
-import type { Evidence } from "../../schemas/evidence";
+import type { Evidence } from "../../schemas/reasoning/evidence";
 
 import EvidenceItem from "./EvidenceItem";
 

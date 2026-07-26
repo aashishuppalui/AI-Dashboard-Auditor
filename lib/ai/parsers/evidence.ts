@@ -1,4 +1,4 @@
-import { EvidenceSchema } from "../../../schemas/evidence";
+import { EvidenceSchema } from "../../../schemas/reasoning/evidence";
 
 export function parseEvidence(
   text: string

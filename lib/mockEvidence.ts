@@ -1,4 +1,4 @@
-import { Evidence } from "../schemas/evidence";
+import { Evidence } from "../schemas/reasoning/evidence";
 
 export const realEvidence: Evidence = {
   evidence: [

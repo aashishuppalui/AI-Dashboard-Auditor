@@ -1,6 +1,6 @@
 import type { DashboardClassification } from "../../../schemas/dashboardClassification";
-import type { Evidence } from "../../../schemas/evidence";
-import type { Finding } from "../../../schemas/finding";
+import type { Evidence } from "../../../schemas/reasoning/evidence";
+import type { Finding } from "../../../schemas/reasoning/finding";
 
 type PriorityActionsContext = {
   understanding: DashboardClassification;
