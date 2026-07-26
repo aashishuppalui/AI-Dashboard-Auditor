@@ -1,5 +1,5 @@
 import type { DashboardClassification } from "../../../schemas/dashboardClassification";
-import type { Evidence } from "../../../schemas/evidence";
+import type { Evidence } from "../../../schemas/reasoning/evidence";
 
 type FindingContext = {
   understanding: DashboardClassification;

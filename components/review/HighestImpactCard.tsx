@@ -1,4 +1,4 @@
-import type { Finding } from "../../schemas/finding";
+import type { Finding } from "../../schemas/reasoning/finding";
 
 interface HighestImpactCardProps {
   finding: Finding;

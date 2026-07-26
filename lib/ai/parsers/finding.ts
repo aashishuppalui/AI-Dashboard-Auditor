@@ -1,4 +1,4 @@
-import { FindingSchema } from "../../../schemas/finding";
+import { FindingSchema } from "../../../schemas/reasoning/finding";
 
 export function parseFinding(text: string) {
   try {

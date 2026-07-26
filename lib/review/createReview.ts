@@ -4,11 +4,11 @@ import type {
 
 import type {
   Evidence
-} from "../../schemas/evidence";
+} from "../../schemas/reasoning/evidence";
 
 import type {
   Finding
-} from "../../schemas/finding";
+} from "../../schemas/reasoning/finding";
 
 import type {
   Review

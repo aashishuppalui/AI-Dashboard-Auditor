@@ -1,4 +1,4 @@
-import type { EvidenceItem as EvidenceItemType } from "../../schemas/evidence";
+import type { EvidenceItem as EvidenceItemType } from "../../schemas/reasoning/evidence";
 
 interface EvidenceItemProps {
   evidence: EvidenceItemType;
