@@ -3,7 +3,7 @@ import { z } from "zod";
 import { MetadataSchema } from "./metadata";
 import { ExecutiveIntelligenceSchema } from "../context/executive-intelligence";
 import { AIUnderstandingSchema } from "../context/ai-understanding";
-import { HighestImpactFindingSchema } from "../reasoning/finding";
+import { FindingSchema } from "../reasoning/finding";
 import { EvidenceSchema } from "../reasoning/evidence";
 import { RecommendationSchema } from "../reasoning/recommendation";
 import { ExecutiveSummarySchema } from "./summary";
@@ -15,7 +15,7 @@ export const ReviewResponseSchema = z.object({
 
   aiUnderstanding: AIUnderstandingSchema,
 
-  highestImpactFinding: HighestImpactFindingSchema,
+  highestImpactFinding: FindingSchema,
 
   supportingEvidence: z.array(EvidenceSchema),
 
@@ -24,4 +24,6 @@ export const ReviewResponseSchema = z.object({
   executiveSummary: ExecutiveSummarySchema,
 });
 
-export type ReviewResponse = z.infer<typeof ReviewResponseSchema>;
+export type ReviewResponse = z.infer<
+  typeof ReviewResponseSchema
+>;
