@@ -1,4 +1,4 @@
-import type { Finding } from "../../schemas/reasoning/finding";
+import type { Finding } from "../../../schemas/reasoning/finding";
 
 interface FindingCardProps {
   finding: Finding;

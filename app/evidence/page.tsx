@@ -5,7 +5,7 @@ export default function EvidencePage() {
   return (
     <main style={{ padding: "2rem" }}>
       <EvidenceList
-        evidence={realEvidence.evidence}
+        evidence={realEvidence}
       />
     </main>
   );

@@ -1,9 +1,9 @@
-import type { Review } from "../schemas/review";
+import type { ReviewResponse } from "../schemas/report/review-schema";
 
 const STORAGE_KEY = "ux-review-result";
 
 export function saveReview(
-  review: Review
+  review: ReviewResponse
 ) {
   localStorage.setItem(
     STORAGE_KEY,
@@ -12,7 +12,7 @@ export function saveReview(
 }
 
 export function getReview():
-  | Review
+  | ReviewResponse
   | null {
 
   const data =
@@ -23,7 +23,7 @@ export function getReview():
   }
 
 try {
-  return JSON.parse(data) as Review;
+  return JSON.parse(data) as ReviewResponse;
 } catch {
   localStorage.removeItem(STORAGE_KEY);
   return null;

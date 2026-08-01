@@ -1,14 +1,14 @@
-"use client"; 
-
-import { AnalyzeResponse } from "../../types";
-import { getReview } from "../../lib/storage";
+"use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import { getReview } from "../../lib/storage";
+import type { ReviewResponse } from "../../schemas/report/review-schema";
 
 export default function UnderstandingPage() {
   const [reviewData, setReviewData] =
-    useState<AnalyzeResponse | null>(null);
+    useState<ReviewResponse | null>(null);
 
   useEffect(() => {
     const data = getReview();
@@ -26,8 +26,8 @@ export default function UnderstandingPage() {
     );
   }
 
-  const classification =
-    reviewData.classification;
+  const understanding =
+    reviewData.executiveIntelligence;
 
   return (
     <main style={{ padding: "2rem" }}>
@@ -36,23 +36,28 @@ export default function UnderstandingPage() {
       <hr />
 
       <p>
-        <strong>Dashboard Type:</strong>{" "}
-        {classification.dashboardType}
-      </p>
-
-      <p>
-        <strong>Primary User:</strong>{" "}
-        {classification.primaryUser}
+        <strong>Interface Type:</strong>{" "}
+        {understanding.interfaceType}
       </p>
 
       <p>
         <strong>Primary Goal:</strong>{" "}
-        {classification.primaryGoal}
+        {understanding.primaryGoal}
+      </p>
+
+      <p>
+        <strong>Target Users:</strong>{" "}
+        {understanding.targetUsers.join(", ")}
+      </p>
+
+      <p>
+        <strong>Detected Components:</strong>{" "}
+        {understanding.detectedComponents.join(", ")}
       </p>
 
       <p>
         <strong>Confidence:</strong>{" "}
-        {classification.confidence}%
+        {understanding.confidence}
       </p>
 
       <br />
