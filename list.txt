@@ -1,0 +1,17 @@
+Migration Checklist
+
+✅ mockEvidence
+
+⬜ mockAnalyzeResponse
+
+⬜ storage.ts
+
+⬜ ReviewPage
+
+⬜ UnderstandingPage
+
+⬜ UploadPage
+
+⬜ Components
+
+⬜ API Route

@@ -4,17 +4,17 @@ import { useState, useEffect } from "react";
 
 import EvidenceCard from "../../components/review/EvidenceCard";
 import UnderstandingCard from "../../components/review/UnderstandingCard";
-import FindingCard from "../../components/review/FindingCard";
+import FindingCard from "../../components/review/highest-impact/FindingCard";
 
 import ExecutiveOverview from "../../components/executives/ExecutiveOverview";
 import PriorityActionsSection from "../../components/action/PriorityActionsSection";
 
-import { Review } from "../../schemas/review";
+import { ReviewResponse } from "../../schemas/report/review-schema";
 import { getReview } from "../../lib/storage";
 
 export default function ReviewPage() {
   const [reviewData, setReviewData] =
-    useState<Review | null>(null);
+    useState<ReviewResponse | null>(null);
 
   useEffect(() => {
     const data = getReview();
@@ -60,14 +60,14 @@ export default function ReviewPage() {
   <h2>🧠 Dashboard Understanding</h2>
 
   <UnderstandingCard
-    understanding={review.understanding}
+    understanding={reviewData.aiUnderstanding}
   />
 
 </section>
 
 <section style={sectionStyle}>
 <PriorityActionsSection
-  actions={review.priorityActions}
+  actions={reviewData.recommendations}
 />
 </section>
 
@@ -76,7 +76,7 @@ export default function ReviewPage() {
   
 
   <FindingCard
-    finding={review.finding}
+    finding={reviewData.highestImpactFinding}
   />
 </section>
 
@@ -84,7 +84,7 @@ export default function ReviewPage() {
   <h2>🔍 Observable Evidence</h2>
 
   <EvidenceCard
-    evidence={review.evidence}
+    evidence={reviewData.supportingEvidence}
   />
 </section>
     </main>

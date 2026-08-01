@@ -1,0 +1,2 @@
+export const OPENAI_MODEL =
+    "gpt-5.5";
