@@ -1,15 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
-
-import EvidenceCard from "../../components/review/EvidenceCard";
-import UnderstandingCard from "../../components/review/UnderstandingCard";
-import FindingCard from "../../components/review/highest-impact/FindingCard";
+import { useEffect, useState } from "react";
 
 import ExecutiveOverview from "../../components/executives/ExecutiveOverview";
-import PriorityActionsSection from "../../components/action/PriorityActionsSection";
+import HighestImpactCard from "../../components/review/highest-impact/HighestImpactCard";
+import ObservableEvidence from "../../components/observable-evidence/ObservableEvidence";
+import RecommendationCard from "../../components/recommendations/ActionCard";
 
-import { ReviewResponse } from "../../schemas/report/review-schema";
+import type { ReviewResponse } from "../../schemas/report/review-schema";
 import { getReview } from "../../lib/storage";
 
 export default function ReviewPage() {
@@ -34,59 +32,44 @@ export default function ReviewPage() {
     );
   }
 
-  const review = reviewData;
-
   const sectionStyle = {
-  marginTop: "40px",
-};
+    marginTop: "40px",
+  };
 
   return (
     <main
       style={{
         padding: "2rem",
         maxWidth: "1400px",
+        margin: "0 auto",
       }}
     >
+      {/* Executive Intelligence */}
+      <ExecutiveOverview
+        data={reviewData.executiveIntelligence}
+        des={reviewData.des}
+      />
 
-      {/* <ReviewHeader
-  title={review.understanding.dashboardType}
-  createdAt={review.metadata.createdAt}
-  model={review.metadata.model}
-  version={review.metadata.appVersion}
-/> */}
-  <ExecutiveOverview/>
+      {/* Highest Impact Finding */}
+      <section style={sectionStyle}>
+        <HighestImpactCard
+          finding={reviewData.highestImpactFinding}
+        />
+      </section>
 
-<section style={sectionStyle}>
-  <h2>🧠 Dashboard Understanding</h2>
+      {/* Supporting Evidence */}
+      <section style={sectionStyle}>
+        <ObservableEvidence
+          observableEvidence={reviewData.supportingEvidence}
+        />
+      </section>
 
-  <UnderstandingCard
-    understanding={reviewData.aiUnderstanding}
-  />
-
-</section>
-
-<section style={sectionStyle}>
-<PriorityActionsSection
-  actions={reviewData.recommendations}
-/>
-</section>
-
-<section style={sectionStyle}>
-  <h2>⭐ Highest Impact Finding</h2>
-  
-
-  <FindingCard
-    finding={reviewData.highestImpactFinding}
-  />
-</section>
-
-<section style={sectionStyle}>
-  <h2>🔍 Observable Evidence</h2>
-
-  <EvidenceCard
-    evidence={reviewData.supportingEvidence}
-  />
-</section>
+      {/* Priority Actions */}
+      <section style={sectionStyle}>
+        <RecommendationCard
+          data={reviewData.priorityActions}
+        />
+      </section>
     </main>
   );
 }

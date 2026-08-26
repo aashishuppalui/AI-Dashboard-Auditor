@@ -1,6 +1,8 @@
 import { executeAI } from "../execute";
+
 import { createDashboardUnderstandingPrompt } from "../prompts/understanding";
-import { parseDashboardClassification } from "../parsers/understanding";
+
+import { parseDashboardUnderstanding } from "../parsers/understanding";
 
 export async function understandDashboard(
   base64Image: string
@@ -8,6 +10,6 @@ export async function understandDashboard(
   return executeAI({
     prompt: createDashboardUnderstandingPrompt(),
     image: base64Image,
-    parser: parseDashboardClassification,
+    parser: parseDashboardUnderstanding,
   });
 }

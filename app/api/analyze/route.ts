@@ -15,16 +15,19 @@ export async function POST(req: NextRequest) {
     });
 
   } catch (error) {
+  console.error("Analyze API error:", error);
 
-    console.error(error);
-
-    return NextResponse.json(
-      {
-        success: false,
-      },
-      {
-        status: 500,
-      }
-    );
+  return NextResponse.json(
+    {
+      success: false,
+      error:
+        error instanceof Error
+          ? error.message
+          : "Failed to analyze dashboard.",
+    },
+    {
+      status: 500,
+    }
+  );
   }
 }

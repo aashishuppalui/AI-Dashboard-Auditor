@@ -1,9 +1,7 @@
-import { DashboardClassificationSchema } from "../../../schemas/dashboardClassification";
+import { ExecutiveIntelligenceSchema } from "../../../schemas/context/executive-intelligence";
 
-export function parseDashboardClassification(
-  text: string
-) {
+export function parseDashboardUnderstanding(text: string) {
   const json = JSON.parse(text);
 
-  return DashboardClassificationSchema.parse(json);
+  return ExecutiveIntelligenceSchema.parse(json);
 }

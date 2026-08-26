@@ -1,59 +1,93 @@
+import type { ObservableEvidenceItem } from "../../schemas/reasoning/evidence";
+
 interface EvidenceCardProps {
-  observation: string;
-  rationale: string;
-  impact: string;
-  severity: "Low" | "Medium" | "High";
+  evidence: ObservableEvidenceItem;
 }
 
 export default function EvidenceCard({
-  observation,
-  rationale,
-  impact,
-  severity,
+  evidence,
 }: EvidenceCardProps) {
   return (
-    <article className="review-card">
+    <article
+      style={{
+        padding: "20px 0",
+        borderBottom: "1px solid #e5e7eb",
+      }}
+    >
+      {/* Evidence identity */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          marginBottom: "12px",
+        }}
+      >
+        <span
+          style={{
+            fontSize: "12px",
+            fontWeight: 600,
+            color: "#6b7280",
+          }}
+        >
+          {evidence.id}
+        </span>
 
-      <div className="evidence-section">
-        <h3 className="review-card-title">
+        <h3
+          style={{
+            margin: 0,
+            fontSize: "16px",
+            fontWeight: 600,
+          }}
+        >
+          {evidence.title}
+        </h3>
+      </div>
+
+      {/* Observation */}
+      <div style={{ marginBottom: "14px" }}>
+        <p
+          style={{
+            margin: "0 0 5px",
+            fontSize: "12px",
+            fontWeight: 600,
+            color: "#6b7280",
+          }}
+        >
           Observation
-        </h3>
+        </p>
 
-        <p className="review-card-content">
-          {observation}
+        <p
+          style={{
+            margin: 0,
+            fontSize: "14px",
+            lineHeight: 1.6,
+          }}
+        >
+          {evidence.observation}
         </p>
       </div>
 
-      <div className="evidence-section">
-        <h3 className="review-card-title">
-          Why It Matters
-        </h3>
+      {/* Location + Confidence */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "20px",
+          fontSize: "12px",
+          color: "#6b7280",
+        }}
+      >
+        <span>
+          <strong>Location:</strong>{" "}
+          {evidence.location}
+        </span>
 
-        <p className="review-card-content">
-          {rationale}
-        </p>
+        <span>
+          <strong>Confidence:</strong>{" "}
+          {(evidence.confidence * 100).toFixed(0)}%
+        </span>
       </div>
-
-      <div className="evidence-section">
-        <h3 className="review-card-title">
-          Impact
-        </h3>
-
-        <p className="review-card-content">
-          {impact}
-        </p>
-      </div>
-
-      <div className="evidence-section">
-        <h3 className="review-card-title">
-          Severity
-        </h3>
-
-        <p className="review-card-content">
-          {severity}
-        </p>
-      </div>
-
     </article>
   );
 }

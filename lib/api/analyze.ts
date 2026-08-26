@@ -1,8 +1,8 @@
-import type { Review } from "../../schemas/review";
+import type { ReviewResponse } from "../../schemas/report/review-schema";
 
 export async function analyzeDashboard(
   base64Image: string
-): Promise<Review> {
+): Promise<ReviewResponse> {
   const response = await fetch("/api/analyze", {
     method: "POST",
     headers: {
