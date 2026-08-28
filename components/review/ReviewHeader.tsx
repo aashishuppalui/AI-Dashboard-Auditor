@@ -1,73 +1,137 @@
 interface ReviewHeaderProps {
-  title: string;
+  reviewId: string;
   createdAt: string;
   model: string;
-  version: string;
 }
 
 export default function ReviewHeader({
-  title,
+  reviewId,
   createdAt,
   model,
-  version,
 }: ReviewHeaderProps) {
   const formattedDate = new Date(
     createdAt
-  ).toLocaleString();
+  ).toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
 
   return (
     <header
       style={{
-        border: "1px solid #d1d5db",
-        borderRadius: "8px",
-        padding: "24px",
-        marginBottom: "24px",
-        background: "#fff",
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "space-between",
+        gap: "40px",
+        paddingBottom: "28px",
+        marginBottom: "32px",
+        borderBottom: "1px solid #e5e7eb",
       }}
     >
-      <h1
-        style={{
-          margin: 0,
-          marginBottom: "8px",
-        }}
-      >
-        AI UX Review
-      </h1>
+      {/* Report identity */}
+      <div>
+        {/* <p
+          style={{
+            margin: "0 0 8px",
+            fontSize: "11px",
+            fontWeight: 700,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "#6b7280",
+          }}
+        >
+          UX Audit
+        </p> */}
 
-      <p
-        style={{
-          margin: 0,
-          color: "#555",
-          fontSize: "16px",
-        }}
-      >
-        {title}
-      </p>
+        <h1
+          style={{
+            margin: 0,
+            fontSize: "30px",
+            lineHeight: 1.2,
+            fontWeight: 600,
+            letterSpacing: "-0.02em",
+            color: "#111827",
+          }}
+        >
+          Dashboard Decision Effectiveness Review
+        </h1>
 
+        <p
+          style={{
+            margin: "8px 0 0",
+            fontSize: "14px",
+            color: "#6b7280",
+          }}
+        >
+          AI-assisted UX Audit Report for the dashboard, generated on {formattedDate}. 
+        </p>
+      </div>
+
+      {/* Metadata */}
       <div
         style={{
-          display: "flex",
-          gap: "24px",
-          marginTop: "20px",
-          fontSize: "14px",
-          color: "#666",
-          flexWrap: "wrap",
+          display: "grid",
+          gridTemplateColumns: "auto auto",
+          columnGap: "28px",
+          rowGap: "8px",
+          minWidth: "260px",
+          fontSize: "12px",
         }}
       >
-        <span>
-          <strong>Generated:</strong>{" "}
+        <span
+          style={{
+            color: "#9ca3af",
+          }}
+        >
+          Review ID
+        </span>
+
+        <span
+          style={{
+            color: "#374151",
+            fontWeight: 500,
+            textAlign: "right",
+          }}
+        >
+          {reviewId}
+        </span>
+
+        {/* <span
+          style={{
+            color: "#9ca3af",
+          }}
+        >
+          Generated
+        </span>
+
+        <span
+          style={{
+            color: "#374151",
+            fontWeight: 500,
+            textAlign: "right",
+          }}
+        >
           {formattedDate}
+        </span> */}
+
+        {/* <span
+          style={{
+            color: "#9ca3af",
+          }}
+        >
+          Model
         </span>
 
-        <span>
-          <strong>Model:</strong>{" "}
+        <span
+          style={{
+            color: "#374151",
+            fontWeight: 500,
+            textAlign: "right",
+          }}
+        >
           {model}
-        </span>
-
-        <span>
-          <strong>Version:</strong>{" "}
-          {version}
-        </span>
+        </span> */}
       </div>
     </header>
   );

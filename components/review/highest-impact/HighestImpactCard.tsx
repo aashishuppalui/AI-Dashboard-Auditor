@@ -1,151 +1,108 @@
 import type { Finding } from "../../../schemas/reasoning/finding";
+import type { Evidence } from "../../../schemas/reasoning/evidence";
 
 interface HighestImpactCardProps {
   finding: Finding;
+  evidence: Evidence;
 }
 
 export default function HighestImpactCard({
   finding,
+  evidence,
 }: HighestImpactCardProps) {
-  return (
-    <section
-      style={{
-        border: "1px solid #d1d5db",
-        borderRadius: "12px",
-        padding: "24px",
-        background: "#ffffff",
-      }}
-    >
-      {/* Header */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "24px",
-          marginBottom: "20px",
-        }}
-      >
-        <h2
-          style={{
-            margin: 0,
-            fontSize: "18px",
-            fontWeight: 600,
-          }}
-        >
-          Highest Impact Finding
-        </h2>
+  const confidencePercent = Math.round(
+    finding.confidence * 100
+  );
 
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "12px",
-            whiteSpace: "nowrap",
-          }}
-        >
+  const supportedEvidence = finding.supportedBy
+    .map((evidenceId) =>
+      evidence.evidence.find(
+        (item) => item.id === evidenceId
+      )
+    )
+    .filter((item) => item !== undefined);
+
+  return (
+    <article className="finding-card report-card">
+      <header className="finding-card-header">
+        <p className="finding-card-eyebrow">
+          Highest Impact Finding
+        </p>
+
+        <div className="finding-card-assessment">
           <span
-            style={{
-              padding: "5px 10px",
-              borderRadius: "999px",
-              fontSize: "12px",
-              fontWeight: 600,
-              background: "#f3f4f6",
-            }}
+            className={`report-badge ${
+              finding.severity === "High"
+                ? "report-badge-high"
+                : finding.severity === "Medium"
+                ? "report-badge-medium"
+                : "report-badge-neutral"
+            }`}
           >
             {finding.severity}
           </span>
 
-          <span
-            style={{
-              fontSize: "13px",
-              color: "#6b7280",
-            }}
-          >
+          <span className="finding-confidence">
             Confidence{" "}
-            <strong
-              style={{
-                color: "#111827",
-              }}
-            >
-              {(finding.confidence * 100).toFixed(0)}%
-            </strong>
+            <strong>{confidencePercent}%</strong>
           </span>
         </div>
-      </div>
+      </header>
 
-      {/* Finding */}
-      <div
-        style={{
-          marginBottom: "24px",
-        }}
-      >
-        <h3
-          style={{
-            margin: "0 0 10px",
-            fontSize: "20px",
-            lineHeight: 1.4,
-            fontWeight: 600,
-          }}
-        >
+      <div className="finding-card-content">
+        <h2 className="finding-card-title">
           {finding.title}
-        </h3>
+        </h2>
 
-        <p
-          style={{
-            margin: 0,
-            fontSize: "15px",
-            lineHeight: 1.6,
-            color: "#374151",
-          }}
-        >
+        <p className="finding-card-summary">
           {finding.summary}
         </p>
       </div>
 
-      {/* Evidence */}
-      <div
-        style={{
-          paddingTop: "16px",
-          borderTop: "1px solid #e5e7eb",
-        }}
-      >
-        <p
-          style={{
-            margin: "0 0 8px",
-            fontSize: "12px",
-            fontWeight: 600,
-            color: "#6b7280",
-            textTransform: "uppercase",
-            letterSpacing: "0.04em",
-          }}
+      {supportedEvidence.length > 0 && (
+        <footer
+          className="finding-card-footer"
+          aria-label="Supporting evidence"
         >
-          Supported by
-        </p>
+          <p className="finding-supported-label">
+            Supported by
+          </p>
 
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "8px",
-          }}
-        >
-          {finding.supportedBy.map((evidenceId) => (
-            <span
-              key={evidenceId}
-              style={{
-                padding: "5px 9px",
-                border: "1px solid #e5e7eb",
-                borderRadius: "999px",
-                fontSize: "12px",
-                background: "#f9fafb",
-              }}
-            >
-              {evidenceId}
-            </span>
-          ))}
-        </div>
-      </div>
-    </section>
+          <div className="finding-evidence-list">
+            {supportedEvidence.map((item) => (
+              <div
+                key={item.id}
+                className="finding-evidence-tooltip-wrapper"
+              >
+                <button
+                  type="button"
+                  className="finding-evidence-chip"
+                  aria-label={`View ${item.id}: ${item.title}`}
+                >
+                  {item.id}
+                </button>
+
+                <div
+                  className="finding-evidence-tooltip"
+                  role="tooltip"
+                >
+                  <p className="finding-tooltip-id">
+                    {item.id}
+                  </p>
+
+                  <p className="finding-tooltip-title">
+                    {item.title}
+                  </p>
+
+                  <p className="finding-tooltip-observation">
+                    {item.observation}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </footer>
+      )}
+    </article>
   );
 }

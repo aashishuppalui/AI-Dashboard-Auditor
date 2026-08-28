@@ -12,7 +12,7 @@ export default function ObservableEvidence({
   observableEvidence,
 }: ObservableEvidenceProps) {
   return (
-    <section className="review-section">
+    <section className="evidence-section">
       <EvidenceHeader />
 
       <EvidenceList
