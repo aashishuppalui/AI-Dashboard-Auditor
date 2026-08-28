@@ -147,6 +147,1022 @@ body {
 
 
 /* =========================================================
+   HOME PAGE
+   ========================================================= */
+
+.home-page {
+  width: 100%;
+}
+
+/* =========================================================
+   HOME HEADER
+   ========================================================= */
+
+.home-header {
+  width: 100%;
+
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.home-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: min(100% - 48px, 1100px);
+
+  min-height: 64px;
+
+  margin: 0 auto;
+}
+
+.home-brand {
+  color: var(--text-primary);
+
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.4;
+
+  letter-spacing: -0.01em;
+
+  text-decoration: none;
+}
+
+.home-navigation {
+  display: flex;
+  align-items: center;
+
+  gap: 24px;
+}
+
+.home-navigation a {
+  color: var(--text-muted);
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  text-decoration: none;
+
+  transition: color 120ms ease;
+}
+
+.home-navigation a:hover {
+  color: var(--text-primary);
+}
+
+.home-navigation a:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 4px;
+}
+
+.home-header-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 7px 12px;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: 7px;
+
+  background: var(--surface);
+
+  color: var(--text-primary) !important;
+
+  font-size: 12px !important;
+  font-weight: 600 !important;
+
+  text-decoration: none;
+
+  transition:
+    border-color 120ms ease,
+    background 120ms ease,
+    transform 120ms ease;
+}
+
+.home-header-cta:hover {
+  border-color: var(--text-secondary);
+
+  background: #ffffff;
+
+  transform: translateY(-1px);
+}
+
+.home-header-cta span {
+  font-size: 14px;
+}
+
+/* =========================================================
+   HOME HERO
+   ========================================================= */
+
+.home-hero {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 590px;
+
+  padding: 84px 24px 68px;
+
+  overflow: hidden;
+
+  text-align: center;
+}
+
+.home-hero-content-backdrop {
+  position: absolute;
+
+  z-index: 1;
+
+  width: min(760px, 75%);
+  height: 430px;
+
+  border-radius: 50%;
+
+  background: rgba(248, 249, 251, 0.72);
+
+  filter: blur(24px);
+
+  pointer-events: none;
+}
+
+.home-hero-content {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 760px;
+
+  transform: translateY(-12px);
+}
+
+.home-hero-eyebrow {
+  margin: 0 0 18px;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-hero-title {
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  color: var(--text-primary);
+
+  font-family: var(--font-display);
+
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 650;
+  line-height: 1.08;
+
+  letter-spacing: -0.035em;
+}
+
+.home-hero-title span {
+  display: inline;
+}
+
+.home-hero-description {
+  max-width: 620px;
+
+  margin: 24px auto 0;
+
+  color: var(--text-secondary);
+
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.home-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 32px;
+  padding: 11px 18px;
+
+  border: 1px solid var(--text-primary);
+  border-radius: 8px;
+
+  background: var(--text-primary);
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+
+  text-decoration: none;
+
+  transition:
+    transform 120ms ease,
+    opacity 120ms ease;
+}
+
+.home-primary-button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.home-primary-button:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 3px;
+}
+
+.home-primary-button span {
+  font-size: 16px;
+}
+
+.home-hero-proof {
+   display:flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-top: 24px;
+  padding: 7px 12px 7px 10px;
+
+  color: #475569;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+
+  background: rgba(248, 250, 252, 0.58);
+
+  backdrop-filter: blur(5px);
+}
+
+/* =========================================================
+   HERO ANALYTICAL BACKDROP
+   ========================================================= */
+
+.home-hero-backdrop {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: 0.52;
+  
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 72% 68% at center,
+      transparent 12%,
+      rgba(0, 0, 0, 0.45) 38%,
+      #000 72%
+    );
+
+  mask-image:
+    radial-gradient(
+      ellipse 72% 68% at center,
+      transparent 12%,
+      rgba(0, 0, 0, 0.45) 38%,
+      #000 72%
+    );
+}
+
+
+/* ---------------------------------------------------------
+   Generic data card
+   --------------------------------------------------------- */
+
+.hero-data-card {
+  position: absolute;
+
+  padding: 18px;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.62);
+
+  box-shadow:
+    0 8px 30px rgba(15, 23, 42, 0.035);
+
+  text-align: left;
+
+  color: var(--text-secondary);
+
+  font-size: 11px;
+
+  backdrop-filter: blur(4px);
+
+  transform: scale(0.96);
+}
+
+.hero-data-label {
+  margin-bottom: 9px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.03em;
+}
+
+.hero-data-value {
+  color: var(--text-primary);
+
+  font-size: 25px;
+  font-weight: 650;
+
+  line-height: 1.1;
+}
+
+.hero-data-trend {
+  margin-top: 6px;
+
+  font-size: 9px;
+
+  color: var(--text-muted);
+}
+
+
+/* ---------------------------------------------------------
+   Left KPI
+   --------------------------------------------------------- */
+
+.hero-kpi-card {
+  top: 62px;
+  left: max(24px, calc(50% - 570px));
+
+  width: 210px;
+}
+
+.hero-mini-chart {
+  display: flex;
+  align-items: flex-end;
+
+  height: 45px;
+
+  gap: 7px;
+
+  margin-top: 15px;
+}
+
+.hero-mini-chart span {
+  flex: 1;
+
+  height: 25%;
+
+  border-top: 1px solid var(--border-subtle);
+
+  transform: skewY(-15deg);
+}
+
+.hero-mini-chart span:nth-child(2) {
+  height: 35%;
+}
+
+.hero-mini-chart span:nth-child(3) {
+  height: 30%;
+}
+
+.hero-mini-chart span:nth-child(4) {
+  height: 42%;
+}
+
+.hero-mini-chart span:nth-child(5) {
+  height: 45%;
+}
+
+.hero-mini-chart span:nth-child(6) {
+  height: 68%;
+}
+
+.hero-mini-chart span:nth-child(7) {
+  height: 82%;
+}
+
+
+/* ---------------------------------------------------------
+   Quality
+   --------------------------------------------------------- */
+
+.hero-quality-card {
+  top: 250px;
+  left: max(24px, calc(50% - 570px));
+
+  width: 135px;
+
+  text-align: center;
+}
+
+.hero-quality-card .hero-data-label {
+  text-align: left;
+}
+
+.hero-ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 82px;
+  height: 82px;
+
+  margin: 10px auto 2px;
+
+  border: 7px solid rgba(100, 116, 139, 0.08);
+  border-top-color: rgba(71, 85, 105, 0.25);
+  border-right-color: rgba(71, 85, 105, 0.18);
+
+  border-radius: 50%;
+}
+
+.hero-ring span {
+  color: var(--text-primary);
+
+  font-size: 12px;
+  font-weight: 650;
+}
+
+
+/* ---------------------------------------------------------
+   Issues
+   --------------------------------------------------------- */
+
+.hero-issues-card {
+  top: 250px;
+  left: max(180px, calc(50% - 405px));
+
+  width: 185px;
+}
+
+.hero-issue {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 10px;
+
+  font-size: 10px;
+}
+
+.hero-issue span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  border: 1px solid var(--border-subtle);
+}
+
+
+/* ---------------------------------------------------------
+   Timeline
+   --------------------------------------------------------- */
+
+.hero-timeline-card {
+  bottom: 48px;
+  left: max(24px, calc(50% - 570px));
+
+  width: 340px;
+}
+
+.hero-timeline {
+  position: relative;
+
+  height: 22px;
+
+  margin-top: 15px;
+}
+
+.hero-timeline-line {
+  position: absolute;
+
+  top: 50%;
+  left: 0;
+  right: 0;
+
+  height: 1px;
+
+  background: var(--border-subtle);
+}
+
+.hero-timeline-dot {
+  position: absolute;
+
+  top: calc(50% - 4px);
+
+  width: 8px;
+  height: 8px;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+
+  background: #ffffff;
+}
+
+.hero-timeline-dot:nth-child(2) {
+  left: 0;
+}
+
+.hero-timeline-dot:nth-child(3) {
+  left: 33%;
+}
+
+.hero-timeline-dot:nth-child(4) {
+  left: 66%;
+}
+
+.hero-timeline-dot:nth-child(5) {
+  right: 0;
+}
+
+.hero-timeline-dot.active {
+  border-color: var(--text-secondary);
+}
+
+.hero-timeline-labels {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 5px;
+
+  color: var(--text-muted);
+
+  font-size: 8px;
+}
+
+
+/* ---------------------------------------------------------
+   Right trend
+   --------------------------------------------------------- */
+
+.hero-trend-card {
+  top: 62px;
+  right: max(24px, calc(50% - 570px));
+
+  width: 270px;
+}
+
+.hero-bars {
+  display: flex;
+  align-items: flex-end;
+
+  height: 90px;
+
+  gap: 12px;
+
+  margin-top: 15px;
+}
+
+.hero-bars span {
+  flex: 1;
+
+  height: 45%;
+
+  border-radius: 3px 3px 0 0;
+
+  background: rgba(100, 116, 139, 0.08);
+}
+
+.hero-bars span:nth-child(2) {
+  height: 62%;
+}
+
+.hero-bars span:nth-child(3) {
+  height: 72%;
+}
+
+.hero-bars span:nth-child(4) {
+  height: 56%;
+}
+
+.hero-bars span:nth-child(5) {
+  height: 68%;
+}
+
+.hero-bars span.active {
+  height: 90%;
+
+  background: rgba(71, 85, 105, 0.16);
+}
+
+.hero-months {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 5px;
+
+  color: var(--text-muted);
+
+  font-size: 8px;
+}
+
+
+/* ---------------------------------------------------------
+   Matrix
+   --------------------------------------------------------- */
+
+.hero-matrix-card {
+  top: 250px;
+  right: max(24px, calc(50% - 570px));
+
+  width: 300px;
+}
+
+.hero-matrix {
+  display: grid;
+
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 3px;
+
+  margin-top: 14px;
+}
+
+.hero-matrix div {
+  height: 18px;
+
+  border: 1px solid rgba(100, 116, 139, 0.05);
+
+  background: rgba(100, 116, 139, 0.025);
+}
+
+.hero-matrix div.medium {
+  background: rgba(100, 116, 139, 0.08);
+}
+
+.hero-matrix div.high {
+  background: rgba(100, 116, 139, 0.14);
+}
+
+
+/* ---------------------------------------------------------
+   Active jobs
+   --------------------------------------------------------- */
+
+.hero-active-card {
+  right: max(220px, calc(50% - 410px));
+  bottom: 30px;
+
+  width: 130px;
+}
+
+
+/* ---------------------------------------------------------
+   Decision impact
+   --------------------------------------------------------- */
+
+.hero-impact-card {
+  right: max(24px, calc(50% - 570px));
+  bottom: 48px;
+
+  width: 150px;
+
+  text-align: center;
+}
+
+.hero-impact-card .hero-data-label {
+  text-align: left;
+}
+
+.hero-impact-ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 72px;
+  height: 72px;
+
+  margin: 8px auto 0;
+
+  border: 6px solid rgba(100, 116, 139, 0.08);
+  border-top-color: rgba(71, 85, 105, 0.20);
+  border-right-color: rgba(71, 85, 105, 0.13);
+
+  border-radius: 50%;
+}
+
+.hero-impact-ring span {
+  color: var(--text-primary);
+
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.hero-impact-ring small {
+  margin-top: 2px;
+
+  color: var(--text-muted);
+
+  font-size: 8px;
+}
+
+
+/* ---------------------------------------------------------
+   Decorative dots
+   --------------------------------------------------------- */
+
+.hero-backdrop-dot {
+  position: absolute;
+
+  width: 8px;
+  height: 8px;
+
+  border: 1px solid var(--border-subtle);
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.dot-one {
+  top: 180px;
+  left: 31%;
+}
+
+.dot-two {
+  top: 330px;
+  left: 37%;
+}
+
+.dot-three {
+  top: 210px;
+  right: 32%;
+}
+
+.dot-four {
+  bottom: 125px;
+  right: 37%;
+}
+
+/* =========================================================
+   HOME SECTIONS
+   ========================================================= */
+
+.home-section {
+  width: min(100% - 48px, 1100px);
+
+  margin: 0 auto;
+
+  padding: 72px 0;
+}
+
+.home-section-header {
+  max-width: 680px;
+
+  margin-bottom: 32px;
+}
+
+.home-section-eyebrow {
+  margin: 0 0 8px;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.home-section-title {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-family: var(--font-display);
+
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.3;
+
+  letter-spacing: -0.02em;
+}
+
+
+/* =========================================================
+   HOW IT WORKS
+   ========================================================= */
+
+.home-how-it-works {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.home-steps {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  background: var(--surface);
+}
+
+.home-step {
+  min-height: 220px;
+
+  padding: 28px;
+
+  background: var(--surface);
+}
+
+.home-step + .home-step {
+  border-left: 1px solid var(--border-subtle);
+}
+
+.home-step-number {
+  display: block;
+
+  margin-bottom: 32px;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.05em;
+}
+
+.home-step-title {
+  margin: 0 0 10px;
+
+  color: var(--text-primary);
+
+  font-family: var(--font-display);
+
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.home-step-description {
+  max-width: 280px;
+
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   CAPABILITIES
+   ========================================================= */
+
+.home-capabilities {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.home-capabilities-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 12px;
+}
+
+.home-capability {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 14px;
+
+  padding: 20px;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+
+  background: var(--surface);
+}
+
+.home-capability-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  width: 24px;
+  height: 24px;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+
+  color: var(--text-secondary);
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.home-capability-title {
+  margin: 0 0 5px;
+
+  color: var(--text-primary);
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.home-capability-description {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   HOME RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+  .home-hero {
+    min-height: 560px;
+
+    padding: 68px 20px 56px;
+  }
+
+   .home-navigation a:not(.home-header-cta) {
+    display: none;
+  }
+
+  .home-header-cta {
+    padding: 7px 10px;
+  }
+
+  .home-hero-backdrop {
+    opacity: 0.35;
+  }
+
+  .hero-data-card {
+    transform: scale(0.7);
+  }
+
+  .hero-kpi-card {
+    top: 30px;
+    left: -35px;
+  }
+
+  .hero-quality-card,
+  .hero-issues-card,
+  .hero-timeline-card,
+  .hero-active-card,
+  .hero-impact-card {
+    display: none;
+  }
+
+  .hero-trend-card {
+    top: 30px;
+    right: -65px;
+  }
+
+  .hero-matrix-card {
+    bottom: 30px;
+    right: -55px;
+    top: auto;
+  }
+
+  .home-hero-content {
+    max-width: 620px;
+  }
+
+  .home-hero-title {
+    font-size: 40px;
+  }
+
+  .home-hero-description {
+    font-size: 16px;
+  }
+}
+
+/* =========================================================
    REPORT SHELL
    ========================================================= */
 

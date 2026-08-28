@@ -1,19 +1,18 @@
-import Link from "next/link";
+import HomeHeader from "../components/home/HomeHeader";
+import HomeHero from "../components/home/HomeHero";
+import HowItWorks from "../components/home/HowItWorks";
+import ReviewCapabilities from "../components/home/ReviewCapabilities";
 
 export default function Home() {
   return (
-    <main style={{ padding: "2rem" }}>
-      <h1>UX Review Companion</h1>
+    <main className="home-page">
+      <HomeHeader />
 
-      <p>
-        Upload a dashboard and receive an evidence-based UX review.
-      </p>
+      <HomeHero />
 
-      <br />
+      <HowItWorks />
 
-      <Link href="/upload">
-        Start Review →
-      </Link>
+      <ReviewCapabilities />
     </main>
   );
 }
