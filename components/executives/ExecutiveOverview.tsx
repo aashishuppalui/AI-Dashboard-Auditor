@@ -10,275 +10,192 @@ export default function ExecutiveOverview({
   data,
   des,
 }: ExecutiveOverviewProps) {
+  /**
+   * DES visual state
+   *
+   * 0–59   → Weak
+   * 60–79  → Moderate
+   * 80–100 → Strong
+   */
+  const getDESStatusClass = (score: number) => {
+    if (score >= 80) {
+      return "des-status-strong";
+    }
+
+    if (score >= 60) {
+      return "des-status-moderate";
+    }
+
+    return "des-status-weak";
+  };
+
+  const desStatusClass = getDESStatusClass(des.score);
+
+  /**
+   * Normalize displayed labels.
+   *
+   * Example:
+   * "high" → "High"
+   */
+  const desLabel =
+    des.label.charAt(0).toUpperCase() +
+    des.label.slice(1).toLowerCase();
+
+  const confidenceLabel =
+    data.confidence.charAt(0).toUpperCase() +
+    data.confidence.slice(1).toLowerCase();
+
   return (
-    <section
-      style={{
-        border: "1px solid #d1d5db",
-        borderRadius: "12px",
-        padding: "24px",
-        marginBottom: "32px",
-        background: "#ffffff",
-      }}
-    >
-      {/* Header */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "24px",
-          paddingBottom: "20px",
-          borderBottom: "1px solid #e5e7eb",
-        }}
-      >
-        <h2
-          style={{
-            margin: 0,
-            fontSize: "20px",
-            fontWeight: 600,
-          }}
-        >
+    <section className="executive-overview report-card">
+      {/* =====================================================
+          HEADER
+          ===================================================== */}
+
+      <header className="executive-overview-header">
+        <h2 className="executive-overview-title">
           Executive Intelligence
         </h2>
 
         {/* DES */}
         <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-            whiteSpace: "nowrap",
-          }}
+          className="des-score-wrapper"
+          tabIndex={0}
+          aria-describedby="des-score-tooltip"
         >
-          <span
-            style={{
-              fontSize: "16px",
-              fontWeight: 400,
-            }}
+          <div
+            className="des-score"
+            aria-label={`Decision Effectiveness Score ${des.score}, ${desLabel}`}
           >
-            DES
-          </span>
+            <span className="des-score-label">
+              DES
+            </span>
 
-          <span
-            style={{
-              fontSize: "16px",
-              fontWeight: 700,
-            }}
-          >
-            {des.score}
-          </span>
+            <span className="des-score-value">
+              {des.score}
+            </span>
 
-          <span
-            style={{
-              padding: "4px 10px",
-              borderRadius: "999px",
-              fontSize: "12px",
-              fontWeight: 600,
-              background: "#f3f4f6",
-            }}
+            <span
+              className={`des-score-badge ${desStatusClass}`}
+            >
+              <span
+                className="des-score-dot"
+                aria-hidden="true"
+              />
+
+              {desLabel}
+            </span>
+          </div>
+
+          {/* DES Tooltip */}
+          <div
+            id="des-score-tooltip"
+            className="des-score-tooltip"
+            role="tooltip"
           >
-            {des.label}
-          </span>
+            <p className="des-tooltip-title">
+              Decision Effectiveness Score
+            </p>
+
+            <p className="des-tooltip-text">
+              Indicates how effectively the dashboard supports
+              its primary decision based on the AI&apos;s analysis
+              of the interface and observable evidence.
+            </p>
+          </div>
         </div>
-      </div>
+      </header>
 
-      {/* Two-column intelligence */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          marginTop: "24px",
-        }}
-      >
-        {/* AI Understanding */}
-        <div
-          style={{
-            paddingRight: "32px",
-          }}
-        >
-          <h3
-            style={{
-              margin: "0 0 20px",
-              fontSize: "14px",
-              fontWeight: 600,
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-            }}
-          >
+      {/* =====================================================
+          TWO-COLUMN INTELLIGENCE
+          ===================================================== */}
+
+      <div className="executive-overview-grid">
+
+        {/* ===================================================
+            AI UNDERSTANDING
+            =================================================== */}
+
+        <div className="executive-overview-column executive-overview-column-left">
+          <h3 className="executive-overview-subtitle">
             AI Understanding
           </h3>
 
           {/* Interface */}
-          <div style={{ marginBottom: "20px" }}>
-            <p
-              style={{
-                margin: "0 0 6px",
-                fontSize: "12px",
-                fontWeight: 600,
-                color: "#6b7280",
-              }}
-            >
+          <div className="executive-overview-field">
+            <p className="executive-overview-label">
               Interface
             </p>
 
-            <p
-              style={{
-                margin: 0,
-                fontSize: "15px",
-                lineHeight: 1.5,
-              }}
-            >
+            <p className="executive-overview-value">
               {data.interfaceType}
             </p>
           </div>
 
           {/* Primary Goal */}
-          <div style={{ marginBottom: "20px" }}>
-            <p
-              style={{
-                margin: "0 0 6px",
-                fontSize: "12px",
-                fontWeight: 600,
-                color: "#6b7280",
-              }}
-            >
+          <div className="executive-overview-field">
+            <p className="executive-overview-label">
               Primary Goal
             </p>
 
-            <p
-              style={{
-                margin: 0,
-                fontSize: "15px",
-                lineHeight: 1.5,
-              }}
-            >
+            <p className="executive-overview-value">
               {data.primaryGoal}
             </p>
           </div>
 
           {/* Confidence */}
-          <div>
-            <p
-              style={{
-                margin: "0 0 6px",
-                fontSize: "12px",
-                fontWeight: 600,
-                color: "#6b7280",
-              }}
-            >
+          <div className="executive-overview-field">
+            <p className="executive-overview-label">
               Confidence
             </p>
 
-            <p
-              style={{
-                margin: 0,
-                fontSize: "15px",
-                lineHeight: 1.5,
-              }}
-            >
-              {data.confidence}
+            <p className="executive-overview-value">
+              {confidenceLabel}
             </p>
           </div>
         </div>
 
-        {/* Decision Lens */}
-        <div
-          style={{
-            paddingLeft: "32px",
-            borderLeft: "1px solid #e5e7eb",
-          }}
-        >
-          <h3
-            style={{
-              margin: "0 0 20px",
-              fontSize: "14px",
-              fontWeight: 600,
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-            }}
-          >
+        {/* ===================================================
+            DECISION LENS
+            =================================================== */}
+
+        <div className="executive-overview-column executive-overview-column-right">
+          <h3 className="executive-overview-subtitle">
             Decision Lens
           </h3>
 
           {/* Primary User */}
-          <div style={{ marginBottom: "20px" }}>
-            <p
-              style={{
-                margin: "0 0 6px",
-                fontSize: "12px",
-                fontWeight: 600,
-                color: "#6b7280",
-              }}
-            >
+          <div className="executive-overview-field">
+            <p className="executive-overview-label">
               Primary User
             </p>
 
-            <p
-              style={{
-                margin: 0,
-                fontSize: "15px",
-                lineHeight: 1.5,
-              }}
-            >
+            <p className="executive-overview-value">
               {data.targetUsers.join(", ")}
             </p>
           </div>
 
           {/* Primary Decision */}
-          <div style={{ marginBottom: "20px" }}>
-            <p
-              style={{
-                margin: "0 0 6px",
-                fontSize: "12px",
-                fontWeight: 600,
-                color: "#6b7280",
-              }}
-            >
+          <div className="executive-overview-field">
+            <p className="executive-overview-label">
               Primary Decision
             </p>
 
-            <p
-              style={{
-                margin: 0,
-                fontSize: "15px",
-                lineHeight: 1.5,
-              }}
-            >
+            <p className="executive-overview-value">
               {data.primaryDecision}
             </p>
           </div>
 
           {/* Decision Focus */}
-          <div>
-            <p
-              style={{
-                margin: "0 0 8px",
-                fontSize: "12px",
-                fontWeight: 600,
-                color: "#6b7280",
-              }}
-            >
+          <div className="executive-overview-field executive-overview-field-focus">
+            <p className="executive-overview-label">
               Decision Focus
             </p>
 
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "8px",
-              }}
-            >
+            <div className="decision-focus-list">
               {data.decisionFocus.map((focus) => (
                 <span
                   key={focus}
-                  style={{
-                    padding: "5px 9px",
-                    border: "1px solid #e5e7eb",
-                    borderRadius: "999px",
-                    fontSize: "12px",
-                    lineHeight: 1.3,
-                    background: "#f9fafb",
-                  }}
+                  className="decision-focus-chip"
                 >
                   {focus}
                 </span>

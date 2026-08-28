@@ -4,88 +4,98 @@ interface ActionCardProps {
   data: PriorityAction[];
 }
 
-export default function ActionCard({
-  data,
-}: ActionCardProps) {
+export default function ActionCard({ data }: ActionCardProps) {
   return (
     <section className="priority-actions">
       <header className="priority-actions-header">
-        <h2 className="priority-actions-title">
-          Priority Actions
-        </h2>
+        <div>
+          <h2 className="priority-actions-title">Priority Actions</h2>
 
-        <p className="priority-actions-description">
-          Recommended actions prioritized by their potential
-          impact on the primary decision.
-        </p>
+          <p className="priority-actions-description">
+            Recommended actions prioritized by their potential impact on the
+            primary decision.
+          </p>
+        </div>
       </header>
 
       <div className="priority-actions-list">
-        {data.map((action) => (
-          <article
-            key={action.id}
-            className={`priority-action-card priority-action-${action.priority.toLowerCase()}`}
-          >
-            {/* Header */}
-            <header className="priority-action-header">
-              <div className="priority-action-heading">
-                <span className="priority-action-level">
-                  {action.priority}
-                </span>
+        {data.map((action) => {
+          const priorityClass = action.priority.toLowerCase();
 
-                <h3 className="priority-action-title">
-                  {action.title}
-                </h3>
+          return (
+            <article
+              key={action.id}
+              className={`priority-action-card priority-action-${priorityClass}`}
+            >
+              {/* =================================================
+                  HEADER
+                  ================================================= */}
+
+              <header className="priority-action-header">
+                <div className="priority-action-heading">
+                  <span className="priority-action-level">
+                    {action.priority}
+                  </span>
+
+                  <span className="priority-action-divider" aria-hidden="true">
+                    |
+                  </span>
+
+                  <h3 className="priority-action-title">{action.title}</h3>
+                </div>
+
+                <span
+                  className={`priority-action-badge priority-action-badge-${priorityClass}`}
+                >
+                  <span
+                    className="priority-action-badge-dot"
+                    aria-hidden="true"
+                  />
+
+                  {action.priorityLabel}
+                </span>
+              </header>
+
+              {/* =================================================
+                  WHY IT MATTERS
+                  ================================================= */}
+
+              <div className="priority-action-section">
+                <h4 className="priority-action-label">Why It Matters</h4>
+
+                <p className="priority-action-text">{action.whyItMatters}</p>
               </div>
 
-              <span
-  className={`priority-action-badge priority-action-badge-${action.priority.toLowerCase()}`}
->
-  <span
-    className="priority-action-badge-dot"
-    aria-hidden="true"
-  />
+              {/* =================================================
+                  RECOMMENDED ACTION
+                  ================================================= */}
 
-  {action.priorityLabel}
-</span>
-            </header>
+              <div className="priority-action-recommendation">
+                <h4 className="priority-action-label">Recommended Action</h4>
 
-            {/* Why It Matters */}
-            <div className="priority-action-section">
-              <h4 className="priority-action-label">
-                Why It Matters
-              </h4>
+                <div className="priority-action-recommendation-content">
+                  <p className="priority-action-recommendation-text">
+                    {action.recommendation}
+                  </p>
+                </div>
+              </div>
 
-              <p className="priority-action-text">
-                {action.whyItMatters}
-              </p>
-            </div>
+              {/* =================================================
+                  EXPECTED IMPACT
+                  ================================================= */}
 
-            {/* Recommended Action */}
-            <div className="priority-action-section priority-action-recommendation">
-              <h4 className="priority-action-label">
-                Recommended Action
-              </h4>
+              <div className="priority-action-impact">
+                <h4 className="priority-action-label">Expected Impact</h4>
 
-              <p className="priority-action-text">
-                {action.recommendation}
-              </p>
-            </div>
-
-            {/* Expected Impact */}
-            <div className="priority-action-impact">
-              <h4 className="priority-action-label">
-                Expected Impact
-              </h4>
-
-              <ul className="priority-action-impact-list">
-                {action.expectedImpact.map((impact) => (
-                  <li key={impact}>{impact}</li>
-                ))}
-              </ul>
-            </div>
-          </article>
-        ))}
+                <ul className="priority-action-impact-list">
+                  {action.expectedImpact.map((impact) => (
+                    <li key={impact}>{impact}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
