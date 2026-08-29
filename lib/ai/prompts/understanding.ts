@@ -25,9 +25,23 @@ Return ONLY valid JSON.
 
 Rules:
 
-- interfaceType should describe the type of interface being analysed.
-  Example:
+- interfaceType should be a concise name describing the type of interface being analysed.
+
+  Requirements:
+  - Use 3 to 6 words when possible.
+  - Maximum 50 characters.
+  - Describe the interface type, not its purpose.
+  - Do not include long explanations or business context.
+
+  Good examples:
   "Enterprise Dashboard"
+  "Production Operations Dashboard"
+  "Printer Performance Dashboard"
+  "Machine Monitoring Dashboard"
+  "Sales Analytics Dashboard"
+
+  Avoid:
+  "Enterprise production performance monitoring and operational decision-making dashboard"
 
 - primaryGoal should describe the main job the dashboard appears to support.
   Focus on what the user is trying to accomplish, not on the UI elements themselves.
@@ -99,12 +113,16 @@ Rules:
 - Keep all text concise.
 
 - Before returning the JSON, verify:
-  1. decisionFocus has at least 3 items.
-  2. decisionFocus has no more than 6 items.
-  3. Every decisionFocus item describes information relevant to the primary decision.
-  4. No decisionFocus item is simply a UI component.
-  5. primaryDecision describes a decision, not merely a monitoring goal.
-  6. confidence is exactly "high", "medium", or "low".
+
+  1. interfaceType is concise.
+  2. interfaceType is no longer than 50 characters.
+  3. interfaceType describes the interface type rather than its purpose.
+  4. decisionFocus has at least 3 items.
+  5. decisionFocus has no more than 6 items.
+  6. Every decisionFocus item describes information relevant to the primary decision.
+  7. No decisionFocus item is simply a UI component.
+  8. primaryDecision describes a decision, not merely a monitoring goal.
+  9. confidence is exactly "high", "medium", or "low".
 
 Return JSON only.
 `;

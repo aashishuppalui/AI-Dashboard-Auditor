@@ -1163,6 +1163,1116 @@ body {
 }
 
 /* =========================================================
+   UPLOAD DROPZONE
+   ========================================================= */
+
+.upload-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 250px;
+
+  padding: 40px 24px;
+
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.7);
+
+  text-align: center;
+
+  cursor: pointer;
+
+  transition:
+    border-color 140ms ease,
+    background 140ms ease,
+    transform 140ms ease;
+}
+
+.upload-dropzone:hover {
+  border-color: #94a3b8;
+
+  background: #ffffff;
+}
+
+.upload-dropzone:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 3px;
+}
+
+.upload-dropzone-dragging {
+  border-color: #64748b;
+
+  background: #f8fafc;
+
+  transform: scale(1.005);
+}
+
+
+/* ---------------------------------------------------------
+   Icon
+   --------------------------------------------------------- */
+
+.upload-dropzone-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  margin-bottom: 16px;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  color: var(--text-secondary);
+
+  font-size: 20px;
+  font-weight: 500;
+
+  box-shadow:
+    0 3px 10px rgba(15, 23, 42, 0.04);
+}
+
+
+/* ---------------------------------------------------------
+   Text
+   --------------------------------------------------------- */
+
+.upload-dropzone-title {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-family: var(--font-display);
+
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.upload-dropzone-description {
+  margin: 6px 0 0;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.upload-dropzone-meta {
+  margin: 18px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   UPLOAD PAGE
+   ========================================================= */
+
+.upload-page {
+  min-height: 100vh;
+
+  background: var(--report-background);
+}
+
+.upload-container {
+  width: min(100%, 1100px);
+
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+
+/* =========================================================
+   UPLOAD TOPBAR
+   ========================================================= */
+
+.upload-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 64px;
+
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.upload-brand {
+  color: var(--text-primary);
+
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.4;
+
+  letter-spacing: -0.01em;
+
+  text-decoration: none;
+}
+
+.upload-nav {
+  display: flex;
+  align-items: center;
+
+  gap: 24px;
+}
+
+.upload-nav a {
+  color: var(--text-muted);
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  text-decoration: none;
+
+  transition: color 120ms ease;
+}
+
+.upload-nav a:hover {
+  color: var(--text-primary);
+}
+
+.upload-nav a:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+   UPLOAD HEADER / HERO
+   ========================================================= */
+
+.upload-header {
+  margin: 52px auto 28px;
+
+  text-align: center;
+}
+
+.upload-eyebrow {
+  margin: 0 0 12px;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+.upload-title {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-family: var(--font-display);
+
+  font-size: clamp(36px, 5vw, 52px);
+  font-weight: 650;
+  line-height: 1.08;
+
+  letter-spacing: -0.035em;
+}
+
+.upload-description {
+  max-width: 620px;
+
+  margin: 18px auto 0;
+
+  color: var(--text-secondary);
+
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   BACK TO HOME
+   ========================================================= */
+
+.upload-back {
+  margin: 0 0 12px;
+}
+
+.upload-back-link {
+  display: inline-flex;
+  align-items: center;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  text-decoration: none;
+
+  transition: color 120ms ease;
+}
+
+.upload-back-link:hover {
+  color: var(--text-primary);
+}
+
+.upload-back-link:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 3px;
+}
+
+.upload-back a {
+  color: var(--text-secondary);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.upload-back a:hover {
+  color: var(--text-primary);
+}
+
+/* =========================================================
+   UPLOAD CARD
+   ========================================================= */
+
+.upload-card {
+  padding: 24px;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+
+  background: var(--surface);
+}
+
+
+/* =========================================================
+   UPLOAD DROPZONE
+   ========================================================= */
+
+.upload-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 250px;
+
+  padding: 40px 24px;
+
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.7);
+
+  text-align: center;
+
+  cursor: pointer;
+
+  transition:
+    border-color 140ms ease,
+    background 140ms ease,
+    transform 140ms ease;
+}
+
+.upload-dropzone:hover {
+  border-color: #94a3b8;
+
+  background: #ffffff;
+}
+
+.upload-dropzone:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 3px;
+}
+
+.upload-dropzone-dragging {
+  border-color: #64748b;
+
+  background: #f8fafc;
+
+  transform: scale(1.005);
+}
+
+
+/* =========================================================
+   DROPZONE ICON
+   ========================================================= */
+
+.upload-dropzone-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  margin-bottom: 16px;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  color: var(--text-secondary);
+
+  font-size: 20px;
+  font-weight: 500;
+
+  box-shadow:
+    0 3px 10px rgba(15, 23, 42, 0.04);
+}
+
+
+/* =========================================================
+   DROPZONE TEXT
+   ========================================================= */
+
+.upload-dropzone-title {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-family: var(--font-display);
+
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.upload-dropzone-description {
+  margin: 6px 0 0;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.upload-dropzone-meta {
+  margin: 18px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   SELECTED FILE WORKSPACE
+   ========================================================= */
+
+.upload-selected-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.5fr)
+    minmax(280px, 0.75fr);
+
+  min-height: 420px;
+}
+
+
+/* =========================================================
+   PREVIEW PANEL
+   ========================================================= */
+
+.upload-preview-panel {
+  min-width: 0;
+
+  padding-right: 28px;
+}
+
+.upload-panel-label {
+  margin: 0 0 10px;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   DASHBOARD PREVIEW
+   ========================================================= */
+
+.upload-preview {
+  display: block;
+
+  width: 100%;
+  max-height: 390px;
+
+  object-fit: contain;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   PDF PREVIEW
+   ========================================================= */
+
+.upload-pdf-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 300px;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+
+  background: var(--surface-subtle);
+
+  color: var(--text-secondary);
+}
+
+.upload-pdf-preview span {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.upload-pdf-preview p {
+  margin: 8px 20px 0;
+
+  font-size: 13px;
+  text-align: center;
+}
+
+
+/* =========================================================
+   ACTION PANEL
+   ========================================================= */
+
+.upload-action-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-width: 0;
+
+  padding-left: 28px;
+
+  border-left: 1px solid var(--border-subtle);
+}
+
+
+/* =========================================================
+   ACTION CONTENT
+   ========================================================= */
+
+.upload-action-title {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-family: var(--font-display);
+
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+
+  word-break: break-word;
+}
+
+.upload-action-description {
+  margin: 12px 0 24px;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   ANALYZE ACTION
+   ========================================================= */
+
+.upload-action {
+  display: flex;
+  justify-content: flex-start;
+
+  margin-top: 20px;
+}
+
+.upload-analyze-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  width: 100%;
+  min-height: 44px;
+
+  padding: 11px 18px;
+
+  border: 1px solid var(--text-primary);
+  border-radius: 8px;
+
+  background: var(--text-primary);
+
+  color: #ffffff;
+
+  font-family: var(--font-body);
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+
+  cursor: pointer;
+
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+}
+
+.upload-analyze-button:hover:not(:disabled) {
+  opacity: 0.9;
+
+  transform: translateY(-1px);
+}
+
+.upload-analyze-button:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 3px;
+}
+
+.upload-analyze-button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   CHOOSE ANOTHER FILE
+   ========================================================= */
+
+.upload-dropzone-compact {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  min-height: auto;
+
+  margin-top: 14px;
+
+  padding: 10px 14px;
+
+  flex-direction: row;
+
+  gap: 8px;
+
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.upload-dropzone-compact:hover {
+  border-color: transparent;
+
+  background: transparent;
+}
+
+.upload-dropzone-compact-icon {
+  color: var(--text-secondary);
+
+  font-size: 13px;
+}
+
+.upload-dropzone-compact-text {
+  color: var(--text-secondary);
+
+  font-size: 12px;
+}
+
+.upload-dropzone-compact:hover
+.upload-dropzone-compact-text {
+  color: var(--text-primary);
+}
+
+
+/* =========================================================
+   ANALYSIS STATE
+   ========================================================= */
+
+.upload-analysis-state {
+  text-align: left;
+}
+
+.upload-analysis-state .upload-analysis-icon {
+  margin-bottom: 18px;
+}
+
+.upload-analysis-state .upload-analysis-title {
+  margin: 0 0 6px;
+
+  color: var(--text-primary);
+
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.upload-analysis-state .upload-analysis-message {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   ANALYSIS STATUS
+   ========================================================= */
+
+.upload-analysis-status {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  gap: 10px;
+
+  margin-top: 20px;
+  padding: 14px 16px;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+
+  background: var(--surface-subtle);
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.upload-analysis-status p {
+  margin: 0;
+}
+
+.upload-analysis-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  flex: 0 0 auto;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+
+  background: var(--surface);
+
+  color: var(--text-secondary);
+
+  font-size: 14px;
+}
+
+.upload-analysis-title {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.upload-analysis-message {
+  margin-top: 3px !important;
+
+  color: var(--text-secondary);
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   SELECTED FILE — LEGACY / OPTIONAL
+   ========================================================= */
+
+.upload-selected {
+  margin-top: 20px;
+
+  padding: 16px;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+
+  background: var(--surface-subtle);
+}
+
+.upload-selected-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 14px;
+}
+
+.upload-selected-label {
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+}
+
+.upload-selected-name {
+  margin: 3px 0 0;
+
+  color: var(--text-primary);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  word-break: break-word;
+}
+
+
+/* =========================================================
+   WHAT HAPPENS NEXT
+   ========================================================= */
+
+.upload-next {
+  margin-top: 48px;
+
+  padding-top: 40px;
+
+  border-top: 1px solid var(--border-subtle);
+}
+
+.upload-next-header {
+  margin-bottom: 28px;
+}
+
+.upload-next-eyebrow {
+  margin: 0 0 8px;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.07em;
+
+  text-transform: uppercase;
+}
+
+.upload-next-title {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-family: var(--font-display);
+
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.3;
+
+  letter-spacing: -0.02em;
+}
+
+
+/* =========================================================
+   UPLOAD STEPS
+   ========================================================= */
+
+.upload-steps {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  overflow: hidden;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+
+  background: var(--surface);
+}
+
+.upload-step {
+  min-height: 190px;
+
+  padding: 24px;
+}
+
+.upload-step + .upload-step {
+  border-left: 1px solid var(--border-subtle);
+}
+
+.upload-step-number {
+  display: block;
+
+  margin-bottom: 28px;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.05em;
+}
+
+.upload-step-title {
+  margin: 0 0 8px;
+
+  color: var(--text-primary);
+
+  font-family: var(--font-display);
+
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.upload-step-description {
+  max-width: 240px;
+
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .upload-container {
+    width: min(100%, 900px);
+  }
+
+  .upload-selected-layout {
+    grid-template-columns:
+      minmax(0, 1.4fr)
+      minmax(260px, 0.8fr);
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+  .upload-page {
+    padding: 0 20px 64px;
+  }
+
+  .upload-topbar {
+    min-height: 60px;
+  }
+
+  .upload-nav {
+    display: none;
+  }
+
+  .upload-header {
+    margin-top: 40px;
+
+    margin-bottom: 24px;
+  }
+
+  .upload-title {
+    font-size: 38px;
+  }
+
+  .upload-description {
+    font-size: 15px;
+  }
+
+  .upload-card {
+    padding: 16px;
+  }
+
+
+  /* -----------------------------------------------
+     Selected workspace
+     ----------------------------------------------- */
+
+  .upload-selected-layout {
+    grid-template-columns: 1fr;
+
+    min-height: auto;
+  }
+
+  .upload-preview-panel {
+    padding-right: 0;
+  }
+
+  .upload-action-panel {
+    margin-top: 24px;
+
+    padding-top: 24px;
+    padding-left: 0;
+
+    border-top: 1px solid var(--border-subtle);
+    border-left: none;
+  }
+
+  .upload-preview {
+    max-height: 360px;
+  }
+
+  .upload-action {
+    margin-top: 18px;
+  }
+
+
+  /* -----------------------------------------------
+     Upload steps
+     ----------------------------------------------- */
+
+  .upload-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .upload-step {
+    min-height: auto;
+  }
+
+  .upload-step + .upload-step {
+    border-top: 1px solid var(--border-subtle);
+    border-left: none;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE — SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .upload-page {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .upload-header {
+    margin-top: 32px;
+  }
+
+  .upload-title {
+    font-size: 34px;
+  }
+
+  .upload-description {
+    font-size: 14px;
+  }
+
+  .upload-dropzone {
+    min-height: 220px;
+
+    padding: 32px 18px;
+  }
+
+  .upload-next {
+    margin-top: 40px;
+
+    padding-top: 32px;
+  }
+
+  .upload-next-title {
+    font-size: 23px;
+  }
+}
+
+/* =========================================================
+   ERROR STATE
+   ========================================================= */
+
+.upload-error-state {
+  text-align: left;
+}
+
+.upload-error-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  margin-bottom: 18px;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+
+  background: var(--surface-subtle);
+
+  color: var(--text-secondary);
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.upload-error-title {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-family: var(--font-display);
+
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.upload-error-message {
+  margin: 10px 0 24px;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.upload-error-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* =========================================================
    REPORT SHELL
    ========================================================= */
 
