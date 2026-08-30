@@ -1,6 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { track } from "@vercel/analytics";
 
 export default function HomeHero() {
+  const handleStartReview = () => {
+    track("review_started");
+  };
+
   return (
     <section className="home-hero">
       {/* Analytical backdrop */}
@@ -9,9 +16,10 @@ export default function HomeHero() {
         aria-hidden="true"
       >
         <div
-  className="home-hero-content-backdrop"
-  aria-hidden="true"
-/>
+          className="home-hero-content-backdrop"
+          aria-hidden="true"
+        />
+
         {/* Left: KPI card */}
         <div className="hero-data-card hero-kpi-card">
           <div className="hero-data-label">
@@ -204,6 +212,7 @@ export default function HomeHero() {
         <Link
           href="/upload"
           className="home-primary-button"
+          onClick={handleStartReview}
         >
           Start a UX Review
           <span aria-hidden="true">→</span>

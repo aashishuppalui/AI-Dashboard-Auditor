@@ -6,6 +6,10 @@ export default function SiteFooter() {
           UX Review Companion
         </span>
 
+        <span className="site-footer-description">
+          AI-assisted dashboard UX review
+        </span>
+
         <span className="site-footer-message">
           Made with love and effort, from one UX designer to another.{" "}
           <span aria-hidden="true">❤️</span>
