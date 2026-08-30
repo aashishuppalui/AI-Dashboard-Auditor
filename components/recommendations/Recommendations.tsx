@@ -1,5 +1,4 @@
 import RecommendationsHeader from "./RecommendationsHeader";
-import RecommendationsList from "./RecommendationsList";
 import RecommendationsFooter from "./RecommendationsFooter";
 
 export interface RecommendationModel {
@@ -27,9 +26,6 @@ export default function Recommendations({
 
       <RecommendationsHeader />
 
-      <RecommendationsList
-        recommendations={recommendations.recommendations}
-      />
 
       <RecommendationsFooter
         recommendationCount={recommendations.recommendations.length}

@@ -1,28 +1,118 @@
-import type { Finding } from "../../schemas/reasoning/finding";
+import type { Finding } from "../../../schemas/reasoning/finding";
+import type { Evidence } from "../../../schemas/reasoning/evidence";
+
+import { Target } from "lucide-react";
 
 interface HighestImpactCardProps {
   finding: Finding;
+  evidence: Evidence;
 }
 
 export default function HighestImpactCard({
   finding,
+  evidence,
 }: HighestImpactCardProps) {
+  const confidencePercent = Math.round(
+    finding.confidence * 100
+  );
+
+  const supportedEvidence = finding.supportedBy
+    .map((evidenceId) =>
+      evidence.evidence.find(
+        (item) => item.id === evidenceId
+      )
+    )
+    .filter((item) => item !== undefined);
+
   return (
-    <section>
+    <article className="finding-card report-card">
+      <header className="finding-card-header">
+        <div className="report-section-heading">
+          <Target
+            size={16}
+            strokeWidth={1.8}
+            className="report-section-icon"
+            aria-hidden="true"
+          />
+          <p className="finding-card-eyebrow">
+            Highest-Impact Finding
+        </p>  
+        </div>
 
-  <h3>{finding.title}</h3>
+        <div className="finding-card-assessment">
+          <span
+            className={`report-badge ${
+              finding.severity === "High"
+                ? "report-badge-high"
+                : finding.severity === "Medium"
+                ? "report-badge-medium"
+                : "report-badge-neutral"
+            }`}
+          >
+            {finding.severity}
+          </span>
 
-  <p>{finding.summary}</p>
+          <span className="finding-confidence">
+            Confidence{" "}
+            <strong>{confidencePercent}%</strong>
+          </span>
+        </div>
+      </header>
 
-  <p>
-    <strong>Severity:</strong>{" "}
-    {finding.severity}
-  </p>
+      <div className="finding-card-content">
+        <h2 className="finding-card-title">
+          {finding.title}
+        </h2>
 
-  <p>
-    <strong>Confidence:</strong>{" "}
-    {(finding.confidence * 100).toFixed(0)}%
-  </p>
-</section>
+        <p className="finding-card-summary">
+          {finding.summary}
+        </p>
+      </div>
+
+      {supportedEvidence.length > 0 && (
+        <footer
+          className="finding-card-footer"
+          aria-label="Supporting evidence"
+        >
+          <p className="finding-supported-label">
+            Supported by
+          </p>
+
+          <div className="finding-evidence-list">
+            {supportedEvidence.map((item) => (
+              <div
+                key={item.id}
+                className="finding-evidence-tooltip-wrapper"
+              >
+                <button
+                  type="button"
+                  className="finding-evidence-chip"
+                  aria-label={`View ${item.id}: ${item.title}`}
+                >
+                  {item.id}
+                </button>
+
+                <div
+                  className="finding-evidence-tooltip"
+                  role="tooltip"
+                >
+                  <p className="finding-tooltip-id">
+                    {item.id}
+                  </p>
+
+                  <p className="finding-tooltip-title">
+                    {item.title}
+                  </p>
+
+                  <p className="finding-tooltip-observation">
+                    {item.observation}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </footer>
+      )}
+    </article>
   );
 }

@@ -1,59 +1,60 @@
+import type { ObservableEvidenceItem } from "../../schemas/reasoning/evidence";
+
 interface EvidenceCardProps {
-  observation: string;
-  rationale: string;
-  impact: string;
-  severity: "Low" | "Medium" | "High";
+  evidence: ObservableEvidenceItem;
 }
 
 export default function EvidenceCard({
-  observation,
-  rationale,
-  impact,
-  severity,
+  evidence,
 }: EvidenceCardProps) {
   return (
-    <article className="review-card">
+    <article className="evidence-card report-card">
+      {/* Evidence Header */}
+      <header className="evidence-card-header">
+        <div className="evidence-card-identity">
+          
+          <span className="evidence-id">
+            {evidence.id}
+          </span>
 
-      <div className="evidence-section">
-        <h3 className="review-card-title">
+          <h3 className="evidence-card-title">
+            {evidence.title}
+          </h3>
+        </div>
+
+        <div className="evidence-card-meta">
+          <span>
+            <span className="evidence-meta-label">
+              Location
+            </span>
+
+            <span className="evidence-meta-value">
+              {evidence.location}
+            </span>
+          </span>
+
+          <span>
+            <span className="evidence-meta-label">
+              Confidence
+            </span>
+
+            <span className="evidence-meta-value">
+              {(evidence.confidence * 100).toFixed(0)}%
+            </span>
+          </span>
+        </div>
+      </header>
+
+      {/* Observation */}
+      <div className="evidence-observation">
+        <p className="evidence-label">
           Observation
-        </h3>
+        </p>
 
-        <p className="review-card-content">
-          {observation}
+        <p className="evidence-observation-text">
+          {evidence.observation}
         </p>
       </div>
-
-      <div className="evidence-section">
-        <h3 className="review-card-title">
-          Why It Matters
-        </h3>
-
-        <p className="review-card-content">
-          {rationale}
-        </p>
-      </div>
-
-      <div className="evidence-section">
-        <h3 className="review-card-title">
-          Impact
-        </h3>
-
-        <p className="review-card-content">
-          {impact}
-        </p>
-      </div>
-
-      <div className="evidence-section">
-        <h3 className="review-card-title">
-          Severity
-        </h3>
-
-        <p className="review-card-content">
-          {severity}
-        </p>
-      </div>
-
     </article>
   );
 }

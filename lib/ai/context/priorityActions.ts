@@ -1,9 +1,9 @@
-import type { DashboardClassification } from "../../../schemas/dashboardClassification";
+import type { ExecutiveIntelligence } from "../../../schemas/context/executive-intelligence";
 import type { Evidence } from "../../../schemas/reasoning/evidence";
 import type { Finding } from "../../../schemas/reasoning/finding";
 
 type PriorityActionsContext = {
-  understanding: DashboardClassification;
+  understanding: ExecutiveIntelligence;
   evidence: Evidence;
   finding: Finding;
 };
@@ -18,17 +18,26 @@ export function buildPriorityActionsContext({
 Dashboard Understanding
 ========================
 
-Dashboard Summary:
-${understanding.dashboardSummary}
+Interface Type:
+${understanding.interfaceType}
 
-Dashboard Type:
-${understanding.dashboardType}
+Primary Goal:
+${understanding.primaryGoal}
 
-Primary User:
-${understanding.primaryUser}
+Primary Users:
+${understanding.targetUsers.join(", ")}
 
 Primary Decision:
-${understanding.primaryDecisionSupported}
+${understanding.primaryDecision}
+
+Decision Focus:
+${understanding.decisionFocus.join(", ")}
+
+Detected Components:
+${understanding.detectedComponents.join(", ")}
+
+Confidence:
+${understanding.confidence}
 
 ========================
 Highest Impact Finding

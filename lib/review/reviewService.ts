@@ -1,11 +1,11 @@
 import { analyzeDashboard } from "../api/analyze";
 
-import type { Review } from "../../schemas/review";
+import type { ReviewResponse } from "../../schemas/report/review-schema";
 
 export async function generateReview(
   base64Image: string,
   onProgress?: (message: string) => void
-): Promise<Review> {
+): Promise<ReviewResponse> {
 
   onProgress?.("🧠 Analyzing dashboard...");
 

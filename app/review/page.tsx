@@ -1,20 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-import EvidenceCard from "../../components/review/EvidenceCard";
-import UnderstandingCard from "../../components/review/UnderstandingCard";
-import FindingCard from "../../components/review/highest-impact/FindingCard";
+import HomeHeader from "../../components/home/HomeHeader";
 
+import ReviewHeader from "../../components/review/ReviewHeader";
 import ExecutiveOverview from "../../components/executives/ExecutiveOverview";
-import PriorityActionsSection from "../../components/action/PriorityActionsSection";
+import HighestImpactCard from "../../components/review/highest-impact/HighestImpactCard";
+import ObservableEvidence from "../../components/observable-evidence/ObservableEvidence";
+import RecommendationCard from "../../components/recommendations/ActionCard";
 
-import { ReviewResponse } from "../../schemas/report/review-schema";
+import type { ReviewResponse } from "../../schemas/report/review-schema";
 import { getReview } from "../../lib/storage";
+import SiteFooter from "../../components/common/SiteFooter";
 
 export default function ReviewPage() {
-  const [reviewData, setReviewData] =
-    useState<ReviewResponse | null>(null);
+  const [reviewData, setReviewData] = useState<ReviewResponse | null>(null);
 
   useEffect(() => {
     const data = getReview();
@@ -28,65 +29,55 @@ export default function ReviewPage() {
 
   if (!reviewData) {
     return (
-      <main style={{ padding: "2rem" }}>
-        <p>Loading...</p>
+      <main className="report-page">
+        <div className="report-container">
+          <p>Loading...</p>
+        </div>
       </main>
     );
   }
 
-  const review = reviewData;
-
-  const sectionStyle = {
-  marginTop: "40px",
-};
-
   return (
-    <main
-      style={{
-        padding: "2rem",
-        maxWidth: "1400px",
-      }}
-    >
+    <main className="report-page">
 
-      {/* <ReviewHeader
-  title={review.understanding.dashboardType}
-  createdAt={review.metadata.createdAt}
-  model={review.metadata.model}
-  version={review.metadata.appVersion}
-/> */}
-  <ExecutiveOverview/>
+      <HomeHeader ctaLabel="Start another review" />
 
-<section style={sectionStyle}>
-  <h2>🧠 Dashboard Understanding</h2>
+      <div className="report-container">
 
-  <UnderstandingCard
-    understanding={reviewData.aiUnderstanding}
-  />
+        {/* Report Header */}
+        <ReviewHeader
+          reviewId={reviewData.metadata.reviewId}
+          createdAt={reviewData.metadata.createdAt}
+          model={reviewData.metadata.model}
+        />
 
-</section>
+        {/* Executive Intelligence */}
+        <ExecutiveOverview
+          data={reviewData.executiveIntelligence}
+          des={reviewData.des}
+        />
 
-<section style={sectionStyle}>
-<PriorityActionsSection
-  actions={reviewData.recommendations}
-/>
-</section>
+        {/* Highest Impact Finding */}
+        <section className="report-section">
+          <HighestImpactCard
+            finding={reviewData.highestImpactFinding}
+            evidence={reviewData.supportingEvidence}
+          />
+        </section>
 
-<section style={sectionStyle}>
-  <h2>⭐ Highest Impact Finding</h2>
-  
+        {/* Supporting Evidence */}
+        <section className="report-section">
+          <ObservableEvidence
+            observableEvidence={reviewData.supportingEvidence}
+          />
+        </section>
 
-  <FindingCard
-    finding={reviewData.highestImpactFinding}
-  />
-</section>
-
-<section style={sectionStyle}>
-  <h2>🔍 Observable Evidence</h2>
-
-  <EvidenceCard
-    evidence={reviewData.supportingEvidence}
-  />
-</section>
+        {/* Priority Actions */}
+        <section className="report-section">
+          <RecommendationCard data={reviewData.priorityActions} />
+        </section>
+      </div>
+      <SiteFooter />
     </main>
   );
 }

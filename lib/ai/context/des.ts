@@ -1,15 +1,18 @@
 import type { ExecutiveIntelligence } from "../../../schemas/context/executive-intelligence";
 import type { Evidence } from "../../../schemas/reasoning/evidence";
+import type { Finding } from "../../../schemas/reasoning/finding";
 
-type FindingContext = {
+type DESContext = {
   understanding: ExecutiveIntelligence;
   evidence: Evidence;
+  finding: Finding;
 };
 
-export function buildFindingContext({
+export function buildDESContext({
   understanding,
   evidence,
-}: FindingContext): string {
+  finding,
+}: DESContext): string {
   const evidenceText = evidence.evidence
     .map(
       (item) => `
@@ -24,7 +27,7 @@ Confidence: ${item.confidence}
 
   return `
 ========================
-Decision Lens
+DECISION LENS
 ========================
 
 Interface:
@@ -46,9 +49,31 @@ Understanding Confidence:
 ${understanding.confidence}
 
 ========================
-Validated UX Evidence
+VALIDATED UX EVIDENCE
 ========================
 
 ${evidenceText}
+
+========================
+HIGHEST IMPACT FINDING
+========================
+
+Finding ID:
+${finding.id}
+
+Title:
+${finding.title}
+
+Summary:
+${finding.summary}
+
+Severity:
+${finding.severity}
+
+Supported Evidence:
+${finding.supportedBy.join(", ")}
+
+Confidence:
+${finding.confidence}
 `;
 }

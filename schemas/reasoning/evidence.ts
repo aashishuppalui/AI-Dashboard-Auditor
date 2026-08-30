@@ -1,17 +1,20 @@
 import { z } from "zod";
-import { SeveritySchema } from "../common";
 
-export const EvidenceSchema = z.object({
+/**
+ * A single observable piece of evidence
+ * extracted directly from the dashboard.
+ *
+ * This represents what is visibly present in the interface.
+ * It does not contain UX reasoning, impact, or severity.
+ */
+export const ObservableEvidenceItemSchema = z.object({
   /**
    * Unique identifier for this evidence.
-   * Used by findings to reference supporting evidence.
    */
   id: z.string().min(1),
 
   /**
-   * Short label shown in the report.
-   * Example:
-   * "Competing KPI Cards"
+   * Short label describing the visible evidence.
    */
   title: z
     .string()
@@ -28,28 +31,52 @@ export const EvidenceSchema = z.object({
     .max(500),
 
   /**
-   * UX principle or heuristic explaining
-   * why this observation matters.
-   */
-  reasoning: z
-    .string()
-    .min(20)
-    .max(1000),
-
-  /**
-   * Business or usability impact.
+   * Approximate location of the evidence
+   * within the interface.
+   *
    * Example:
-   * "Users require additional scanning time to locate the primary KPI."
+   * "Header"
+   * "Main Content"
+   * "Left Sidebar"
    */
-  impact: z
+  location: z
     .string()
-    .min(20)
-    .max(500),
+    .min(1)
+    .max(120),
 
   /**
-   * Indicates how severe this evidence is.
+   * Confidence that the observation is correctly
+   * identified from the interface.
    */
-  severity: SeveritySchema,
+  confidence: z
+    .number()
+    .min(0)
+    .max(1),
+});
+
+export type ObservableEvidenceItem = z.infer<
+  typeof ObservableEvidenceItemSchema
+>;
+
+/**
+ * Complete observable-evidence response
+ * returned by the AI evidence analysis step.
+ */
+export const EvidenceSchema = z.object({
+  /**
+   * Observable evidence items identified in the dashboard.
+   */
+  evidence: z
+    .array(ObservableEvidenceItemSchema)
+    .min(1),
+
+  /**
+   * Overall confidence in the evidence extraction.
+   */
+  confidence: z
+    .number()
+    .min(0)
+    .max(1),
 });
 
 export type Evidence = z.infer<typeof EvidenceSchema>;

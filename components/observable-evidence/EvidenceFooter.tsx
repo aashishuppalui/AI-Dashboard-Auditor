@@ -6,18 +6,26 @@ export default function EvidenceFooter({
   evidenceCount,
 }: EvidenceFooterProps) {
   return (
-    <footer className="review-footer">
-      <p className="review-footer-text">
-        The AI identified{" "}
-        <strong>{evidenceCount}</strong>{" "}
-        supporting {evidenceCount === 1 ? "observation" : "observations"} to
-        explain the highest-impact finding.
-      </p>
+    <aside
+      className="evidence-context-note"
+      aria-label="Evidence context"
+    >
+      <div className="evidence-context-icon" aria-hidden="true">
+        i
+      </div>
 
-      <p className="review-footer-text">
-        The next section translates these observations into practical UX
-        recommendations you can implement.
-      </p>
-    </footer>
+      <div className="evidence-context-content">
+        <p className="evidence-context-title">
+          Evidence coverage
+        </p>
+
+        <p className="evidence-context-text">
+          <strong>{evidenceCount} observable points</strong>{" "}
+          support the highest-impact finding. The following
+          section translates these observations into practical
+          UX recommendations.
+        </p>
+      </div>
+    </aside>
   );
 }
