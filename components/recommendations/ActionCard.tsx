@@ -1,3 +1,5 @@
+import { ListChecks } from "lucide-react";
+
 import type { PriorityAction } from "../../schemas/priorityAction";
 
 interface ActionCardProps {
@@ -9,11 +11,22 @@ export default function ActionCard({ data }: ActionCardProps) {
     <section className="priority-actions">
       <header className="priority-actions-header">
         <div>
-          <h2 className="priority-actions-title">Priority Actions</h2>
+          <div className="report-section-heading">
+            <ListChecks
+              size={17}
+              strokeWidth={1.8}
+              className="report-section-icon"
+              aria-hidden="true"
+            />
+
+            <h2 className="priority-actions-title">
+              Priority Actions
+            </h2>
+          </div>
 
           <p className="priority-actions-description">
-            Recommended actions prioritized by their potential impact on the
-            primary decision.
+            Actions prioritized by their potential impact on the primary
+            decision.
           </p>
         </div>
       </header>
@@ -37,11 +50,16 @@ export default function ActionCard({ data }: ActionCardProps) {
                     {action.priority}
                   </span>
 
-                  <span className="priority-action-divider" aria-hidden="true">
+                  <span
+                    className="priority-action-divider"
+                    aria-hidden="true"
+                  >
                     |
                   </span>
 
-                  <h3 className="priority-action-title">{action.title}</h3>
+                  <h3 className="priority-action-title">
+                    {action.title}
+                  </h3>
                 </div>
 
                 <span
@@ -61,9 +79,13 @@ export default function ActionCard({ data }: ActionCardProps) {
                   ================================================= */}
 
               <div className="priority-action-section">
-                <h4 className="priority-action-label">Why It Matters</h4>
+                <h4 className="priority-action-label">
+                  Why It Matters
+                </h4>
 
-                <p className="priority-action-text">{action.whyItMatters}</p>
+                <p className="priority-action-text">
+                  {action.whyItMatters}
+                </p>
               </div>
 
               {/* =================================================
@@ -71,7 +93,9 @@ export default function ActionCard({ data }: ActionCardProps) {
                   ================================================= */}
 
               <div className="priority-action-recommendation">
-                <h4 className="priority-action-label">Recommended Action</h4>
+                <h4 className="priority-action-label">
+                  Recommended Action
+                </h4>
 
                 <div className="priority-action-recommendation-content">
                   <p className="priority-action-recommendation-text">
@@ -85,7 +109,9 @@ export default function ActionCard({ data }: ActionCardProps) {
                   ================================================= */}
 
               <div className="priority-action-impact">
-                <h4 className="priority-action-label">Expected Impact</h4>
+                <h4 className="priority-action-label">
+                  Expected Impact
+                </h4>
 
                 <ul className="priority-action-impact-list">
                   {action.expectedImpact.map((impact) => (

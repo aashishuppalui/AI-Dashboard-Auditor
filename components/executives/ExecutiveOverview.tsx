@@ -1,6 +1,8 @@
 import type { ExecutiveIntelligence } from "../../schemas/context/executive-intelligence";
 import type { DES } from "../../schemas/des";
 
+import { Sparkles } from "lucide-react";
+
 interface ExecutiveOverviewProps {
   data: ExecutiveIntelligence;
   des: DES;
@@ -52,9 +54,18 @@ export default function ExecutiveOverview({
           ===================================================== */}
 
       <header className="executive-overview-header">
-        <h2 className="executive-overview-title">
-          Executive Intelligence
-        </h2>
+        <div className="report-section-heading">
+  <Sparkles
+    size={16}
+    strokeWidth={1.8}
+    className="report-section-icon"
+    aria-hidden="true"
+  />
+
+  <h2 className="executive-overview-title">
+    Executive Intelligence
+  </h2>
+</div>
 
         {/* DES */}
         <div
@@ -175,7 +186,7 @@ export default function ExecutiveOverview({
           </div>
 
           {/* Primary Decision */}
-          <div className="executive-overview-field">
+          <div className="executive-overview-field executive-overview-field-primary-decision">
             <p className="executive-overview-label">
               Primary Decision
             </p>

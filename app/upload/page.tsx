@@ -13,6 +13,8 @@ import { fileToBase64 } from "../../lib/utils/image";
 import { saveReview } from "../../lib/storage";
 import { generateReview } from "../../lib/review/reviewService";
 
+import SiteFooter from "../../components/common/SiteFooter";
+
 export default function UploadPage() {
   const router = useRouter();
 
@@ -431,6 +433,7 @@ export default function UploadPage() {
 
       </div>
 
+      <SiteFooter />
     </main>
   );
 }

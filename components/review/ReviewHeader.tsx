@@ -9,9 +9,7 @@ export default function ReviewHeader({
   createdAt,
   model,
 }: ReviewHeaderProps) {
-  const formattedDate = new Date(
-    createdAt
-  ).toLocaleDateString("en-IN", {
+  const formattedDate = new Date(createdAt).toLocaleDateString("en-IN", {
     day: "2-digit",
     month: "short",
     year: "numeric",
@@ -21,7 +19,7 @@ export default function ReviewHeader({
     <header
       style={{
         display: "flex",
-        alignItems: "flex-end",
+        alignItems: "flex-start",
         justifyContent: "space-between",
         gap: "40px",
         paddingBottom: "28px",
@@ -30,20 +28,11 @@ export default function ReviewHeader({
       }}
     >
       {/* Report identity */}
-      <div>
-        {/* <p
-          style={{
-            margin: "0 0 8px",
-            fontSize: "11px",
-            fontWeight: 700,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            color: "#6b7280",
-          }}
-        >
-          UX Audit
-        </p> */}
-
+      <div
+        style={{
+          flex: 1,
+        }}
+      >
         <h1
           style={{
             margin: 0,
@@ -64,18 +53,19 @@ export default function ReviewHeader({
             color: "#6b7280",
           }}
         >
-          AI-assisted UX Audit Report for the dashboard, generated on {formattedDate}. 
+          AI-assisted UX Audit Report for the dashboard, generated on{" "}
+          {formattedDate}.
         </p>
       </div>
 
       {/* Metadata */}
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "auto auto",
-          columnGap: "28px",
-          rowGap: "8px",
-          minWidth: "260px",
+          display: "flex",
+          alignItems: "baseline",
+          gap: "16px",
+          flexShrink: 0,
+          paddingTop: "6px",
           fontSize: "12px",
         }}
       >
@@ -91,47 +81,10 @@ export default function ReviewHeader({
           style={{
             color: "#374151",
             fontWeight: 500,
-            textAlign: "right",
           }}
         >
           {reviewId}
         </span>
-
-        {/* <span
-          style={{
-            color: "#9ca3af",
-          }}
-        >
-          Generated
-        </span>
-
-        <span
-          style={{
-            color: "#374151",
-            fontWeight: 500,
-            textAlign: "right",
-          }}
-        >
-          {formattedDate}
-        </span> */}
-
-        {/* <span
-          style={{
-            color: "#9ca3af",
-          }}
-        >
-          Model
-        </span>
-
-        <span
-          style={{
-            color: "#374151",
-            fontWeight: 500,
-            textAlign: "right",
-          }}
-        >
-          {model}
-        </span> */}
       </div>
     </header>
   );

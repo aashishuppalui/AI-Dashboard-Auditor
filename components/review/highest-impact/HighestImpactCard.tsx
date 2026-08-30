@@ -1,6 +1,8 @@
 import type { Finding } from "../../../schemas/reasoning/finding";
 import type { Evidence } from "../../../schemas/reasoning/evidence";
 
+import { Target } from "lucide-react";
+
 interface HighestImpactCardProps {
   finding: Finding;
   evidence: Evidence;
@@ -25,9 +27,17 @@ export default function HighestImpactCard({
   return (
     <article className="finding-card report-card">
       <header className="finding-card-header">
-        <p className="finding-card-eyebrow">
-          Highest Impact Finding
-        </p>
+        <div className="report-section-heading">
+          <Target
+            size={16}
+            strokeWidth={1.8}
+            className="report-section-icon"
+            aria-hidden="true"
+          />
+          <p className="finding-card-eyebrow">
+            Highest-Impact Finding
+        </p>  
+        </div>
 
         <div className="finding-card-assessment">
           <span

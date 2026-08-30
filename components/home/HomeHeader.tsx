@@ -1,34 +1,26 @@
 import Link from "next/link";
 
-export default function HomeHeader() {
+interface HomeHeaderProps {
+  ctaLabel?: string;
+}
+
+export default function HomeHeader({
+  ctaLabel = "Start a UX Review",
+}: HomeHeaderProps) {
   return (
     <header className="home-header">
       <div className="home-header-inner">
-        <Link
-          href="/"
-          className="home-brand"
-          aria-label="UX Review Companion home"
-        >
+        <Link href="/" className="home-brand">
           UX Review Companion
         </Link>
 
-        <nav
-          className="home-navigation"
-          aria-label="Primary navigation"
-        >
-          <Link href="#how-it-works">
-            How it works
-          </Link>
+        <nav className="home-nav">
+          <Link href="#how-it-works">How it works</Link>
 
-          <Link href="#what-youll-get">
-            What you&apos;ll get
-          </Link>
+          <Link href="#what-youll-get">What you'll get</Link>
 
-          <Link
-            href="/upload"
-            className="home-header-cta"
-          >
-            Start a UX Review
+          <Link href="/upload" className="home-header-cta">
+            {ctaLabel}
             <span aria-hidden="true">→</span>
           </Link>
         </nav>

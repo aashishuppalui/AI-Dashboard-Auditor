@@ -1,6 +1,5 @@
 import EvidenceHeader from "./EvidenceHeader";
 import EvidenceList from "./EvidenceList";
-import EvidenceFooter from "./EvidenceFooter";
 
 import type { Evidence } from "../../schemas/reasoning/evidence";
 
@@ -13,16 +12,12 @@ export default function ObservableEvidence({
 }: ObservableEvidenceProps) {
   return (
     <section className="evidence-section">
-      <EvidenceHeader />
+      <EvidenceHeader
+        evidenceCount={observableEvidence.evidence.length}
+      />
 
       <EvidenceList
         evidence={observableEvidence.evidence}
-      />
-
-      <EvidenceFooter
-        evidenceCount={
-          observableEvidence.evidence.length
-        }
       />
     </section>
   );

@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import HomeHeader from "../../components/home/HomeHeader";
+
 import ReviewHeader from "../../components/review/ReviewHeader";
 import ExecutiveOverview from "../../components/executives/ExecutiveOverview";
 import HighestImpactCard from "../../components/review/highest-impact/HighestImpactCard";
@@ -10,6 +12,7 @@ import RecommendationCard from "../../components/recommendations/ActionCard";
 
 import type { ReviewResponse } from "../../schemas/report/review-schema";
 import { getReview } from "../../lib/storage";
+import SiteFooter from "../../components/common/SiteFooter";
 
 export default function ReviewPage() {
   const [reviewData, setReviewData] = useState<ReviewResponse | null>(null);
@@ -36,7 +39,11 @@ export default function ReviewPage() {
 
   return (
     <main className="report-page">
+
+      <HomeHeader ctaLabel="Start another review" />
+
       <div className="report-container">
+
         {/* Report Header */}
         <ReviewHeader
           reviewId={reviewData.metadata.reviewId}
@@ -70,6 +77,7 @@ export default function ReviewPage() {
           <RecommendationCard data={reviewData.priorityActions} />
         </section>
       </div>
+      <SiteFooter />
     </main>
   );
 }

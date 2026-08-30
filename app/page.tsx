@@ -1,3 +1,4 @@
+import SiteFooter from "../components/common/SiteFooter";
 import HomeHeader from "../components/home/HomeHeader";
 import HomeHero from "../components/home/HomeHero";
 import HowItWorks from "../components/home/HowItWorks";
@@ -13,6 +14,8 @@ export default function Home() {
       <HowItWorks />
 
       <ReviewCapabilities />
+
+      <SiteFooter />
     </main>
   );
 }

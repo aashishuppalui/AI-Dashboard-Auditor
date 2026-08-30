@@ -12,6 +12,7 @@ export default function EvidenceCard({
       {/* Evidence Header */}
       <header className="evidence-card-header">
         <div className="evidence-card-identity">
+          
           <span className="evidence-id">
             {evidence.id}
           </span>
