@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { track } from "@vercel/analytics";
 
 import HomeHeader from "../../components/home/HomeHeader";
 
@@ -24,6 +25,7 @@ export default function ReviewPage() {
 
     if (data) {
       setReviewData(data);
+      track("review_viewed");
     }
   }, []);
 

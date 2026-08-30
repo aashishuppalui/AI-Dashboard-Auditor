@@ -15,6 +15,8 @@ import { generateReview } from "../../lib/review/reviewService";
 
 import SiteFooter from "../../components/common/SiteFooter";
 
+import { track } from "@vercel/analytics";
+
 export default function UploadPage() {
   const router = useRouter();
 
@@ -53,6 +55,8 @@ export default function UploadPage() {
         fileName: selectedFile.name,
       });
 
+      track("image_uploaded");
+
       setIsAnalyzing(false);
     } catch (error) {
       console.error(error);
@@ -76,6 +80,8 @@ export default function UploadPage() {
       setIsAnalyzing(true);
       setError(null);
 
+      track("analysis_started");
+
       setStatus(
         "Understanding your dashboard..."
       );
@@ -85,6 +91,8 @@ export default function UploadPage() {
           upload.base64,
           setStatus
         );
+
+        track("analysis_completed");
 
       saveReview(review);
 
@@ -96,16 +104,27 @@ export default function UploadPage() {
 
       router.push("/review");
     } catch (error) {
-      console.error(error);
+  console.error(error);
 
-      setIsAnalyzing(false);
+  setIsAnalyzing(false);
 
-      setError(
-        error instanceof Error
-          ? error.message
-          : "We couldn't complete the review."
-      );
-    }
+  if (
+    error instanceof Error &&
+    error.message.includes(
+      "doesn't appear to be a dashboard"
+    )
+  ) {
+    track("analysis_rejected");
+  } else {
+    track("analysis_failed");
+  }
+
+  setError(
+    error instanceof Error
+      ? error.message
+      : "We couldn't complete the review."
+  );
+}
   };
 
   /* =========================================================
