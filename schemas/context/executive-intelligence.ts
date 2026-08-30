@@ -3,6 +3,12 @@ import { ConfidenceSchema } from "../common";
 
 export const ExecutiveIntelligenceSchema = z.object({
   /**
+   * Whether the uploaded interface qualifies
+   * as a dashboard suitable for UX review.
+   */
+  isDashboard: z.boolean(),
+
+  /**
    * Type of interface analysed.
    * Example: Enterprise Dashboard
    */
