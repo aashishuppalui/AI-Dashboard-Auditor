@@ -1,4 +1,4 @@
-import type { ReviewResponse } from "../schemas/report/review-schema";
+import type { ReviewResponse } from "../../schemas/report/review-schema";
 
 const REVIEW_STORAGE_KEY = "ux-review-companion-review";
 
