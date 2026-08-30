@@ -1,38 +1,33 @@
 import { z } from "zod";
 import { ConfidenceSchema } from "../common";
 
-export const ExecutiveIntelligenceSchema = z.object({
-  /**
-   * Whether the uploaded interface qualifies
-   * as a dashboard suitable for UX review.
-   */
-  isDashboard: z.boolean(),
-
+/**
+ * Shared fields returned when understanding the uploaded interface.
+ */
+const ExecutiveIntelligenceBaseSchema = z.object({
   /**
    * Type of interface analysed.
    * Example: Enterprise Dashboard
    */
   interfaceType: z
     .string()
-    .min(3)
+    .min(1)
     .max(50),
 
   /**
-   * AI's understanding of the dashboard's
+   * AI's understanding of the interface's
    * primary purpose.
    */
   primaryGoal: z
     .string()
-    .min(10)
+    .min(1)
     .max(300),
 
   /**
    * Intended primary audience.
-   * Example: Production Managers
    */
   targetUsers: z
-    .array(z.string())
-    .min(1),
+    .array(z.string()),
 
   /**
    * The primary decision the interface
@@ -40,7 +35,7 @@ export const ExecutiveIntelligenceSchema = z.object({
    */
   primaryDecision: z
     .string()
-    .min(10)
+    .min(1)
     .max(300),
 
   /**
@@ -49,18 +44,13 @@ export const ExecutiveIntelligenceSchema = z.object({
    */
   decisionFocus: z
     .array(z.string().min(2))
-    .min(1)
     .max(6),
 
   /**
    * Important UI patterns or components identified.
-   * These remain available to the rest of the
-   * review pipeline but are not shown as
-   * executive-level intelligence.
    */
   detectedComponents: z
-    .array(z.string())
-    .min(1),
+    .array(z.string()),
 
   /**
    * Overall confidence in understanding
@@ -69,6 +59,39 @@ export const ExecutiveIntelligenceSchema = z.object({
   confidence: ConfidenceSchema,
 });
 
-export type ExecutiveIntelligence = z.infer<
-  typeof ExecutiveIntelligenceSchema
->;
+/**
+ * Understanding result.
+ *
+ * A dashboard must contain meaningful decision
+ * information and detected components.
+ *
+ * A non-dashboard may legitimately contain
+ * empty arrays because those fields are not
+ * applicable.
+ */
+export const ExecutiveIntelligenceSchema =
+  z.discriminatedUnion("isDashboard", [
+    ExecutiveIntelligenceBaseSchema.extend({
+      isDashboard: z.literal(true),
+
+      targetUsers: z
+        .array(z.string())
+        .min(1),
+
+      decisionFocus: z
+        .array(z.string().min(2))
+        .min(3)
+        .max(6),
+
+      detectedComponents: z
+        .array(z.string())
+        .min(1),
+    }),
+
+    ExecutiveIntelligenceBaseSchema.extend({
+      isDashboard: z.literal(false),
+    }),
+  ]);
+
+export type ExecutiveIntelligence =
+  z.infer<typeof ExecutiveIntelligenceSchema>;

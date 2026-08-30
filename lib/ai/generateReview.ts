@@ -13,19 +13,23 @@ import { buildPriorityActionsContext } from "./context/priorityActions";
 export async function generateReview(
   base64Image: string
 ) {
-  // Stage 1 — Independent AI tasks
-  const [understanding, evidence] =
-    await Promise.all([
-      understandDashboard(base64Image),
-      extractEvidence(base64Image),
-    ]);
+  // Stage 1 — Understand and validate the interface
+  const understanding =
+    await understandDashboard(base64Image);
 
-  console.log("===== GENERATE REVIEW =====");
-  console.log("Understanding:", understanding);
-  console.log("Evidence:", evidence);
-  console.log("===========================");
+  // Stop the review if the uploaded image
+  // does not appear to be a dashboard.
+  if (!understanding.isDashboard) {
+    throw new Error(
+      "This image doesn't appear to be a dashboard. Please upload a dashboard screenshot to continue."
+    );
+  }
 
-  // Stage 2 — Highest Impact Finding
+  // Stage 2 — Extract observable evidence
+  const evidence =
+    await extractEvidence(base64Image);
+
+  // Stage 3 — Highest Impact Finding
   const findingContext =
     buildFindingContext({
       understanding,
@@ -39,7 +43,7 @@ export async function generateReview(
   console.log("Finding:", finding);
   console.log("===================");
 
-  // Stage 3 — Decision Effectiveness Score
+  // Stage 4 — Decision Effectiveness Score
   const desContext =
     buildDESContext({
       understanding,
@@ -54,7 +58,7 @@ export async function generateReview(
   console.log("DES:", des);
   console.log("================");
 
-  // Stage 4 — Priority Actions
+  // Stage 5 — Priority Actions
   const priorityContext =
     buildPriorityActionsContext({
       understanding,
@@ -65,7 +69,7 @@ export async function generateReview(
   const priorityActions =
     await generatePriorityActions(priorityContext);
 
-  // Stage 5 — Final Review
+  // Stage 6 — Final Review
   return ReviewResponseSchema.parse({
     metadata: {
       schemaVersion: "1.0.0",
