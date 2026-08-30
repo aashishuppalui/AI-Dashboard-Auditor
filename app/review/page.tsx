@@ -15,6 +15,8 @@ import type { ReviewResponse } from "../../schemas/report/review-schema";
 import { getReview } from "../../lib/storage";
 import SiteFooter from "../../components/common/SiteFooter";
 
+import ReviewFeedback from "../../components/review/ReviewFeedback";
+
 export default function ReviewPage() {
   const [reviewData, setReviewData] = useState<ReviewResponse | null>(null);
 
@@ -79,6 +81,8 @@ export default function ReviewPage() {
           <RecommendationCard data={reviewData.priorityActions} />
         </section>
       </div>
+      {/* Review Feedback */}
+<ReviewFeedback />
       <SiteFooter />
     </main>
   );
