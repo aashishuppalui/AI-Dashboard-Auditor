@@ -1,98 +1,120 @@
-Dashboard
+# UX Review Companion — AI Architecture
 
-↓
+> High-level architecture of the AI system powering UX Review
+> Companion v0.1.
 
-UploadImage
+Version: 1.0
 
-↓
-
-Analyze Service
-
-↓
-
-Next.js API
-
-↓
-
-OpenAI
-
-↓
-
-Parser
-
-↓
-
-Schema Validation
-
-↓
-
-Typed Response
-
-↓
-
-Storage
-
-↓
-
-Review UI
+Status: Foundation
 
 ---
 
-                 Dashboard Screenshot
-                         │
-                         ▼
-                1. Understanding Engine
-        (What is this dashboard about?)
-                         │
-                         ▼
-              Dashboard Classification
-                         │
-                         ▼
-               2. Evidence Collection
-      (What observable UX evidence exists?)
-                         │
-                         ▼
-               3. Evidence Validation
+# 1. Purpose
 
-(Is every evidence item actually observable?)
-│
-▼
-Validated Evidence Repository
-│
-▼ 4. Finding Generation
-(What is the highest-impact UX finding?)
-│
-▼ 5. Consultant Insight
-(Why does this matter for the user?)
-│
-▼ 6. DES Calculation
-(How effective is this dashboard?)
-│
-▼ 7. Recommendation Engine
-(What should the designer improve next?)
+UX Review Companion uses a modular AI architecture to transform
+a dashboard screenshot into an evidence-backed UX review.
+
+The architecture separates:
+
+- Dashboard validation
+- Dashboard understanding
+- Observable evidence extraction
+- Evidence validation
+- UX finding generation
+- Consultant insight
+- Decision Effectiveness scoring
+- Priority action generation
+- AI execution
+- Response parsing
+- Schema validation
+- Review assembly
+
+The goal is to keep AI reasoning modular, traceable, testable,
+and replaceable.
+
+Detailed input/output contracts for individual engines are
+defined in:
+
+`14-engine-contract.md`
 
 ---
 
-v1.0 architecure
-UX Review Companion
+# 2. Architecture Principles
 
-                ┌────────────────────────┐
-                │   Upload Dashboard     │
-                └──────────┬─────────────┘
-                           │
-                           ▼
-                  Generic AI Executor
-                           │
-         ┌─────────────────┼─────────────────┐
-         │                 │                 │
-         ▼                 ▼                 ▼
+The AI architecture follows several core principles.
 
-Understanding Evidence Engine Finding Engine
-Engine (Later)
-│ │ │
-└─────────────────┼─────────────────┘
-▼
-Review Pipeline
-│
-▼
-Review UI
+## 2.1 Understand Before Evaluate
+
+The system must establish what the dashboard is and what
+decision it appears to support before evaluating its UX.
+
+The review should not begin with a recommendation.
+
+---
+
+## 2.2 Evidence Before Recommendation
+
+Recommendations should be grounded in observable evidence from
+the interface.
+
+The system should not jump directly from screenshot to
+recommendation.
+
+The reasoning should follow:
+
+```text
+Screenshot
+    ↓
+Understanding
+    ↓
+Observable Evidence
+    ↓
+Finding
+    ↓
+Evaluation
+    ↓
+Recommendation
+```
+
+--Implementation Architecture
+
+                    UX Review Companion
+                            │
+                            ▼
+                    Dashboard Upload
+                            │
+                            ▼
+                     Analyze API
+                            │
+                            ▼
+                    generateReview()
+                            │
+             ┌──────────────┴──────────────┐
+             │                             │
+             ▼                             ▼
+      Review Orchestration            AI Context
+             │                             │
+             └──────────────┬──────────────┘
+                            ▼
+                       AI Engines
+                            │
+                            ▼
+                     Shared Executor
+                            │
+                            ▼
+                          OpenAI
+                            │
+                            ▼
+                         Parser
+                            │
+                            ▼
+                       Zod Schema
+                            │
+                            ▼
+                    ReviewResponse
+                            │
+                            ▼
+                      Local Storage
+                            │
+                            ▼
+                        Review UI

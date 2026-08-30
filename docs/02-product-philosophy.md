@@ -1,65 +1,75 @@
-# Product Philosophy
+# UX Review Companion — Product Philosophy
 
-UX Review Companion helps product teams understand, explain, and improve dashboard UX through evidence-backed AI intelligence.
+## Core Philosophy
 
-Not "generate."
+UX Review Companion helps teams:
 
-Not "analyze."
+**Understand. Explain. Improve.**
 
-Not "score."
-
-Not "Design linter".
-
-Not "Accessibility checker".
-
-Not "Heuristic checklist".
-
-UX Review Companion IS
-
-Understand. Explain. Improve.
-
-Those three words summarize everything we've built.
+These three words define how the product should reason,
+not simply what it should output.
 
 ---
 
-Every review follows the same philosophy.
+## We Are Not Building
 
+UX Review Companion is not intended to be:
+
+- a generic screenshot critic
+- a design linter
+- an accessibility checker
+- a heuristic checklist
+- a beauty score
+- a visual design scoring tool
+
+The product should not produce criticism simply because
+something looks different from a preferred design pattern.
+
+---
+
+## We Are Building
+
+UX Review Companion is an AI-assisted UX consultant for
+decision-support dashboards.
+
+Its job is to connect:
+
+**Dashboard**
+
+↓
+
+**Decision**
+
+↓
+
+**Observable Evidence**
+
+↓
+
+**Finding**
+
+↓
+
+**Priority Action**
+
+The value comes from the quality of that reasoning chain.
+
+---
+
+# The Review Philosophy
+
+Every review should follow this principle:
+
+```text
 Understand
-
-↓
-
-Identify
-
-↓
-
-Support with Observable Evidence
-
-↓
-
+    ↓
+Observe
+    ↓
 Explain
-
-↓
-
+    ↓
+Prioritize
+    ↓
 Score
-
-↓
-
+    ↓
 Recommend
-
----
-
-Evidence comes before recommendation.
-
-Recommendation comes before scoring.
-
-Scoring never comes before understanding.
-
----
-
-DES Definition
-
-Dashboard Effectiveness Score measures
-
-"How effectively a dashboard supports its intended decision and workflow."
-
-It is NOT a visual design score.
+```
