@@ -4,26 +4,30 @@ import { z } from "zod";
  * A single observable piece of evidence
  * extracted directly from the dashboard.
  *
- * This represents what is visibly present in the interface.
- * It does not contain UX reasoning, impact, or severity.
+ * Evidence represents what is visibly present
+ * in the interface.
+ *
+ * It does not contain UX reasoning, impact,
+ * severity, or recommendations.
  */
 export const ObservableEvidenceItemSchema = z.object({
   /**
    * Unique identifier for this evidence.
    */
-  id: z.string().min(1),
+  id: z
+    .string()
+    .regex(/^EV-\d{3}$/, "Evidence ID must use the format EV-001."),
 
   /**
-   * Short label describing the visible evidence.
+   * Short factual label describing the visible evidence.
    */
   title: z
     .string()
-    .min(5)
-    .max(120),
+    .min(3)
+    .max(80),
 
   /**
    * Objective observation from the interface.
-   * Should describe only what is visible.
    */
   observation: z
     .string()
@@ -31,22 +35,20 @@ export const ObservableEvidenceItemSchema = z.object({
     .max(500),
 
   /**
-   * Approximate location of the evidence
-   * within the interface.
-   *
-   * Example:
-   * "Header"
-   * "Main Content"
-   * "Left Sidebar"
+   * Primary location of the evidence.
    */
-  location: z
-    .string()
-    .min(1)
-    .max(120),
+  location: z.enum([
+    "Header",
+    "Left Sidebar",
+    "Top Navigation",
+    "Main Content",
+    "Footer",
+    "Right Panel",
+  ]),
 
   /**
    * Confidence that the observation is correctly
-   * identified from the interface.
+   * identified from the screenshot.
    */
   confidence: z
     .number()
@@ -61,22 +63,58 @@ export type ObservableEvidenceItem = z.infer<
 /**
  * Complete observable-evidence response
  * returned by the AI evidence analysis step.
+ *
+ * MVP contract:
+ * - Minimum 5 observations
+ * - Maximum 10 observations
+ * - Evidence IDs must be unique
  */
-export const EvidenceSchema = z.object({
-  /**
-   * Observable evidence items identified in the dashboard.
-   */
-  evidence: z
-    .array(ObservableEvidenceItemSchema)
-    .min(1),
+export const EvidenceSchema = z
+  .object({
+    /**
+     * Observable evidence items identified in the dashboard.
+     */
+    evidence: z
+      .array(ObservableEvidenceItemSchema)
+      .min(5)
+      .max(10),
 
-  /**
-   * Overall confidence in the evidence extraction.
-   */
-  confidence: z
-    .number()
-    .min(0)
-    .max(1),
-});
+    /**
+     * Overall confidence in the evidence extraction.
+     */
+    confidence: z
+      .number()
+      .min(0)
+      .max(1),
+  })
+  .superRefine((data, ctx) => {
+    const ids = data.evidence.map((item) => item.id);
+    const uniqueIds = new Set(ids);
+
+    if (uniqueIds.size !== ids.length) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["evidence"],
+        message: "Evidence IDs must be unique.",
+      });
+    }
+
+    const expectedIds = data.evidence.map(
+      (_, index) => `EV-${String(index + 1).padStart(3, "0")}`
+    );
+
+    const idsAreSequential = data.evidence.every(
+      (item, index) => item.id === expectedIds[index]
+    );
+
+    if (!idsAreSequential) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["evidence"],
+        message:
+          "Evidence IDs must be sequential starting from EV-001.",
+      });
+    }
+  });
 
 export type Evidence = z.infer<typeof EvidenceSchema>;
