@@ -27,10 +27,11 @@ Return ONLY valid JSON.
 1. CORE PRINCIPLE
 ==================================================
 
-The highest-impact finding is the observable UX issue that most directly
+The highest-impact finding is the meaningful UX problem that most directly
 affects the dashboard's PRIMARY DECISION.
 
 Do NOT select the issue that:
+
 - looks most visually noticeable
 - has the most evidence items
 - sounds most serious
@@ -38,19 +39,19 @@ Do NOT select the issue that:
 - is easiest to explain
 - appears first in the evidence list
 
-Select the issue that has the strongest combination of:
+Select the issue with the strongest combination of:
 
 1. Relevance to the primary decision.
 2. Strength of observable evidence.
 3. Effect on the user's ability to make that decision.
 4. Breadth of the issue across the dashboard.
-5. Potential usefulness of addressing the issue.
+5. Usefulness of addressing the issue.
 
 ==================================================
 2. REASONING PROCESS
 ==================================================
 
-Before producing the final JSON, internally perform these steps:
+Before producing the final JSON, internally perform these steps.
 
 STEP 1 — Identify the primary decision.
 
@@ -66,8 +67,8 @@ This decision is the anchor for the entire finding.
 
 STEP 2 — Identify candidate UX issues.
 
-Review the supplied evidence and identify the major UX issues that are
-supported by the evidence.
+Review the supplied evidence and identify the major UX issues supported
+by the evidence.
 
 A candidate issue must be a meaningful UX conclusion, not simply an
 observation.
@@ -91,14 +92,14 @@ For each candidate, ask:
 
 Prefer issues that directly affect the primary decision.
 
-For example, if the primary decision is:
+If the primary decision is:
 
 "Which suppliers, purchase orders, or shipments require attention?"
 
-then an issue involving the ability to identify and prioritize at-risk
-suppliers or orders should generally rank higher than a general issue with
-trend presentation, unless the trend issue is clearly more important to that
-decision.
+then an issue involving identifying and prioritizing at-risk suppliers,
+orders, or shipments should generally rank higher than a general issue
+with trend presentation, unless the trend issue is clearly more important
+to that decision.
 
 ---
 
@@ -111,35 +112,22 @@ Evidence must directly support the finding.
 
 Do not combine unrelated observations simply to reach the two-item minimum.
 
-Prefer multiple independent pieces of evidence that point to the same
-underlying issue.
+Prefer multiple independent observations that point to the same underlying
+problem.
 
 ---
 
-STEP 5 — Separate absence from uncertainty.
+STEP 5 — Separate observation from interpretation.
 
-Do not claim that information is "missing" unless the supplied evidence
-clearly establishes that the information is expected but not present.
+Evidence tells us what is visible.
 
-Prefer:
+The finding explains what that visible condition means for the primary
+decision.
 
-"The dashboard does not show a visible comparison..."
+Do not turn an unsupported absence into a finding.
 
-when the evidence supports that statement.
-
-Avoid:
-
-"Critical data is missing..."
-
-unless the evidence explicitly establishes that the data should be present.
-
-Do not assume:
-- a component should contain data
-- a trend should exist
-- a user should perform a particular action
-- a business workflow exists
-
-unless supported by the supplied evidence or dashboard understanding.
+Only claim that information is missing when the supplied evidence clearly
+establishes that it is not visible.
 
 ---
 
@@ -147,12 +135,12 @@ STEP 6 — Compare competing candidates.
 
 When two candidates appear similarly important, use this tie-breaking order:
 
-1. Which issue is more directly connected to the primary decision?
-2. Which issue is supported by stronger and more independent evidence?
-3. Which issue affects more of the decision workflow?
-4. Which issue would make the decision meaningfully harder if left unresolved?
+1. Direct connection to the primary decision.
+2. Strength and independence of evidence.
+3. Breadth across the decision.
+4. Effect on the ability to make the decision.
 
-Do not switch between candidates simply because their wording is different.
+Do not switch between candidates simply because their wording differs.
 
 The same underlying evidence should normally produce the same underlying
 finding.
@@ -161,13 +149,17 @@ finding.
 3. FINDING DEFINITION
 ==================================================
 
-A finding is:
+A finding contains:
 
-OBSERVATION
+OBSERVABLE CONDITION
 +
-INTERPRETATION
+UX INTERPRETATION
 +
 DECISION CONSEQUENCE
+
+The finding should answer:
+
+"What is the important problem, and what does it make harder?"
 
 It is NOT:
 
@@ -178,38 +170,39 @@ It is NOT:
 - a user emotion
 - a generic UX principle
 
-Good:
+GOOD:
 
-"The dashboard makes it difficult to identify which suppliers, purchase
-orders, or shipments need attention."
+"The dashboard shows overall supplier performance, but it does not clearly
+show which suppliers, POs, or shipments need attention first. This makes it
+harder to decide where to focus."
 
-Why:
-
-It describes a meaningful UX conclusion connected to the primary decision.
-
-Bad:
+BAD:
 
 "The dashboard contains several KPI cards."
 
 Why:
-
 This is an observation, not a finding.
 
-Bad:
+BAD:
 
 "The dashboard has poor information hierarchy."
 
 Why:
-
 This is vague and does not explain the actual decision problem.
 
-Bad:
+BAD:
+
+"The dashboard creates cognitive load."
+
+Why:
+This uses UX terminology without explaining the observable problem.
+
+BAD:
 
 "Users will lose revenue because the dashboard is unclear."
 
 Why:
-
-This is an unsupported business-impact claim.
+This makes an unsupported business-impact claim.
 
 ==================================================
 4. TITLE
@@ -217,7 +210,8 @@ This is an unsupported business-impact claim.
 
 The title should state the problem directly.
 
-Use plain language.
+Use plain language that a Product Owner, Product Manager, Designer, or
+Engineer can understand immediately.
 
 Prefer:
 
@@ -225,50 +219,75 @@ Prefer:
 
 "The dashboard makes feature performance difficult to compare"
 
-"The dashboard does not clearly connect metrics to actions"
+"The dashboard does not clearly show what needs attention first"
 
 Avoid:
 
-"Dashboard surface-level metrics prioritize static status over decision-focused
-comparisons"
+"Dashboard surface-level metrics prioritize static status over
+decision-focused comparisons"
 
 Avoid unnecessary UX terminology such as:
+
 - cognitive load
 - information architecture
 - affordance
 - discoverability
 - perceptual hierarchy
 - decision-support friction
+- interaction cost
+- information scent
 
-The title should generally be understandable to a Product Owner or Engineer
-without UX expertise.
+The title should:
 
-Keep the title concise.
+- describe one problem
+- use concrete nouns and verbs
+- avoid abstract language
+- avoid solutions
+- be concise
 
 ==================================================
 5. SUMMARY
 ==================================================
 
-The summary should explain:
+The summary should contain TWO parts:
 
 1. What the dashboard currently shows.
 2. What decision becomes harder as a result.
 
-Use short, direct sentences.
+Use 2–3 short sentences.
 
-Prefer:
+Preferred structure:
+
+"The dashboard shows [observable information], but it does not clearly
+[decision-related limitation]. This makes it harder to [decision or task]."
+
+Example:
 
 "The dashboard shows supplier scores, delivery metrics, and purchase-order
 status, but it does not clearly identify which suppliers or orders need
-attention. This makes it harder for managers to decide where to intervene."
+attention. This makes it harder to decide where to focus first."
 
-Avoid long, multi-clause explanations.
+Rules:
 
-Do not repeat the evidence word-for-word.
+- Use plain language.
+- One idea per sentence.
+- Prefer concrete nouns and verbs.
+- Keep sentences short.
+- Do not repeat the evidence word-for-word.
+- Do not recommend a solution.
+- Do not introduce unsupported facts.
+- Do not claim frustration or confusion.
+- Do not claim financial or business impact unless explicitly supported.
 
-Do not recommend a solution.
+Avoid phrases such as:
 
-Do not introduce facts that are not supported by the evidence.
+- "creates cognitive load"
+- "reduces information scent"
+- "weakens perceptual hierarchy"
+- "introduces decision friction"
+- "impairs discoverability"
+
+Say what actually happens instead.
 
 ==================================================
 6. SEVERITY
@@ -279,17 +298,21 @@ Severity represents the importance of the finding to the primary decision.
 Use:
 
 "High"
+
 when the issue directly interferes with the primary decision or prevents
 important decision information from being used effectively.
 
 "Medium"
+
 when the issue affects decision quality or efficiency but the primary
 decision can still reasonably be made.
 
 "Low"
+
 when the issue has limited effect on the primary decision.
 
 Do NOT assign severity based on:
+
 - visual prominence
 - aesthetic quality
 - number of UI elements
@@ -302,28 +325,29 @@ primary decision.
 7. SUPPORTED BY
 ==================================================
 
-supportedBy must contain the IDs of the evidence items that directly support
-the finding.
+supportedBy must contain IDs of observable evidence items that directly
+support the finding.
 
 Rules:
 
 - Minimum 2 evidence IDs.
 - Use only supplied evidence IDs.
 - Every selected evidence item must materially support the finding.
-- Do not include evidence simply because it is related to the dashboard.
 - Prefer independent evidence.
+- Do not include evidence simply because it is related to the dashboard.
 - Do not invent evidence IDs.
 
 ==================================================
 8. CONFIDENCE
 ==================================================
 
-Confidence represents confidence that the finding is correctly supported by
-the supplied evidence.
+Confidence represents confidence that the finding is correctly supported
+by the supplied evidence.
 
 Use a value between 0 and 1.
 
 Higher confidence requires:
+
 - multiple independent supporting evidence items
 - clear connection to the primary decision
 - little reliance on inference
@@ -331,6 +355,7 @@ Higher confidence requires:
 Do not use high confidence simply because the finding sounds convincing.
 
 Confidence should decrease when:
+
 - evidence is ambiguous
 - the primary decision is uncertain
 - the finding relies heavily on interpretation
@@ -351,53 +376,57 @@ understanding changes materially.
 Do not choose a different finding simply because another evidence item is
 more visually interesting.
 
-Do not allow one isolated observation to override a broader, better-supported
-issue directly connected to the primary decision.
+Do not allow one isolated observation to override a broader, better
+supported issue directly connected to the primary decision.
 
 ==================================================
-10. EVIDENCE-FIRST LANGUAGE
+10. PLAIN-LANGUAGE RULE
 ==================================================
 
-Write for:
+The reasoning may be sophisticated internally.
 
-- Product Owners
-- Product Managers
-- Designers
-- Engineers
+The final finding must be simple.
 
-Use plain product language.
+Use:
+
+- concrete nouns
+- active verbs
+- short sentences
+- familiar product language
 
 Prefer:
 
-"The dashboard makes it difficult to identify which suppliers need attention."
+"The dashboard shows overall risk but does not clearly identify which
+suppliers need attention first."
 
 Avoid:
 
-"The dashboard creates prioritization friction due to weak information
-hierarchy."
+"The dashboard lacks a decision-oriented prioritization mechanism for
+risk-bearing entities."
 
-The AI may use sophisticated reasoning internally.
-
-The final finding must communicate that reasoning simply.
+If a sentence can be made simpler without losing meaning, make it simpler.
 
 ==================================================
 11. NO RECOMMENDATIONS
+==================================================
 
 Do NOT suggest how to fix the issue.
 
-Do not use phrases such as:
+Do not use:
 
-- "Add..."
-- "Redesign..."
-- "Introduce..."
-- "Improve..."
-- "Create..."
-- "Reorganize..."
+- Add...
+- Redesign...
+- Introduce...
+- Improve...
+- Create...
+- Reorganize...
+- Highlight...
 
 Recommendations belong to the Priority Actions stage.
 
 ==================================================
 12. FINAL SELF-CHECK
+==================================================
 
 Before returning the JSON, verify:
 
@@ -408,13 +437,15 @@ Before returning the JSON, verify:
 5. The finding is not merely an observation.
 6. The finding is not a recommendation.
 7. The finding does not make unsupported business claims.
-8. The finding does not claim user frustration or confusion without evidence.
-9. Any claim about missing information is directly supported.
+8. The finding does not claim user frustration or confusion.
+9. Claims about missing information are directly supported.
 10. Severity reflects impact on the primary decision.
 11. Confidence reflects evidence strength.
-12. The title is plain and understandable to a PO or Engineer.
-13. The summary explains the problem and decision consequence.
-14. The same evidence would reasonably lead to the same underlying finding
+12. The title is understandable to a PO or Engineer.
+13. The summary contains the observable condition and decision consequence.
+14. The summary uses short, direct sentences.
+15. The summary contains no unnecessary UX jargon.
+16. The same evidence would reasonably lead to the same underlying finding
     if analyzed again.
 
 Return JSON only.

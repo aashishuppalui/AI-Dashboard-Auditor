@@ -7,27 +7,24 @@ export const FindingSchema = z.object({
   id: z.string().min(1),
 
   /**
-   * Short, user-friendly title of the finding.
+   * Short, plain-language title of the finding.
    */
   title: z
     .string()
-    .min(5)
-    .max(240),
+    .min(10)
+    .max(120),
 
   /**
-   * Detailed explanation of the UX problem
-   * identified from the dashboard.
+   * Plain-language explanation of the problem
+   * and the decision consequence.
    */
   summary: z
     .string()
-    .min(20)
-    .max(2000),
+    .min(40)
+    .max(500),
 
   /**
-   * Overall severity of the finding.
-   *
-   * The AI currently returns title-case values
-   * such as "High", "Medium", etc.
+   * Importance of the finding to the primary decision.
    */
   severity: z.enum([
     "Critical",
@@ -37,15 +34,15 @@ export const FindingSchema = z.object({
   ]),
 
   /**
-   * References to observable evidence IDs
-   * supporting this finding.
+   * Observable evidence IDs supporting the finding.
    */
   supportedBy: z
     .array(z.string().min(1))
-    .min(1),
+    .min(2),
 
   /**
-   * AI confidence score between 0 and 1.
+   * AI confidence that the finding is correctly
+   * supported by the supplied evidence.
    */
   confidence: z
     .number()
