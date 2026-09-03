@@ -267,27 +267,17 @@ Example:
 status, but it does not clearly identify which suppliers or orders need
 attention. This makes it harder to decide where to focus first."
 
-Rules:
+STRICT LENGTH REQUIREMENT:
 
-- Use plain language.
-- One idea per sentence.
-- Prefer concrete nouns and verbs.
-- Keep sentences short.
-- Do not repeat the evidence word-for-word.
-- Do not recommend a solution.
-- Do not introduce unsupported facts.
-- Do not claim frustration or confusion.
-- Do not claim financial or business impact unless explicitly supported.
+- The summary MUST be 450 characters or fewer.
+- The schema maximum is 500 characters, but you MUST stay below 450.
+- Use only 2–3 short sentences.
+- Do not add background or explanation beyond the finding.
+- Do not repeat evidence unnecessarily.
+- Before returning the JSON, internally verify that the summary is within
+  the 450-character limit.
 
-Avoid phrases such as:
-
-- "creates cognitive load"
-- "reduces information scent"
-- "weakens perceptual hierarchy"
-- "introduces decision friction"
-- "impairs discoverability"
-
-Say what actually happens instead.
+If the summary is too long, shorten it before returning the JSON.
 
 ==================================================
 6. SEVERITY
@@ -445,7 +435,8 @@ Before returning the JSON, verify:
 13. The summary contains the observable condition and decision consequence.
 14. The summary uses short, direct sentences.
 15. The summary contains no unnecessary UX jargon.
-16. The same evidence would reasonably lead to the same underlying finding
+16. The summary is 450 characters or fewer.
+17. The same evidence would reasonably lead to the same underlying finding
     if analyzed again.
 
 Return JSON only.
