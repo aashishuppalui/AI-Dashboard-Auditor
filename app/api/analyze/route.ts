@@ -61,13 +61,34 @@ export async function POST(req: NextRequest) {
     console.error("Error:", error);
     console.error("================================");
 
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : "";
+
+    if (
+      errorMessage.includes("429") ||
+      errorMessage.includes("no credits remaining")
+    ) {
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            "Review temporarily unavailable. We couldn't complete the UX review right now. Please try again later.",
+        },
+        {
+          status: 503,
+        }
+      );
+    }
+
     return NextResponse.json(
       {
         success: false,
         error:
           error instanceof Error
             ? error.message
-            : "Failed to analyze dashboard.",
+            : "We couldn't complete the UX review.",
       },
       {
         status: 500,

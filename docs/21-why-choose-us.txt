@@ -1,0 +1,368 @@
+Why UX Review Companion?
+Competitive Differentiation & Product Positioning
+
+And structure it around seven potential reasons.
+
+01 — We don't just critique the interface
+Others
+
+"This chart is unclear."
+
+Us
+
+"This chart makes it difficult to determine whether delivery performance is improving or deteriorating."
+
+Difference:
+
+We connect UX problems to the user's decision.
+
+02 — Every important conclusion has evidence
+Others
+
+Finding
+↓
+Recommendation
+
+Us
+
+Evidence
+↓
+Finding
+↓
+Recommendation
+
+The user can trace:
+
+Why did the AI say this?
+
+That's critical for professional UX work.
+
+03 — We prioritize instead of overwhelming
+
+ChatGPT's response gives a large number of potential improvements.
+
+That's useful during brainstorming.
+
+But a product team needs:
+
+What should we do first?
+
+Our model:
+
+P0 → P1 → P2
+
+And eventually we can make this even better:
+
+Highest impact → Supporting improvements → Optimization
+
+The product should reduce decision burden, not increase it.
+
+04 — We separate observation from interpretation
+
+This is subtle but powerful.
+
+Observation
+
+"The trend chart contains a 95% target line but no visible actual data series."
+
+Interpretation
+
+"Users cannot assess whether performance has improved or declined over time."
+
+Recommendation
+
+"Restore the actual trend series and provide current-period context."
+
+This separation increases trust.
+
+05 — We don't invent business logic
+
+This could become one of our strongest principles.
+
+If the UI doesn't tell us:
+
+"Suppliers below 90% are considered at risk"
+
+we shouldn't invent that.
+
+Instead:
+
+"Allow users to filter suppliers by performance."
+
+This makes the tool safer for enterprise use.
+
+06 — We turn reviews into something teams can act on
+
+This is where our product should eventually move beyond a report.
+
+Imagine:
+
+Finding
+
+Delivery performance is difficult to investigate.
+
+↓
+
+Evidence
+
+EV-004
+EV-007
+EV-009
+
+↓
+
+Recommendation
+
+Add an exception-focused investigation view.
+
+↓
+
+Design output
+
+Figma plugin
+
+↓
+
+Product output
+
+Browser extension
+
+↓
+
+Team output
+
+Review → Assign → Resolve → Re-review
+
+Now we're not just an AI critic.
+
+We're becoming a:
+
+UX improvement workflow.
+07 — We maintain consistency
+
+This one is easy to underestimate.
+
+We have already discovered this ourselves.
+
+Same screenshot shouldn't produce:
+
+"The biggest issue is navigation"
+
+then five minutes later:
+
+"The biggest issue is KPI hierarchy"
+
+then:
+
+"The biggest issue is the trend chart."
+
+A professional reviewer needs a stable conclusion.
+
+Our principle:
+
+Same evidence → same underlying conclusion.
+
+That's a legitimate product-quality differentiator.
+
+10. But there's an even bigger threat
+
+After seeing this ChatGPT response, I'd change our competitive map.
+
+We shouldn't think only about:
+
+AI UX review products.
+
+We should consider four competitors:
+
+Competitor A
+
+Dedicated AI UX-review products.
+
+Competitor B
+
+Figma/design AI tools.
+
+Competitor C
+
+Traditional UX consultants/agencies.
+
+Competitor D — Generic AI
+
+ChatGPT / Claude / Gemini
+
+And D may be the most important.
+
+Because the user's question is:
+
+"Why should I pay/use another tool when I can upload the screenshot to ChatGPT?"
+
+We need a compelling answer.
+
+11. My current answer to that question
+
+Not final yet — this is our hypothesis.
+
+ChatGPT
+
+"Ask me anything about your design."
+
+UX Review Companion
+
+"Give me a UX review I can act on."
+
+That means we need to build product capabilities around the workflow that ChatGPT doesn't naturally provide.
+
+For example:
+
+Upload / capture
+
+↓
+
+Automatic dashboard understanding
+
+↓
+
+Evidence map
+
+↓
+
+Highest-impact finding
+
+↓
+
+Decision Effectiveness Score
+
+↓
+
+Prioritized actions
+
+↓
+
+Design recommendations
+
+↓
+
+Re-review after changes
+
+That last step is particularly interesting.
+
+12. Re-review could become huge
+
+Imagine a designer fixes the dashboard.
+
+Version 1
+
+DES: 69
+
+Highest issue:
+
+Users cannot identify which items need attention.
+
+↓
+
+Designer changes the design.
+
+↓
+
+Version 2
+
+Upload/capture again.
+
+↓
+
+DES: 81
+
+Finding changed.
+
+Evidence changed.
+
+Remaining issues:
+
+Navigation still duplicates concepts.
+
+Now the product can say:
+
+"Your review improved from 69 → 81."
+
+That's much more valuable than a one-off AI critique.
+
+And it gives us a natural reason for users to return.
+
+13. This also connects perfectly to Figma
+
+Imagine:
+
+Figma
+
+Frame A
+
+Review
+
+→ DES 62
+
+Designer makes changes.
+
+Review again
+
+→ DES 78
+
+Designer makes another change.
+
+→ DES 86
+
+Now UX Review Companion becomes part of the design loop:
+
+Design → Review → Improve → Re-review
+
+That's much more compelling than:
+
+Upload screenshot → receive report.
+
+14. So I would currently define our positioning like this
+Not:
+
+❌ AI dashboard analyzer
+❌ AI screenshot critic
+❌ AI UX score generator
+❌ AI design feedback tool
+
+Instead:
+AI UX Review Engine
+
+Understand the interface. Find what matters. Show the evidence. Recommend what to change.
+
+And the deeper promise:
+
+Turn UX feedback into product decisions.
+
+15. Our first draft of the "Why Us?" statement
+
+I'd put this into our V2 strategy document:
+
+Why would someone choose UX Review Companion?
+
+Because it doesn't just tell teams what looks wrong. It helps them understand what matters, why it matters, and what to improve first.
+
+UX Review Companion combines interface understanding, observable evidence, decision-focused reasoning, prioritization and actionable recommendations into one repeatable review process.
+
+Evidence before opinion.
+Decisions before aesthetics.
+Actions before endless critique.
+
+And then four supporting pillars:
+
+1. Decision-aware
+
+Reviews connect UX issues to the user's actual decision or task.
+
+2. Evidence-backed
+
+Important findings can be traced back to observable interface evidence.
+
+3. Prioritized
+
+The tool tells teams what deserves attention first instead of producing an unranked list of UX issues.
+
+4. Repeatable
+
+The same review framework can be applied consistently across screenshots, Figma designs and live products.

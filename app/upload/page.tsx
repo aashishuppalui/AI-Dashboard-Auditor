@@ -250,7 +250,7 @@ export default function UploadPage() {
                     </p>
 
                     <h2 className="upload-error-title">
-                      We couldn't complete the review.
+                      Review temporarily unavailable
                     </h2>
 
                     <p className="upload-error-message">
