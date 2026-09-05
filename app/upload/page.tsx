@@ -122,7 +122,7 @@ export default function UploadPage() {
   setError(
     error instanceof Error
       ? error.message
-      : "We couldn't complete the review."
+      : "The review service is temporarily unavailable. Please try again later."
   );
 }
   };
@@ -250,7 +250,7 @@ export default function UploadPage() {
                     </p>
 
                     <h2 className="upload-error-title">
-                      Review temporarily unavailable
+                      We couldn't complete your review
                     </h2>
 
                     <p className="upload-error-message">

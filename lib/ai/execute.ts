@@ -1,5 +1,7 @@
-import { openai } from "./client";
+import { normalizeAIResponse } from "./normalize";
+import { getAIProvider } from "./providers";
 
+import type { AIInput } from "./providers/types";
 type ExecuteAIOptions<T> = {
   prompt: string;
   parser: (text: string) => T;
@@ -13,57 +15,42 @@ export async function executeAI<T>({
   parser,
   image,
   context,
-  model = "gpt-5.1",
+  model,
 }: ExecuteAIOptions<T>): Promise<T> {
-  const content: any[] = [
-    {
-      type: "input_text",
-      text: prompt,
-    },
-  ];
+  const input: AIInput = {
+    prompt,
+    image,
+    context,
+  };
 
-  if (image) {
-    content.push({
-      type: "input_image",
-      image_url: image,
-    });
-  }
+  const providerName = process.env.AI_PROVIDER ?? "openai";
+  const provider = getAIProvider(providerName);
+  
+  const selectedModel = model ?? provider.defaultModel;
 
-  if (context) {
-    content.push({
-      type: "input_text",
-      text: context,
-    });
-  }
-
-  const start = Date.now();
-
-  const response = await openai.responses.create({
-    model,
-    input: [
-      {
-        role: "user",
-        content,
-      },
-    ],
+  const response = await provider.generate(input, {
+    model: selectedModel,
   });
-
-  const duration = Date.now() - start;
 
   console.log("================================");
   console.log("🤖 AI EXECUTOR");
-  console.log("Model:", model);
-  console.log("Duration:", duration + " ms");
+  console.log("Provider:", provider.name);
+console.log("Model:", selectedModel);
+  console.log("Duration:", response.durationMs + " ms");
   console.log("================================");
-const rawOutput = response.output_text;
 
-console.log("===== RAW AI OUTPUT =====");
-console.log(rawOutput);
+  console.log("===== RAW AI OUTPUT =====");
+  console.log(response.text);
 
-const parsed = parser(rawOutput);
+ const normalizedText = normalizeAIResponse(response.text);
+
+console.log("===== NORMALIZED AI OUTPUT =====");
+console.log(normalizedText);
+
+const parsed = parser(normalizedText);
 
 console.log("===== PARSED OUTPUT =====");
 console.log(parsed);
 
-return parsed;
+  return parsed;
 }
