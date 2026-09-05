@@ -1,13 +1,15 @@
 import OpenAI from "openai";
 
-const apiKey = process.env.OPENAI_API_KEY;
+export function getOpenAI() {
+  const apiKey = process.env.OPENAI_API_KEY;
 
-if (!apiKey) {
-  throw new Error(
-    "OPENAI_API_KEY is missing. Add it to .env.local and restart the Next.js dev server."
-  );
+  if (!apiKey) {
+    throw new Error(
+      "OPENAI_API_KEY is missing. Add it to .env.local or configure it in your deployment environment."
+    );
+  }
+
+  return new OpenAI({
+    apiKey,
+  });
 }
-
-export const openai = new OpenAI({
-  apiKey,
-});

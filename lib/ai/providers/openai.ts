@@ -1,4 +1,4 @@
-import { openai } from "../client";
+import { getOpenAI } from "../client";
 
 import type {
   AIInput,
@@ -9,6 +9,7 @@ import type {
 
 export const openAIProvider: AIProvider = {
   name: "openai",
+
   defaultModel: "gpt-5.1",
 
   capabilities: {
@@ -21,6 +22,7 @@ export const openAIProvider: AIProvider = {
     input: AIInput,
     options: AIRequestOptions
   ): Promise<AIResponse> {
+    const openai = getOpenAI();
 
     const content: any[] = [
       {

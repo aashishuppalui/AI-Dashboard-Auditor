@@ -7,17 +7,17 @@ import type {
   AIResponse,
 } from "./types";
 
-const apiKey = process.env.GEMINI_API_KEY;
+function getGoogleAI() {
+  const apiKey = process.env.GEMINI_API_KEY;
 
-if (!apiKey) {
-  throw new Error(
-    "GEMINI_API_KEY is missing. Add it to .env.local and restart the Next.js dev server."
-  );
+  if (!apiKey) {
+    throw new Error(
+      "GEMINI_API_KEY is missing. Add it to .env.local or configure it in your deployment environment."
+    );
+  }
+
+  return new GoogleGenAI({ apiKey });
 }
-
-const googleAI = new GoogleGenAI({
-  apiKey,
-});
 
 export const geminiProvider: AIProvider = {
   name: "gemini",
@@ -34,13 +34,18 @@ export const geminiProvider: AIProvider = {
     input: AIInput,
     options: AIRequestOptions
   ): Promise<AIResponse> {
+    const googleAI = getGoogleAI();
+
     const contents: any[] = [];
 
     if (input.image) {
       contents.push({
         inlineData: {
           mimeType: "image/png",
-          data: input.image.replace(/^data:image\/\w+;base64,/, ""),
+          data: input.image.replace(
+            /^data:image\/\w+;base64,/,
+            ""
+          ),
         },
       });
     }
@@ -56,10 +61,11 @@ export const geminiProvider: AIProvider = {
 
     const start = Date.now();
 
-    const response = await googleAI.models.generateContent({
-      model: options.model,
-      contents,
-    });
+    const response =
+      await googleAI.models.generateContent({
+        model: options.model,
+        contents,
+      });
 
     const durationMs = Date.now() - start;
 
