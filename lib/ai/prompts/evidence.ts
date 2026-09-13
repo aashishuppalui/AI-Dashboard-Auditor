@@ -209,6 +209,99 @@ For each evidence item, use exactly one of:
 Use the location where the evidence is primarily visible.
 
 ========================
+VISUAL REGION
+========================
+
+Every evidence item should attempt to identify the approximate visual
+region of the dashboard screenshot where that evidence appears.
+
+Think of the screenshot as a 1000 × 1000 coordinate canvas.
+
+For every evidence item:
+
+1. Identify the exact UI element described by the evidence.
+2. Locate that element in the screenshot.
+3. Estimate the bounding rectangle around that visible element.
+4. Return the rectangle using normalized coordinates.
+5. Only omit the "region" field when the described evidence genuinely
+   cannot be localized to a visible area.
+
+Approximate coordinates are expected.
+Do NOT omit the region merely because the coordinates cannot be pixel-perfect.
+
+Use this coordinate system:
+
+- x = horizontal position from the left edge
+- y = vertical position from the top edge
+- width = width of the evidence region
+- height = height of the evidence region
+
+All values must be between 0 and 1000.
+
+Example:
+
+{
+  "x": 420,
+  "y": 470,
+  "width": 480,
+  "height": 250
+}
+
+The region should contain the visible UI element being described.
+
+Prefer the smallest practical rectangle that allows another person to
+visually verify the observation.
+
+Examples:
+
+A KPI evidence item:
+→ Point to the KPI card or KPI group.
+
+A table evidence item:
+→ Point to the visible table.
+
+A chart evidence item:
+→ Point to the chart.
+
+A navigation evidence item:
+→ Point to the relevant navigation area.
+
+A status or score evidence item:
+→ Point to the relevant visible status badges, score cells, or indicators.
+
+Do NOT use the entire dashboard unless the evidence genuinely refers
+to the entire dashboard.
+
+Do NOT use the broad location category as the region.
+For example, "Main Content" is not a visual region.
+
+The visual region should be more precise than the location field.
+
+========================
+VISUAL REGION SELF-CHECK
+========================
+
+Before returning an evidence item, ask:
+
+"Can I point to the exact UI element described by this evidence?"
+
+If YES:
+Return its approximate region.
+
+Then ask:
+
+"If I cropped this region from the screenshot, could another person
+verify the observation from the crop?"
+
+If YES:
+Keep the region.
+
+If NO:
+Adjust the region so it contains the relevant UI element.
+
+Only omit the region when the evidence cannot reasonably be localized.
+
+========================
 EVIDENCE QUALITY
 ========================
 
@@ -237,8 +330,11 @@ When the same screenshot is analyzed repeatedly:
 - Do not replace a strong observable fact merely because another fact is
   also visible.
 - Do not vary the evidence set simply to create a different analysis.
+- When an evidence item refers to the same visual region, keep its
+  approximate region consistent.
 
-The goal is semantic consistency, not identical wording.
+The goal is semantic consistency, not identical wording or
+pixel-level coordinate precision.
 
 ========================
 OUTPUT FORMAT
@@ -255,11 +351,20 @@ Use exactly this structure:
       "title": "Short factual title",
       "observation": "Clear description of what is directly visible.",
       "location": "Main Content",
-      "confidence": 0.95
+      "confidence": 0.95,
+      "region": {
+        "x": 420,
+        "y": 470,
+        "width": 480,
+        "height": 250
+      }
     }
   ],
   "confidence": 0.95
 }
+
+The "region" field may be omitted when a meaningful visual region
+cannot be identified confidently.
 
 ========================
 FIELD RULES
@@ -292,6 +397,13 @@ confidence:
 - Number between 0 and 1.
 - Reflect how clearly the evidence can be verified from the screenshot.
 
+region:
+
+- Optional.
+- x, y, width, and height must be numbers from 0–1000.
+- The region must correspond to the visible evidence.
+- Do not invent a region when the evidence cannot be localized reliably.
+
 ========================
 FINAL SELF-CHECK
 ========================
@@ -309,6 +421,14 @@ Then ask:
 
 If NO:
 Rewrite it as an observable fact or remove it.
+
+Then ask:
+
+"If I show a crop of this region to another person, would they be able
+to verify the observation?"
+
+If NO:
+Either correct the region or omit the region field.
 
 Finally ask:
 

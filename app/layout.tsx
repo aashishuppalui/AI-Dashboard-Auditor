@@ -2,6 +2,7 @@ import React from "react";
 import { Analytics } from "@vercel/analytics/next";
 
 import "./global.css";
+import "./global-v2.css";
 
 export const metadata = {
   title: "UX Review Companion",

@@ -10,13 +10,17 @@ export default function UnderstandingPage() {
   const [reviewData, setReviewData] =
     useState<ReviewResponse | null>(null);
 
-  useEffect(() => {
-    const data = getReview();
+ useEffect(() => {
+  const data = getReview();
 
-    if (data) {
-      setReviewData(data);
-    }
-  }, []);
+  if (data) {
+    setReviewData(
+      "review" in data
+        ? data.review
+        : data
+    );
+  }
+}, []);
 
   if (!reviewData) {
     return (

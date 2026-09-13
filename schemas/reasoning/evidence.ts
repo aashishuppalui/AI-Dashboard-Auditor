@@ -1,6 +1,49 @@
 import { z } from "zod";
 
 /**
+ * Approximate visual region where the evidence
+ * appears in the dashboard screenshot.
+ *
+ * Coordinates are normalized to a 0–1000 scale
+ * so they remain useful regardless of image size.
+ */
+export const EvidenceRegionSchema = z.object({
+  /**
+   * Horizontal position from the left edge.
+   */
+  x: z
+    .number()
+    .min(0)
+    .max(1000),
+
+  /**
+   * Vertical position from the top edge.
+   */
+  y: z
+    .number()
+    .min(0)
+    .max(1000),
+
+  /**
+   * Width of the evidence region.
+   */
+  width: z
+    .number()
+    .min(1)
+    .max(1000),
+
+  /**
+   * Height of the evidence region.
+   */
+  height: z
+    .number()
+    .min(1)
+    .max(1000),
+});
+
+export type EvidenceRegion = z.infer<typeof EvidenceRegionSchema>;
+
+/**
  * A single observable piece of evidence
  * extracted directly from the dashboard.
  *
@@ -54,6 +97,15 @@ export const ObservableEvidenceItemSchema = z.object({
     .number()
     .min(0)
     .max(1),
+
+  /**
+   * Approximate visual region containing the evidence.
+   *
+   * Optional during the first validation phase.
+   * If the evidence cannot be reliably localized,
+   * the model may omit this field.
+   */
+  region: EvidenceRegionSchema.optional(),
 });
 
 export type ObservableEvidenceItem = z.infer<
@@ -118,3 +170,4 @@ export const EvidenceSchema = z
   });
 
 export type Evidence = z.infer<typeof EvidenceSchema>;
+

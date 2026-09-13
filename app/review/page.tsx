@@ -26,9 +26,14 @@ export default function ReviewPage() {
     console.log("Review data:", data);
 
     if (data) {
-      setReviewData(data);
-      track("review_viewed");
-    }
+  setReviewData(
+    "review" in data
+      ? data.review
+      : data
+  );
+
+  track("review_viewed");
+}
   }, []);
 
   if (!reviewData) {

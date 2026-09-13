@@ -1,0 +1,3042 @@
+/* ============================================================
+   UX REVIEW COMPANION — V2 REPORT
+   Locked visual system
+   ============================================================ */
+
+
+/* ============================================================
+   01. DESIGN TOKENS
+   ============================================================ */
+
+:root {
+  --v2-report-width: 1100px;
+
+  --v2-page-bg: #f7f8fa;
+  --v2-surface: #ffffff;
+  --v2-surface-subtle: #fafbfc;
+
+  --v2-text-primary: #111827;
+  --v2-text-secondary: #4b5563;
+  --v2-text-muted: #6b7280;
+
+  --v2-border: #e5e7eb;
+  --v2-border-strong: #d1d5db;
+
+  --v2-blue: #2563eb;
+  --v2-blue-soft: #eff6ff;
+
+  --v2-green: #15803d;
+  --v2-green-soft: #f0fdf4;
+
+  --v2-orange: #c2410c;
+  --v2-orange-soft: #fff7ed;
+
+  --v2-red: #dc2626;
+  --v2-red-soft: #fef2f2;
+
+  --v2-radius: 8px;
+  --v2-radius-small: 6px;
+
+  --v2-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.03);
+
+  --v2-font-body:
+    "Noto Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+
+/* ============================================================
+   02. PAGE FOUNDATION
+   ============================================================ */
+
+.report-page {
+  min-height: 100vh;
+  background: var(--v2-page-bg);
+  color: var(--v2-text-primary);
+  font-family: var(--v2-font-body);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.report-page *,
+.report-page *::before,
+.report-page *::after {
+  box-sizing: border-box;
+}
+
+.report-container {
+  width: min(
+    var(--v2-report-width),
+    calc(100% - 32px)
+  );
+
+  max-width: var(--v2-report-width);
+
+  margin: 0 auto;
+  padding: 34px 0 34px;
+}
+
+
+/* ============================================================
+   03. REPORT HEADER
+   ============================================================ */
+
+.v2-report-header {
+  margin-bottom: 22px;
+}
+
+.v2-report-eyebrow {
+  margin: 0 0 4px;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 12px;
+  line-height: 1.3;
+  font-weight: 600;
+
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.v2-report-title {
+  margin: 0;
+
+  color: var(--v2-text-primary);
+
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 700;
+
+  letter-spacing: -0.025em;
+}
+
+.v2-report-description {
+  margin: 7px 0 0;
+
+  color: var(--v2-text-muted);
+
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+
+/* ============================================================
+   04. SHARED REPORT CARD
+   ============================================================ */
+
+.report-card,
+.v2-executive-intelligence,
+.v2-finding,
+.v2-evidence,
+.v2-actions,
+.v2-des-breakdown {
+  width: 100%;
+
+  background: var(--v2-surface);
+
+  border: 1px solid var(--v2-border);
+  border-radius: var(--v2-radius);
+
+  box-shadow: var(--v2-shadow);
+}
+
+
+/* ============================================================
+   05. SHARED SECTION HEADING
+   ============================================================ */
+
+.report-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  min-width: 0;
+}
+
+.report-section-icon {
+  flex: 0 0 auto;
+  color: var(--v2-blue);
+}
+
+.v2-executive-title,
+.v2-finding-section-title,
+.v2-evidence-title,
+.v2-actions-title,
+.v2-des-breakdown-title {
+  margin: 0;
+
+  color: var(--v2-text-primary);
+
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 700;
+
+  letter-spacing: -0.01em;
+}
+
+
+/* ============================================================
+   06. EXECUTIVE INTELLIGENCE
+   ============================================================ */
+
+.v2-executive-intelligence {
+  padding: 20px 22px 22px;
+  margin-bottom: 14px;
+}
+
+
+/* Header */
+
+.v2-executive-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  min-height: 26px;
+
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid var(--v2-border);
+}
+
+
+/*
+ * Current component puts DES inside the header.
+ * Keep it compact and visually secondary.
+ */
+
+.v2-executive-header > .v2-des {
+  flex: 0 0 auto;
+}
+
+
+/* Executive content */
+
+.v2-executive-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+
+  column-gap: 0;
+
+  width: 100%;
+
+  margin-top: 0;
+}
+
+
+/* Columns */
+
+.v2-executive-column {
+  min-width: 0;
+
+  padding: 18px 20px 2px 0;
+}
+
+.v2-executive-column-right {
+  padding-left: 20px;
+  padding-right: 0;
+
+  border-left: 1px solid var(--v2-border);
+}
+
+
+/* Subtitles */
+
+.v2-executive-subtitle {
+  margin: 0 0 15px;
+
+  color: var(--v2-text-primary);
+
+  font-size: 14px;
+  line-height: 1.3;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+
+/* Fields */
+
+.v2-executive-field {
+  margin-bottom: 25px;
+}
+
+.v2-executive-field:last-child {
+  margin-bottom: 0;
+}
+
+.v2-executive-label {
+  margin: 0 0 4px;
+
+  color: var(--v2-text-muted);
+
+  font-size: 14px;
+  line-height: 1.3;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+}
+
+.v2-executive-value {
+  margin: 0;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+/* Confidence */
+
+.v2-executive-column-left
+  .v2-executive-field:last-child
+  .v2-executive-value {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 3px 8px;
+
+  border-radius: 999px;
+
+  background: var(--v2-green-soft);
+  color: var(--v2-green);
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* Decision focus */
+
+.v2-decision-focus-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+
+  margin-top: 4px;
+}
+
+.v2-decision-focus-chip {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 24px;
+
+  padding: 5px 10px;
+
+  border: 1px solid var(--v2-border);
+  border-radius: 5px;
+
+  background: var(--v2-surface-subtle);
+
+  color: var(--v2-text-secondary);
+
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+
+/* ============================================================
+   07. DES COMPACT GAUGE
+   ============================================================ */
+
+.v2-des {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  min-width: 112px;
+}
+
+.v2-des-gauge {
+  position: relative;
+
+  width: 54px;
+  height: 54px;
+
+  flex: 0 0 54px;
+}
+
+.v2-des-gauge-svg {
+  display: block;
+
+  width: 54px;
+  height: 54px;
+
+  max-width: 54px;
+  max-height: 54px;
+
+  transform: rotate(-90deg);
+}
+
+.v2-des-gauge-track {
+  fill: none;
+
+  stroke: #e5e7eb;
+  stroke-width: 5;
+}
+
+.v2-des-gauge-progress {
+  fill: none;
+
+  stroke-width: 5;
+
+  stroke-linecap: round;
+}
+
+.v2-des-strong .v2-des-gauge-progress {
+  stroke: var(--v2-green);
+}
+
+.v2-des-moderate .v2-des-gauge-progress {
+  stroke: var(--v2-orange);
+}
+
+.v2-des-weak .v2-des-gauge-progress {
+  stroke: var(--v2-red);
+}
+
+.v2-des-gauge-value {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--v2-text-primary);
+
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.v2-des-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.v2-des-label {
+  color: var(--v2-text-muted);
+
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 700;
+
+  letter-spacing: 0.05em;
+}
+
+.v2-des-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 14px;
+  line-height: 1.3;
+
+  white-space: nowrap;
+}
+
+.v2-des-status-dot {
+  width: 5px;
+  height: 5px;
+
+  flex: 0 0 5px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+
+/* ============================================================
+   08. HIGHEST-IMPACT FINDING
+   ============================================================ */
+
+.v2-finding {
+  position: relative;
+
+  margin-bottom: 14px;
+
+  padding: 18px 20px 17px;
+
+  background: var(--v2-red-soft);
+
+  border-color: #fecaca;
+}
+
+
+/* Header */
+
+.v2-finding-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid #fecaca;
+}
+
+.v2-finding-section-title {
+  font-size: 16px;
+}
+
+.v2-finding-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  flex: 0 0 auto;
+}
+
+.v2-finding-severity {
+  color: var(--v2-red);
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.v2-finding-confidence {
+  color: var(--v2-text-secondary);
+
+  font-size: 14px;
+}
+
+
+/* Content */
+
+.v2-finding-content {
+  padding-top: 14px;
+}
+
+.v2-finding-title {
+  margin: 0 0 7px;
+
+  color: var(--v2-text-primary);
+
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.v2-finding-summary {
+  margin: 0;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+
+/* Supporting evidence */
+
+.v2-finding-support {
+  margin-top: 14px;
+}
+
+.v2-finding-support-heading {
+  display: flex;
+  align-items: center;
+ 
+  margin-bottom: 7px;
+}
+
+.v2-finding-support-label {
+  margin: 0;
+
+  color: var(--v2-text-muted);
+
+  font-size: 12px;
+  line-height: 1.3;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.v2-finding-support-count {
+  padding-left: 2px;
+  color: var(--v2-text-muted);
+
+  font-size: 12px;
+}
+
+.v2-finding-evidence-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.v2-finding-evidence-wrapper {
+  position: relative;
+}
+
+.v2-finding-evidence {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  padding: 4px 8px;
+
+  border: 1px solid #dbe3ed;
+  border-radius: 999px;
+
+  background: #ffffff;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 12px;
+
+  cursor: help;
+}
+
+.v2-finding-evidence-id {
+  font-weight: 700;
+}
+
+
+/* Tooltip */
+
+.v2-finding-evidence-tooltip {
+  position: absolute;
+
+  z-index: 30;
+
+  left: 0;
+  bottom: calc(100% + 8px);
+
+  width: min(340px, 80vw);
+
+  padding: 11px 12px;
+
+  border: 1px solid var(--v2-border-strong);
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 8px 24px rgba(15, 23, 42, 0.12);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(4px);
+
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease,
+    visibility 140ms ease;
+}
+
+.v2-finding-evidence-wrapper:hover
+  .v2-finding-evidence-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.v2-finding-tooltip-title {
+  margin: 0 0 5px;
+
+  color: var(--v2-text-primary);
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.v2-finding-tooltip-observation {
+  margin: 0 0 8px;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.v2-finding-tooltip-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+  color: var(--v2-text-muted);
+
+  font-size: 12px;
+}
+
+
+/* ============================================================
+   09. SUPPORTING EVIDENCE
+   ============================================================ */
+
+.v2-evidence {
+  margin-bottom: 14px;
+
+  padding: 18px 20px 14px;
+}
+
+
+/* Header */
+
+.v2-evidence-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid var(--v2-border);
+}
+
+.v2-evidence-description {
+  margin: 4px 0 0;
+
+  color: var(--v2-text-muted);
+
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.v2-evidence-count {
+  flex: 0 0 auto;
+
+  color: var(--v2-text-muted);
+
+  font-size: 14px;
+}
+
+
+/* Evidence rows */
+
+.v2-evidence-list {
+  width: 100%;
+}
+
+.v2-evidence-row {
+  display: grid;
+
+  grid-template-columns:
+    150px
+    minmax(0, 1fr)
+    90px;
+
+  column-gap: 16px;
+
+  width: 100%;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid var(--v2-border);
+}
+
+.v2-evidence-row:last-child {
+  border-bottom: 0;
+}
+
+
+/* ID */
+
+.v2-evidence-id {
+  grid-column: 1;
+  grid-row: 1;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 12px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+
+/* Content */
+
+.v2-evidence-content {
+  grid-column: 2;
+  grid-row: 1;
+
+  min-width: 0;
+}
+
+.v2-evidence-row-title {
+  margin: 0 0 4px;
+
+  color: var(--v2-text-primary);
+
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.v2-evidence-observation {
+  margin: 0;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+
+/* Meta */
+
+.v2-evidence-meta {
+  grid-column: 3;
+  grid-row: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  gap: 2px;
+
+  min-width: 0;
+
+  color: var(--v2-text-muted);
+
+  font-size: 14px;
+  line-height: 1.35;
+
+  text-align: right;
+}
+
+.v2-evidence-location {
+  font-weight: 500;
+}
+
+.v2-evidence-confidence {
+  white-space: nowrap;
+}
+
+
+/* Visual evidence button */
+
+.v2-evidence-visual-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  margin-top: 7px;
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+
+  color: var(--v2-blue);
+
+  font: inherit;
+
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.v2-evidence-visual-button:hover {
+  text-decoration: underline;
+}
+
+.v2-evidence-visual-button:focus-visible {
+  outline: 2px solid rgba(37, 99, 235, 0.3);
+  outline-offset: 2px;
+}
+
+
+/* Thumbnail */
+
+.v2-evidence-preview {
+  display: flex;
+  align-items: flex-start;
+
+  margin-top: 9px;
+
+  width: 150px;
+}
+
+.v2-evidence-thumbnail {
+  display: block;
+
+  width: 150px;
+  height: 84px;
+
+  flex: 0 0 150px;
+
+  object-fit: cover;
+
+  border: 1px solid var(--v2-border);
+  border-radius: 6px;
+
+  background: var(--v2-surface-subtle);
+}
+
+
+/*
+ * Crop container used by the current component.
+ */
+
+.v2-evidence-crop {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  overflow: hidden;
+
+  border: 1px solid var(--v2-border);
+  border-radius: 6px;
+
+  background: #f3f4f6;
+}
+
+.v2-evidence-crop-image {
+  position: absolute;
+
+  display: block;
+
+  max-width: none;
+
+  object-fit: fill;
+}
+
+
+/* Preview copy */
+
+.v2-evidence-preview-copy {
+  display: none;
+}
+
+
+/* Show-more */
+
+.v2-evidence-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-top: 12px;
+}
+
+.v2-evidence-more-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  min-height: 28px;
+
+  padding: 5px 11px;
+
+  border: 1px solid var(--v2-border);
+  border-radius: 999px;
+
+  background: #ffffff;
+
+  color: var(--v2-text-secondary);
+
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.3;
+
+  cursor: pointer;
+}
+
+.v2-evidence-more-button:hover {
+  border-color: var(--v2-border-strong);
+  background: var(--v2-surface-subtle);
+}
+
+.v2-evidence-more-button:focus-visible {
+  outline: 2px solid rgba(37, 99, 235, 0.25);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   10. PRIORITY ACTIONS
+   ============================================================ */
+
+.v2-actions {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 14px;
+  padding: 18px 20px 14px;
+}
+
+.v2-actions-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  margin-bottom: 16px;
+}
+
+.v2-actions-header > div {
+  min-width: 0;
+}
+
+.v2-actions-title {
+  margin: 0;
+}
+
+.v2-actions-description {
+  margin: 6px 0 0;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   ACTION LIST
+   ========================================================= */
+
+.v2-actions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* =========================================================
+   INDIVIDUAL ACTION
+   ========================================================= */
+
+.v2-actions-list .v2-action {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  border: 1px solid;
+  border-radius: 8px;
+}
+
+
+/* =========================================================
+   ACTION PRIORITY COLORS
+   ========================================================= */
+
+.v2-actions-list .v2-action-p0 {
+  border-color: #fca5a5;
+  background: #fff5f5;
+}
+
+.v2-actions-list .v2-action-p1 {
+  border-color: #fdba74;
+  background: #fff8ef;
+}
+
+.v2-actions-list .v2-action-p2 {
+  border-color: #93c5fd;
+  background: #eff6ff;
+}
+
+
+/* =========================================================
+   COMPACT SUMMARY ROW
+   IMPORTANT:
+   Explicit grid prevents content collapsing.
+   ========================================================= */
+
+.v2-actions-list .v2-action-summary-row {
+  display: grid !important;
+
+  grid-template-columns:
+    32px
+    minmax(0, 1fr)
+    auto !important;
+
+  align-items: center;
+
+  column-gap: 12px;
+
+  width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  padding: 10px 12px;
+}
+
+
+/* =========================================================
+   PRIORITY CODE
+   ========================================================= */
+
+.v2-actions-list .v2-action-priority {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  min-width: 32px;
+}
+
+.v2-actions-list .v2-action-priority-code {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 26px;
+  height: 26px;
+
+  box-sizing: border-box;
+
+  border-radius: 7px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   P0 / P1 / P2 BADGES
+   ========================================================= */
+
+.v2-action-p0 .v2-action-priority-code {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.v2-action-p1 .v2-action-priority-code {
+  background: #ffedd5;
+  color: #ea580c;
+}
+
+.v2-action-p2 .v2-action-priority-code {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+
+/* =========================================================
+   CONTENT
+   IMPORTANT:
+   Reset width/flex values that can cause collapse.
+   ========================================================= */
+
+.v2-actions-list .v2-action-content {
+  display: block !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  flex: none !important;
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   ACTION TITLE
+   ========================================================= */
+
+.v2-actions-list .v2-action-title {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+
+  margin: 0;
+
+  color: var(--v2-text-primary);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  line-height: 1.4;
+
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+
+/* =========================================================
+   ACTION SUMMARY
+   ========================================================= */
+
+.v2-actions-list .v2-action-summary {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+
+  margin: 3px 0 0;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 14px;
+  line-height: 1.45;
+
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+
+/* =========================================================
+   PRIORITY LABEL
+   ========================================================= */
+
+.v2-actions-list .v2-action-priority-label {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 54px;
+
+  padding: 4px 8px;
+
+  box-sizing: border-box;
+
+  border: 1px solid currentColor;
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   LABEL COLORS
+   ========================================================= */
+
+.v2-action-p0 .v2-action-priority-label {
+  color: #dc2626;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.v2-action-p1 .v2-action-priority-label {
+  color: #ea580c;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.v2-action-p2 .v2-action-priority-label {
+  color: #2563eb;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+
+/* =========================================================
+   PROGRESSIVE DETAILS
+   ========================================================= */
+
+.v2-actions-list .v2-action-details {
+  display: block;
+
+  width: auto;
+
+  margin: 0 12px 12px;
+
+  padding-top: 12px;
+
+  border-top: 1px solid rgba(17, 24, 39, 0.10);
+}
+
+.v2-action-field {
+  margin-bottom: 12px;
+}
+
+.v2-action-label {
+  margin: 0 0 4px;
+
+  color: var(--v2-text-primary);
+
+  font-size: 12px;
+  font-weight: 600;
+
+  line-height: 1.3;
+}
+
+.v2-action-text {
+  margin: 0;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.v2-action-impact {
+  padding-top: 11px;
+
+  border-top: 1px solid rgba(17, 24, 39, 0.10);
+}
+
+.v2-action-impact-list {
+  margin: 0;
+  padding-left: 16px;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   DETAILS BUTTON
+   ========================================================= */
+
+.v2-actions-details-toggle {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  padding-top: 14px;
+}
+
+.v2-actions-details-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  min-height: 28px;
+
+  padding: 5px 12px;
+
+  border: 1px solid var(--v2-border);
+  border-radius: 999px;
+
+  background: var(--v2-surface);
+
+  color: var(--v2-text-secondary);
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    border-color 150ms ease,
+    color 150ms ease,
+    background 150ms ease;
+}
+
+.v2-actions-details-button:hover {
+  border-color: var(--v2-border-strong);
+
+  background: var(--v2-surface-subtle);
+
+  color: var(--v2-text-primary);
+}
+
+.v2-actions-details-button:focus-visible {
+  outline: 2px solid var(--v2-blue);
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+  .v2-actions-list .v2-action-summary-row {
+    grid-template-columns:
+      30px
+      minmax(0, 1fr) !important;
+
+    column-gap: 10px;
+
+    padding: 10px;
+  }
+
+  .v2-actions-list .v2-action-priority-label {
+    display: none;
+  }
+
+}
+
+/* ============================================================
+   12. SCORE BREAKDOWN
+   ============================================================ */
+
+.v2-des-breakdown {
+  margin-bottom: 24px;
+  padding: 18px 20px 20px;
+}
+
+
+/* ------------------------------------------------------------
+   HEADER
+   ------------------------------------------------------------ */
+
+.v2-des-breakdown-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid var(--v2-border);
+}
+
+.v2-des-breakdown-description {
+  margin: 4px 0 0;
+
+  color: var(--v2-text-muted);
+
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+
+/* ------------------------------------------------------------
+   BODY
+   ------------------------------------------------------------ */
+
+.v2-des-breakdown-body {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.1fr)
+    minmax(0, 1fr);
+
+  gap: 12px;
+
+  margin-top: 14px;
+}
+
+
+/* ------------------------------------------------------------
+   DIMENSIONS PANEL
+   ------------------------------------------------------------ */
+
+.v2-des-dimensions {
+  padding: 13px;
+
+  border: 1px solid var(--v2-border);
+  border-radius: 6px;
+
+  background: var(--v2-surface);
+}
+
+.v2-des-dimension {
+  display: grid;
+
+  grid-template-columns:
+    125px
+    minmax(0, 1fr)
+    42px;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-bottom: 9px;
+}
+
+.v2-des-dimension:last-child {
+  margin-bottom: 0;
+}
+
+.v2-des-dimension-name {
+  min-width: 0;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.v2-des-dimension-bar {
+  position: relative;
+
+  width: 100%;
+  height: 6px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: #e5e7eb;
+}
+
+.v2-des-dimension-fill {
+  height: 100%;
+
+  border-radius: inherit;
+
+  transition: width 180ms ease;
+}
+
+
+/* ------------------------------------------------------------
+   DIMENSION SCORE STATES
+   ------------------------------------------------------------ */
+
+.v2-des-fill-strong {
+  background: var(--v2-green);
+}
+
+.v2-des-fill-moderate {
+  background: var(--v2-orange);
+}
+
+.v2-des-fill-weak {
+  background: var(--v2-red);
+}
+
+.v2-des-dimension-score {
+  color: var(--v2-text-primary);
+
+  font-size: 12px;
+  line-height: 1.3;
+
+  font-weight: 600;
+
+  text-align: right;
+}
+
+
+/* ------------------------------------------------------------
+   OVERALL PANEL
+   ------------------------------------------------------------ */
+
+.v2-des-overall {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  padding: 13px;
+
+  border: 1px solid var(--v2-border);
+  border-radius: 6px;
+
+  background: var(--v2-surface);
+}
+
+.v2-des-overall-label {
+  margin: 0;
+
+  color: var(--v2-text-muted);
+
+  font-size: 12px;
+  line-height: 1.3;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.v2-des-overall-score {
+  margin: 4px 0 2px;
+
+  color: var(--v2-text-primary);
+
+  font-size: 36px;
+  line-height: 1;
+
+  font-weight: 700;
+}
+
+.v2-des-overall-score span {
+  margin-left: 4px;
+
+  color: var(--v2-text-muted);
+
+  font-size: 14px;
+  font-weight: 400;
+}
+
+
+/* ------------------------------------------------------------
+   OVERALL STATUS
+   ------------------------------------------------------------ */
+
+.v2-des-overall-status {
+  display: inline-flex;
+  align-items: center;
+
+  width: fit-content;
+
+  margin-top: 6px;
+  padding: 4px 8px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  line-height: 1.2;
+
+  font-weight: 600;
+}
+
+.v2-des-overall-status-dot {
+  width: 5px;
+  height: 5px;
+
+  margin-right: 5px;
+
+  flex: 0 0 5px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+
+/* ------------------------------------------------------------
+   OVERALL STATUS STATES
+   ------------------------------------------------------------ */
+
+.v2-des-status-excellent,
+.v2-des-status-good {
+  background: var(--v2-green-soft);
+  color: var(--v2-green);
+}
+
+.v2-des-status-needs-attention,
+.v2-des-status-weak {
+  background: var(--v2-orange-soft);
+  color: var(--v2-orange);
+}
+
+.v2-des-status-critical {
+  background: var(--v2-red-soft);
+  color: var(--v2-red);
+}
+
+
+/* ------------------------------------------------------------
+   OVERALL EXPLANATION
+   ------------------------------------------------------------ */
+
+.v2-des-overall-explanation {
+  margin: 14px 0 0;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+
+@media (max-width: 760px) {
+
+  .v2-des-breakdown-body {
+    grid-template-columns: 1fr;
+  }
+
+  .v2-des-dimension {
+    grid-template-columns:
+      115px
+      minmax(0, 1fr)
+      42px;
+  }
+
+}
+
+
+@media (max-width: 560px) {
+
+  .v2-des-breakdown {
+    padding: 16px;
+  }
+
+  .v2-des-dimension {
+    grid-template-columns:
+      105px
+      minmax(0, 1fr)
+      40px;
+
+    gap: 7px;
+  }
+
+  .v2-des-dimension-name,
+  .v2-des-dimension-score {
+    font-size: 8px;
+  }
+
+  .v2-des-overall-score {
+    font-size: 26px;
+  }
+
+}
+
+
+/* ============================================================
+   15. FEEDBACK
+   ============================================================ */
+
+.v2-report-feedback {
+  width: min(
+    var(--v2-report-width),
+    calc(100% - 32px)
+  );
+
+  margin: 0 auto 24px;
+}
+
+
+/* ============================================================
+   16. RESPONSIVE — TABLET
+   ============================================================ */
+
+@media (max-width: 760px) {
+
+  .report-container {
+    width: calc(100% - 24px);
+
+    padding-top: 24px;
+  }
+
+  .v2-report-title {
+    font-size: 24px;
+  }
+
+  .v2-executive-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .v2-executive-column {
+    padding: 16px 0;
+  }
+
+  .v2-executive-column-right {
+    padding-left: 0;
+
+    border-left: 0;
+    border-top: 1px solid var(--v2-border);
+  }
+
+  .v2-evidence-row {
+    grid-template-columns:
+      130px
+      minmax(0, 1fr);
+
+    column-gap: 12px;
+  }
+
+  .v2-evidence-meta {
+    grid-column: 2;
+    grid-row: 1;
+
+    align-items: flex-start;
+
+    margin-top: 48px;
+
+    text-align: left;
+  }
+
+  .v2-actions-description {
+    text-align: right;
+  }
+
+  .v2-des-breakdown-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ============================================================
+   17. RESPONSIVE — MOBILE
+   ============================================================ */
+
+@media (max-width: 560px) {
+
+  .report-container {
+    width: calc(100% - 16px);
+
+    padding-top: 18px;
+    padding-bottom: 40px;
+  }
+
+  .v2-report-eyebrow {
+    font-size: 9px;
+  }
+
+  .v2-report-title {
+    font-size: 22px;
+  }
+
+  .v2-report-description {
+    font-size: 10px;
+  }
+
+
+  /* Executive */
+
+  .v2-executive-intelligence {
+    padding: 16px;
+  }
+
+  .v2-executive-header {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  .v2-executive-header > .v2-des {
+    align-self: flex-end;
+  }
+
+
+  /* Finding */
+
+  .v2-finding {
+    padding: 16px;
+  }
+
+  .v2-finding-header {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  .v2-finding-meta {
+    align-self: flex-end;
+  }
+
+
+  /* Evidence */
+
+  .v2-evidence {
+    padding: 16px;
+  }
+
+  .v2-evidence-header {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 6px;
+  }
+
+  .v2-evidence-row {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    row-gap: 7px;
+  }
+
+  .v2-evidence-id {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .v2-evidence-content {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .v2-evidence-meta {
+    grid-column: 1;
+    grid-row: auto;
+
+    align-items: flex-start;
+
+    margin-top: 0;
+
+    text-align: left;
+  }
+
+  .v2-evidence-preview {
+    width: 100%;
+  }
+
+  .v2-evidence-crop,
+  .v2-evidence-thumbnail {
+    width: 100%;
+    height: auto;
+
+    aspect-ratio: 16 / 9;
+  }
+
+
+  /* Actions */
+
+  .v2-actions {
+    padding: 16px;
+  }
+
+  .v2-actions-header {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 5px;
+  }
+
+  .v2-actions-description {
+    text-align: left;
+  }
+
+  .v2-action {
+    grid-template-columns:
+      32px
+      minmax(0, 1fr);
+  }
+
+  .v2-action-priority {
+    width: 32px;
+    min-width: 32px;
+  }
+
+
+  /* DES breakdown */
+
+  .v2-des-breakdown {
+    padding: 16px;
+  }
+
+  .v2-des-dimension {
+    grid-template-columns:
+      105px
+      minmax(0, 1fr)
+      38px;
+  }
+
+
+  /* Modal */
+
+  .v2-visual-modal-overlay {
+    padding: 10px;
+  }
+
+  .v2-visual-modal {
+    width: calc(100vw - 20px);
+    max-height: calc(100vh - 20px);
+  }
+
+  .v2-visual-modal-body {
+    max-height: calc(100vh - 92px);
+
+    padding: 10px;
+  }
+}
+
+
+/* ============================================================
+   18. REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .v2-finding-evidence-tooltip,
+  .v2-visual-modal-overlay,
+  .v2-visual-modal {
+    animation: none;
+    transition: none;
+  }
+}
+
+
+/* ============================================================
+   19. PRINT
+   ============================================================ */
+
+@media print {
+
+  .report-page {
+    background: #ffffff;
+  }
+
+  .report-container {
+    width: 100%;
+    max-width: none;
+
+    padding: 0;
+  }
+
+  .v2-visual-modal-overlay {
+    display: none !important;
+  }
+
+  .v2-finding-evidence-tooltip {
+    display: none;
+  }
+
+  .v2-evidence-more {
+    display: none;
+  }
+
+  .v2-action-content > .v2-action-field,
+  .v2-action-content > .v2-action-impact {
+    display: block;
+  }
+
+  .v2-executive-intelligence,
+  .v2-finding,
+  .v2-evidence,
+  .v2-actions,
+  .v2-des-breakdown {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+}
+
+/* =========================================================
+   EXECUTIVE INTELLIGENCE
+   ========================================================= */
+
+.v2-executive-description {
+  color: var(--v2-text-secondary);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.v2-executive-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr)
+    250px;
+  border-top: 1px solid var(--v2-border);
+}
+
+.v2-executive-column {
+  min-width: 0;
+  padding: 20px 22px 8px 0;
+}
+
+.v2-executive-column-right {
+  padding-left: 22px;
+  border-left: 1px solid var(--v2-border);
+}
+
+.v2-des-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+  padding: 6px 20px 16px;
+  text-align: center;
+  border-left: 1px solid var(--v2-border);
+}
+
+.v2-des-column-title {
+  margin: 10px 0 20px;
+  color: var(--v2-text-primary);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+}
+
+-------------------------------
+/* ------------------------------------------------------------
+   Gauge wrapper
+   ------------------------------------------------------------ */
+
+.v2-des-gauge-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+}
+
+/* ------------------------------------------------------------
+   Gauge
+   ------------------------------------------------------------ */
+
+.v2-des-gauge {
+flex: 0 0 118px;
+  width: 118px;
+  height: 118px;
+
+  position: relative;
+}
+
+/* ------------------------------------------------------------
+   Segmented ring
+
+   Three visual bands:
+   - Yellow
+   - Teal
+   - Green
+
+   The ring is intentionally complete. The score is the
+   primary signal; the colors provide a quick visual cue.
+   ------------------------------------------------------------ */
+
+.v2-des-gauge-ring {
+  position: relative;
+
+  width: 104px;
+  height: 104px;
+
+  border-radius: 50%;
+
+  background:
+    conic-gradient(
+      from -90deg,
+      #fbbf24 0deg 92deg,
+      #3f8f8b 92deg 180deg,
+      #3fba83 180deg 360deg
+    );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ------------------------------------------------------------
+   Inner gauge surface
+   ------------------------------------------------------------ */
+
+.v2-des-gauge-ring::before {
+  content: "";
+
+  position: absolute;
+  inset: 10px;
+
+  border-radius: 50%;
+
+  background: var(--v2-surface);
+}
+
+
+
+
+/* ------------------------------------------------------------
+   Status
+   ------------------------------------------------------------ */
+
+.v2-des-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  margin-top: 12px;
+  padding: 5px 10px;
+
+  border: 1px solid #fed7aa;
+  border-radius: 999px;
+
+  background: var(--v2-orange-soft);
+  color: var(--v2-orange);
+
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* Status dot */
+
+.v2-des-status-dot {
+  width: 7px;
+  height: 7px;
+
+  flex: 0 0 7px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+/* ============================================================
+   DES GAUGE — RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 760px) {
+
+  .v2-des-column {
+    padding: 18px 0 0;
+  }
+
+  .v2-des-gauge,
+  .v2-des-gauge-ring {
+    width: 96px;
+    height: 96px;
+  }
+
+  .v2-des-gauge-value {
+    font-size: 28px;
+  }
+
+  .v2-des-gauge-ring::before {
+    inset: 9px;
+  }
+}
+
+---------------------------------------
+
+
+.v2-executive-confidence {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--v2-green-soft);
+  color: var(--v2-green);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   DES TOOLTIP
+   Matches Supporting Evidence tooltip language
+   ============================================================ */
+
+.v2-des-tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+
+/* Tooltip */
+
+.v2-des-tooltip {
+  position: absolute;
+  z-index: 40;
+
+  top: calc(100% + 9px);
+  left: 0;
+
+  width: 337px;
+  max-width: min(337px, calc(100vw - 32px));
+
+  padding: 12px 14px;
+
+  border: 1px solid var(--v2-border);
+  border-radius: 8px;
+
+  background: var(--v2-surface);
+
+  box-shadow:
+    0 8px 24px rgba(15, 23, 42, 0.12);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(4px);
+
+  transition:
+    opacity 140ms ease,
+    visibility 140ms ease,
+    transform 140ms ease;
+}
+
+
+/* Desktop hover */
+
+.v2-des-tooltip-wrapper:hover .v2-des-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+/* DES identifier
+   Same visual role as EV-005 */
+
+.v2-des-tooltip-id {
+  margin: 0 0 6px;
+
+  color: var(--v2-text-primary);
+
+  font-size: 12px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+
+/* Tooltip explanation */
+
+.v2-des-tooltip-text {
+  margin: 0;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+
+/* Small pointer */
+
+.v2-des-tooltip::before {
+  content: "";
+
+  position: absolute;
+
+  top: -5px;
+  left: 18px;
+
+  width: 8px;
+  height: 8px;
+
+  border-top: 1px solid var(--v2-border);
+  border-left: 1px solid var(--v2-border);
+
+  background: var(--v2-surface);
+
+  transform: rotate(45deg);
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 560px) {
+
+  .v2-des-tooltip {
+    left: auto;
+    right: 0;
+  }
+
+  .v2-des-tooltip::before {
+    left: auto;
+    right: 18px;
+  }
+}
+
+/* =========================================================
+   PRIORITY ACTIONS
+   ========================================================= */
+
+.v2-actions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.v2-action {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid;
+  border-radius: 8px;
+}
+
+.v2-action-summary-row {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 11px 12px;
+}
+
+.v2-action-priority {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.v2-action-priority-code {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.v2-action-content {
+  min-width: 0;
+}
+
+.v2-action-title {
+  margin: 0;
+  color: var(--v2-text-primary);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.v2-action-summary {
+  margin: 3px 0 0;
+  color: var(--v2-text-secondary);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.v2-action-priority-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  padding: 4px 9px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.v2-action-details {
+  margin: 0 12px 12px;
+  padding-top: 13px;
+  border-top: 1px solid rgba(17, 24, 39, 0.10);
+}
+
+.v2-action-field {
+  margin-bottom: 12px;
+}
+
+.v2-action-label {
+  margin: 0 0 4px;
+  color: var(--v2-text-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.v2-action-text {
+  margin: 0;
+  color: var(--v2-text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.v2-action-impact {
+  padding-top: 12px;
+  border-top: 1px solid rgba(17, 24, 39, 0.10);
+}
+
+.v2-action-impact-list {
+  margin: 0;
+  padding-left: 17px;
+  color: var(--v2-text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.v2-actions-details-toggle {
+  display: flex;
+  justify-content: center;
+  padding-top: 14px;
+}
+
+.v2-actions-details-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 5px 12px;
+  border: 1px solid var(--v2-border);
+  border-radius: 999px;
+  background: var(--v2-surface);
+  color: var(--v2-text-secondary);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.v2-actions-details-button:hover {
+  border-color: var(--v2-border-strong);
+  color: var(--v2-text-primary);
+}
+
+/* =========================================================
+   SUPPORTING EVIDENCE
+   ========================================================= */
+
+.v2-evidence {
+  position: relative;
+}
+
+.v2-evidence-list {
+  width: 100%;
+}
+
+.v2-evidence-row {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr) 100px;
+  gap: 16px;
+  align-items: start;
+  min-width: 0;
+  padding: 14px 0;
+  border-top: 1px solid var(--v2-border);
+}
+
+.v2-evidence-visual {
+  min-width: 0;
+}
+
+.v2-evidence-id {
+  margin-bottom: 7px;
+  color: var(--v2-text-primary);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.v2-evidence-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.v2-evidence-view-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 28px;
+  padding: 5px 10px;
+
+  border: 1px solid var(--v2-border);
+  border-radius: 6px;
+
+  background: var(--v2-surface);
+  color: var(--v2-text-primary);
+
+  font: inherit;
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 500;
+
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.v2-evidence-view-all:hover {
+  background: var(--v2-surface-subtle);
+  border-color: var(--v2-border-strong);
+}
+
+.v2-evidence-view-all:focus-visible {
+  outline: 2px solid var(--v2-blue);
+  outline-offset: 2px;
+}
+
+.v2-evidence-thumbnail-button {
+  display: block;
+  width: 170px;
+  height: 96px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--v2-border);
+  border-radius: 7px;
+  background: var(--v2-surface-subtle);
+  cursor: pointer;
+}
+
+.v2-evidence-thumbnail-button:hover {
+  border-color: var(--v2-border-strong);
+}
+
+.v2-evidence-thumbnail {
+  position: relative;
+  overflow: hidden;
+  width: 170px;
+  height: 96px;
+}
+
+.v2-evidence-thumbnail-image {
+  position: absolute;
+  display: block;
+  max-width: none;
+  object-fit: fill;
+}
+
+.v2-evidence-thumbnail-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: 96px;
+  border: 1px solid var(--v2-border);
+  border-radius: 7px;
+  background: var(--v2-surface-subtle);
+  color: var(--v2-text-muted);
+  font-size: 10px;
+}
+
+.v2-evidence-thumbnail-button {
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+
+.v2-evidence-thumbnail-button:hover {
+  border-color: var(--v2-blue);
+  box-shadow: 0 2px 8px rgba(17, 24, 39, 0.10);
+}
+
+.v2-evidence-thumbnail-button:focus-visible {
+  outline: 2px solid var(--v2-blue);
+  outline-offset: 2px;
+}
+
+.v2-evidence-content {
+  min-width: 0;
+}
+
+.v2-evidence-row-title {
+  margin: 0 0 4px;
+  color: var(--v2-text-primary);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.v2-evidence-observation {
+  margin: 0;
+  color: var(--v2-text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.v2-evidence-visual-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 7px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--v2-blue);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.v2-evidence-visual-button:hover {
+  text-decoration: underline;
+}
+
+.v2-evidence-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  min-width: 0;
+  text-align: right;
+}
+
+.v2-evidence-location,
+.v2-evidence-confidence {
+  color: var(--v2-text-secondary);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+/* =========================================================
+   EVIDENCE MODAL
+   ========================================================= */
+
+.v2-evidence-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(17, 24, 39, 0.62);
+
+  box-sizing: border-box;
+}
+
+.v2-evidence-dialog {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  width: min(920px, calc(100vw - 48px));
+  max-height: calc(100vh - 48px);
+
+  overflow: hidden;
+
+  border: 1px solid var(--v2-border);
+  border-radius: 10px;
+
+  background: var(--v2-surface);
+
+  box-shadow:
+    0 20px 50px rgba(17, 24, 39, 0.22);
+}
+
+.v2-evidence-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  flex: 0 0 auto;
+
+  padding: 13px 16px;
+
+  border-bottom: 1px solid var(--v2-border);
+}
+
+.v2-evidence-dialog-id {
+  display: block;
+  margin-bottom: 2px;
+
+  color: var(--v2-text-muted);
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.v2-evidence-dialog-title {
+  margin: 0;
+
+  color: var(--v2-text-primary);
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.v2-evidence-dialog-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  flex: 0 0 30px;
+
+  padding: 0;
+
+  border: 1px solid var(--v2-border);
+  border-radius: 6px;
+
+  background: var(--v2-surface);
+  color: var(--v2-text-secondary);
+
+  cursor: pointer;
+}
+
+.v2-evidence-dialog-close:hover {
+  border-color: var(--v2-border-strong);
+  color: var(--v2-text-primary);
+}
+
+/* =========================================================
+   DIALOG IMAGE AREA
+   ========================================================= */
+
+.v2-evidence-dialog-image-wrap {
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  overflow: auto;
+
+  padding: 18px;
+
+  background: var(--v2-surface-subtle);
+}
+
+.v2-evidence-dialog-canvas {
+  position: relative;
+
+  width: fit-content;
+  max-width: 100%;
+
+  margin: 0 auto;
+}
+
+.v2-evidence-dialog-image {
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  max-width: 100%;
+  max-height: calc(100vh - 180px);
+
+  object-fit: contain;
+}
+
+.v2-evidence-region-highlight {
+  position: absolute;
+
+  box-sizing: border-box;
+
+  border: 2px solid var(--v2-blue);
+
+  background: rgba(37, 99, 235, 0.08);
+
+  pointer-events: none;
+}
+
+.v2-evidence-region-label {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 20px;
+  padding: 2px 6px;
+
+  background: var(--v2-blue);
+  color: white;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   DIALOG FOOTER
+   ========================================================= */
+
+.v2-evidence-dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  flex: 0 0 auto;
+
+  padding: 9px 16px;
+
+  border-top: 1px solid var(--v2-border);
+
+  background: var(--v2-surface);
+}
+
+.v2-evidence-dialog-footer p {
+  margin: 0;
+
+  color: var(--v2-text-muted);
+
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.v2-evidence-dialog-footer span {
+  flex: 0 0 auto;
+
+  color: var(--v2-text-secondary);
+
+  font-size: 14px;
+}
+
+@media (max-width: 760px) {
+
+  .v2-executive-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .v2-executive-column,
+  .v2-executive-column-right,
+  .v2-des-column {
+    padding: 16px 0;
+    border-left: 0;
+  }
+
+  .v2-executive-column + .v2-executive-column,
+  .v2-des-column {
+    border-top: 1px solid var(--v2-border);
+  }
+
+  .v2-evidence-row {
+    grid-template-columns: 140px minmax(0, 1fr);
+  }
+
+  .v2-evidence-thumbnail-button,
+  .v2-evidence-thumbnail,
+  .v2-evidence-thumbnail-placeholder {
+    width: 140px;
+    height: 82px;
+  }
+
+  .v2-evidence-meta {
+    display: none;
+  }
+}
+
+
+@media (max-width: 560px) {
+
+  .v2-action-summary-row {
+    grid-template-columns: 34px minmax(0, 1fr);
+  }
+
+  .v2-action-priority-label {
+    display: none;
+  }
+
+  .v2-evidence-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .v2-evidence-thumbnail-button,
+  .v2-evidence-thumbnail,
+  .v2-evidence-thumbnail-placeholder {
+    width: 150px;
+    height: 84px;
+  }
+
+  .v2-evidence-dialog-overlay {
+    padding: 10px;
+  }
+
+  .v2-evidence-dialog {
+    width: calc(100vw - 20px);
+    max-height: calc(100vh - 20px);
+  }
+
+  .v2-evidence-dialog-image-wrap {
+    padding: 10px;
+  }
+
+  .v2-evidence-dialog-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+/* =========================================================
+   DES BREAKDOWN — DIMENSION SCORE COLORS
+   Final override
+   ========================================================= */
+
+.v2-des-dimension-bar {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e5e7eb;
+}
+
+.v2-des-dimension-fill {
+  display: block;
+  height: 100%;
+  min-width: 0;
+  border-radius: 999px;
+}
+
+/* 16–20 = Strong */
+.v2-des-dimension-fill.v2-des-fill-strong {
+  background: #15803d !important;
+}
+
+/* 12–15 = Moderate */
+.v2-des-dimension-fill.v2-des-fill-moderate {
+  background: #f59e0b !important;
+}
+
+/* 0–11 = Weak */
+.v2-des-dimension-fill.v2-des-fill-weak {
+  background: #dc2626 !important;
+}
+
+/* =========================================================
+   EXECUTIVE INTELLIGENCE — DECISION FOCUS DISCLOSURE
+   ========================================================= */
+
+.v2-decision-focus-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  min-height: 28px;
+  padding: 5px 10px;
+
+  border: 1px solid var(--v2-border-strong);
+  border-radius: 6px;
+
+  background: var(--v2-surface);
+  color: var(--v2-text-primary);
+
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.v2-decision-focus-button:hover {
+  background: var(--v2-surface-subtle);
+  border-color: #9ca3af;
+}
+
+.v2-decision-focus-button:focus-visible {
+  outline: 2px solid var(--v2-blue);
+  outline-offset: 2px;
+}
+
+.v2-decision-focus-field
+  .v2-decision-focus-list {
+  margin-bottom: 8px;
+}
