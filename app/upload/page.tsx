@@ -94,7 +94,7 @@ export default function UploadPage() {
 
         track("analysis_completed");
 
-      saveReview(review);
+      saveReview(review, upload.base64);
 
       setStatus("Opening review...");
 
@@ -122,7 +122,7 @@ export default function UploadPage() {
   setError(
     error instanceof Error
       ? error.message
-      : "The review service is temporarily unavailable. Please try again later."
+      : "Review temporarily unavailable. We couldn't complete the UX review right now. Please try again later."
   );
 }
   };
