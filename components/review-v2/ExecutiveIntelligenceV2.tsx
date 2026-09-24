@@ -9,7 +9,7 @@ import { ChevronDown, ChevronUp, Sparkles } from "lucide-react";
 
 interface ExecutiveIntelligenceV2Props {
   data: ExecutiveIntelligence;
-  des: DES;
+  des?: DES;
 }
 
 function getDESStatusClass(score: number) {
@@ -43,13 +43,15 @@ export default function ExecutiveIntelligenceV2({
 }: ExecutiveIntelligenceV2Props) {
   const [showDecisionFocus, setShowDecisionFocus] = useState(false);
 
-  const statusClass = getDESStatusClass(des.score);
-  const statusLabel = getDESStatusLabel(des.score);
-  const confidenceLabel = getConfidenceLabel(data.confidence);
+ const statusClass = des
+  ? getDESStatusClass(des.score)
+  : "";
 
-  const radius = 28;
-  const circumference = 2 * Math.PI * radius;
-  const progress = circumference * (des.score / 100);
+const statusLabel = des
+  ? getDESStatusLabel(des.score)
+  : "";
+
+const confidenceLabel = getConfidenceLabel(data.confidence);
 
   return (
     <section className="v2-executive-intelligence report-card">
@@ -176,33 +178,63 @@ export default function ExecutiveIntelligenceV2({
     =================================================== */}
 
         <div
-          className={`v2-des-column ${statusClass}`}
-          title="Decision Effectiveness Score: how effectively the dashboard supports its primary decision."
+  className={`v2-des-column ${statusClass}`}
+  title={
+    des
+      ? "Decision Effectiveness Score: how effectively the dashboard supports its primary decision."
+      : "Decision Effectiveness Score will appear when the review is complete."
+  }
+>
+  {des ? (
+    <>
+      <p className="v2-des-column-title">
+        Decision Effectiveness Score
+      </p>
+
+      <div className="v2-des-gauge-wrapper">
+        <div
+          className="v2-des-gauge"
+          role="img"
+          aria-label={`Decision Effectiveness Score ${des.score} out of 100, ${statusLabel}`}
         >
-          <p className="v2-des-column-title">Decision Effectiveness Score</p>
+          <div className="v2-des-gauge-ring">
+            <div className="v2-des-gauge-center">
+              <span className="v2-des-gauge-value">
+                {des.score}
+              </span>
 
-          <div className="v2-des-gauge-wrapper">
-            <div
-              className="v2-des-gauge"
-              role="img"
-              aria-label={`Decision Effectiveness Score ${des.score} out of 100, ${statusLabel}`}
-            >
-              <div className="v2-des-gauge-ring">
-                <div className="v2-des-gauge-center">
-                  <span className="v2-des-gauge-value">{des.score}</span>
-
-                  <span className="v2-des-score-max">/ 100</span>
-                </div>
-              </div>
+              <span className="v2-des-score-max">
+                / 100
+              </span>
             </div>
-
-            <span className="v2-des-status">
-              <span className="v2-des-status-dot" aria-hidden="true" />
-
-              {statusLabel}
-            </span>
           </div>
         </div>
+
+        <span className="v2-des-status">
+          <span
+            className="v2-des-status-dot"
+            aria-hidden="true"
+          />
+
+          {statusLabel}
+        </span>
+      </div>
+    </>
+  ) : (
+    <>
+      <p className="v2-des-column-title">
+        Decision Effectiveness Score
+      </p>
+
+      <div className="v2-des-pending">
+        <p>Calculating...</p>
+        <span>
+          Your decision effectiveness score will appear shortly.
+        </span>
+      </div>
+    </>
+  )}
+</div>
       </div>
     </section>
   );

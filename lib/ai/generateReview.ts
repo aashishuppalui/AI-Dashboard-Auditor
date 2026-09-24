@@ -1,14 +1,8 @@
 import { ReviewResponseSchema } from "../../schemas/report/review-schema";
+import type { FastReviewResult } from "../../schemas/report/fast-review-results";
 
-import { understandDashboard } from "./engines/understanding";
-import { extractEvidence } from "./engines/evidence";
-import { generateFinding } from "./engines/finding";
-import { generateDES } from "./engines/des";
-import { generatePriorityActions } from "./engines/priorityActions";
-
-import { buildFindingContext } from "./context/finding";
-import { buildDESContext } from "./context/des";
-import { buildPriorityActionsContext } from "./context/priorityActions";
+import { generateFastReview } from "././generateFastReview";
+import { generateReviewEnrichment } from "./generateReviewEnrichment";
 
 export async function generateReview(
   base64Image: string
@@ -19,139 +13,47 @@ export async function generateReview(
   console.log("===== REVIEW PIPELINE START =====");
   console.log("================================");
 
-  // --------------------------------------------------
-  // Stage 1 — Understand and validate the interface
-  // --------------------------------------------------
+  // ============================================
+  // FAST REVIEW
+  // ============================================
 
-  const understandingStart = Date.now();
+  const fastReviewStart = Date.now();
 
-  const understanding =
-    await understandDashboard(base64Image);
+  const fastReview =
+    await generateFastReview(base64Image);
 
-  const understandingDuration =
-    Date.now() - understandingStart;
+  const fastReviewDuration =
+    Date.now() - fastReviewStart;
 
   console.log(
-    "Understanding:",
-    understandingDuration,
+    "Fast Review:",
+    fastReviewDuration,
     "ms"
   );
 
-  // Stop the review if the uploaded image
-  // does not appear to be a dashboard.
-  if (!understanding.isDashboard) {
-    console.log(
-      "Review stopped: uploaded image is not a dashboard."
+  // ============================================
+  // ENRICHMENT
+  // ============================================
+
+  const enrichmentStart = Date.now();
+
+  const enrichment =
+    await generateReviewEnrichment(
+      fastReview
     );
 
-    throw new Error(
-      "This image doesn't appear to be a dashboard. Please upload a dashboard screenshot to continue."
-    );
-  }
-
-  // --------------------------------------------------
-  // Stage 2 — Extract observable evidence
-  // --------------------------------------------------
-
-  const evidenceStart = Date.now();
-
-  const evidence =
-    await extractEvidence(base64Image);
-
-  const evidenceDuration =
-    Date.now() - evidenceStart;
+  const enrichmentDuration =
+    Date.now() - enrichmentStart;
 
   console.log(
-    "Evidence:",
-    evidenceDuration,
+    "Review Enrichment:",
+    enrichmentDuration,
     "ms"
   );
 
-  // --------------------------------------------------
-  // Stage 3 — Highest Impact Finding
-  // --------------------------------------------------
-
-  const findingContext =
-    buildFindingContext({
-      understanding,
-      evidence,
-    });
-
-  const findingStart = Date.now();
-
-  const finding =
-    await generateFinding(findingContext);
-
-  const findingDuration =
-    Date.now() - findingStart;
-
-  console.log(
-    "Finding:",
-    findingDuration,
-    "ms"
-  );
-
-  console.log("===== FINDING =====");
-  console.log("Finding:", finding);
-  console.log("===================");
-
-  // --------------------------------------------------
-  // Stage 4 — Decision Effectiveness Score
-  // --------------------------------------------------
-
-  const desContext =
-    buildDESContext({
-      understanding,
-      evidence,
-      finding,
-    });
-
-  const desStart = Date.now();
-
-  const des =
-    await generateDES(desContext);
-
-  const desDuration =
-    Date.now() - desStart;
-
-  console.log(
-    "DES:",
-    desDuration,
-    "ms"
-  );
-
-  console.log("===== DES =====");
-  console.log("DES:", des);
-  console.log("================");
-
-  // --------------------------------------------------
-  // Stage 5 — Priority Actions
-  // --------------------------------------------------
-
-  const priorityContext =
-    buildPriorityActionsContext({
-      understanding,
-      evidence,
-      finding,
-    });
-
-  const priorityStart = Date.now();
-
-  const priorityActions =
-    await generatePriorityActions(priorityContext);
-
-  const priorityDuration =
-    Date.now() - priorityStart;
-
-  console.log(
-    "Priority Actions:",
-    priorityDuration,
-    "ms"
-  );
-
-  // --------------------------------------------------
-  // Total review time
-  // --------------------------------------------------
+  // ============================================
+  // COMPLETE REVIEW
+  // ============================================
 
   const totalDuration =
     Date.now() - reviewStart;
@@ -161,32 +63,14 @@ export async function generateReview(
   console.log("================================");
 
   console.log(
-    "Understanding:",
-    understandingDuration,
+    "Fast Review:",
+    fastReviewDuration,
     "ms"
   );
 
   console.log(
-    "Evidence:",
-    evidenceDuration,
-    "ms"
-  );
-
-  console.log(
-    "Finding:",
-    findingDuration,
-    "ms"
-  );
-
-  console.log(
-    "DES:",
-    desDuration,
-    "ms"
-  );
-
-  console.log(
-    "Priority Actions:",
-    priorityDuration,
+    "Review Enrichment:",
+    enrichmentDuration,
     "ms"
   );
 
@@ -204,10 +88,6 @@ export async function generateReview(
 
   console.log("================================");
 
-  // --------------------------------------------------
-  // Stage 6 — Final Review
-  // --------------------------------------------------
-
   return ReviewResponseSchema.parse({
     metadata: {
       schemaVersion: "1.0.0",
@@ -218,14 +98,19 @@ export async function generateReview(
       processingTimeMs: totalDuration,
     },
 
-    executiveIntelligence: understanding,
+    executiveIntelligence:
+      fastReview.executiveIntelligence,
 
-    des,
+    des:
+      enrichment.des,
 
-    highestImpactFinding: finding,
+    highestImpactFinding:
+      fastReview.highestImpactFinding,
 
-    supportingEvidence: evidence,
+    supportingEvidence:
+      fastReview.supportingEvidence,
 
-    priorityActions,
+    priorityActions:
+      enrichment.priorityActions,
   });
 }
