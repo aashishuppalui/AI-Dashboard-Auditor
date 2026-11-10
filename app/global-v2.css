@@ -2602,15 +2602,23 @@ flex: 0 0 118px;
 
 .v2-evidence-thumbnail-placeholder {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 5px;
   width: 170px;
   height: 96px;
-  border: 1px solid var(--v2-border);
+  border: 1px dashed var(--v2-border);
   border-radius: 7px;
   background: var(--v2-surface-subtle);
   color: var(--v2-text-muted);
-  font-size: 10px;
+  font-size: 11px;
+  text-align: center;
+}
+
+.v2-evidence-thumbnail-placeholder small {
+  font-size: 9px;
+  opacity: 0.8;
 }
 
 .v2-evidence-thumbnail-button {

@@ -13,16 +13,19 @@ export type StoredV2Review = {
   enrichment?: ReviewEnrichmentResult;
   sourceImage: string;
   status: V2ReviewStatus;
+  mode: "demo" | "live";
 };
 
 export function saveV2FastReview(
   fastReview: FastReviewResult,
-  sourceImage: string
+  sourceImage: string,
+  mode: "demo" | "live" = "live"
 ) {
   const storedReview: StoredV2Review = {
     fastReview,
     sourceImage,
     status: "fast-ready",
+    mode,
   };
 
   localStorage.setItem(

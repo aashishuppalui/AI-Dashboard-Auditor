@@ -144,10 +144,11 @@ export default function SupportingEvidenceV2({
 
             </div>
 
-            <p className="v2-evidence-description">
-              Key observations from the interface
-              that support this finding.
-            </p>
+          <p className="v2-evidence-description">
+  {sourceImage
+    ? "Key observations from the interface that support this finding."
+    : "Illustrative observations supporting the sample finding. No source screenshot was analyzed."}
+</p>
           </div>
 
           <div className="v2-evidence-header-actions">
@@ -218,9 +219,17 @@ export default function SupportingEvidenceV2({
                       />
                     </button>
                   ) : (
-                    <div className="v2-evidence-thumbnail-placeholder">
-                      No visual evidence
-                    </div>
+                   <div className="v2-evidence-thumbnail-placeholder">
+  {sourceImage ? (
+    "No visual evidence available"
+  ) : (
+    <>
+      <FileSearch size={18} strokeWidth={1.7} />
+      <span>Illustrative sample</span>
+      <small>Not screenshot-linked</small>
+    </>
+  )}
+</div>
                   )}
 
                 </div>

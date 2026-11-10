@@ -10,8 +10,15 @@ import FileDropzone from "../../components/upload/FileDropzone";
 import type { UploadImage } from "../../types";
 
 import { fileToBase64 } from "../../lib/utils/image";
-import { saveV2FastReview } from "../../lib/storageV2";
+import { demoFastReview } from "../../lib/demo/demoFastReview";
 import { generateFastReview } from "../../lib/review/fastReviewService";
+
+import {
+  saveV2FastReview,
+  saveV2Enrichment,
+} from "../../lib/storageV2";
+
+import { demoEnrichment } from "../../lib/demo/demoEnrichment";
 
 import SiteFooter from "../../components/common/SiteFooter";
 
@@ -73,7 +80,8 @@ export default function UploadPage() {
      ANALYZE DASHBOARD
      ========================================================= */
 
- const handleAnalyze = async () => {
+
+const handleAnalyze = async () => {
   if (!upload) return;
 
   try {
@@ -129,6 +137,21 @@ export default function UploadPage() {
     );
   }
 };
+
+const handleDemoReview = () => {
+  track("demo_review_started");
+
+  saveV2FastReview(
+    demoFastReview,
+    "",
+    "demo"
+  );
+
+  saveV2Enrichment(demoEnrichment);
+
+  router.push("/review-v2");
+};
+
 
   /* =========================================================
      RENDER
@@ -345,6 +368,15 @@ export default function UploadPage() {
                         →
                       </span>
                     </button>
+<button
+  type="button"
+  className="upload-demo-button"
+  onClick={handleDemoReview}
+  disabled={isAnalyzing}
+>
+  Explore with sample data
+  <span aria-hidden="true">→</span>
+</button>
 
                     <FileDropzone
                       onFileSelect={

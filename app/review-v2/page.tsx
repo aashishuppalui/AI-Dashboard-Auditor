@@ -38,12 +38,13 @@ export default function ReviewV2Page() {
   useEffect(() => {
     if (!reviewData) return;
 
-    if (
-      reviewData.status !== "fast-ready" ||
-      reviewData.enrichment
-    ) {
-      return;
-    }
+   if (
+  reviewData.mode === "demo" ||
+  reviewData.status !== "fast-ready" ||
+  reviewData.enrichment
+) {
+  return;
+}
 
     const runEnrichment = async () => {
       try {
@@ -142,7 +143,11 @@ export default function ReviewV2Page() {
             </p>
 
             <h1>Dashboard Review</h1>
-
+{reviewData.mode === "demo" && (
+  <span className="review-demo-badge">
+    DEMO DATA · ILLUSTRATIVE EXAMPLE
+  </span>
+)}
             <p className="review-date">
               {createdDate}
             </p>
